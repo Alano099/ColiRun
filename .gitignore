@@ -32,3 +32,15 @@
 *.app
 
 .vs/
+*.user
+*.VC.db
+*.opendb
+*.suo
+
+x64/
+Debug/
+Release/
+*.obj
+*.exe
+*.pdb
+*.ilk
