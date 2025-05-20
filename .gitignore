@@ -44,3 +44,4 @@ Release/
 *.exe
 *.pdb
 *.ilk
+*.user
