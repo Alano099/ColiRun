@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdlib.h>
+#include "Ente.h"
 
 using namespace std;
 
@@ -20,13 +21,9 @@ int main() {
 
 	janela.setFramerateLimit(60);
 
-	sf::Vector2f startPos = sf::Vector2f(50, 50);
-	sf::RectangleShape playerRect(sf::Vector2f(50, 50));
-	initShape(playerRect, startPos, sf::Color::Green);
-	sf::RectangleShape targetRect(sf::Vector2f(50, 50));
-	initShape(targetRect, sf::Vector2f(400, 50), sf::Color::Blue);
-	sf::RectangleShape badRect(sf::Vector2f(50, 100));
-	initShape(badRect, sf::Vector2f(200, 50), sf::Color::Red);
+	Ente jogador({ 50, 50 }, { 50, 50 }, sf::Color::Green);
+	Ente alvo({ 50,50 }, { 400,50 }, sf::Color::Blue);
+	Ente obstaculo({ 50,100 }, { 200,50 }, { sf::Color::Red });
 
 
 	bool moving = false;
@@ -38,28 +35,28 @@ int main() {
 		//Update scene
 
 		//Sempre andando pra direita
-		playerRect.move(1, 0);
+		jogador.mover(1, 0);
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-			playerRect.move(0, -1);
+			jogador.mover(0, -1);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-			playerRect.move(0, 1);
+			jogador.mover(0, 1);
 
 		//Alvo encontrado vc vence
-		if (playerRect.getGlobalBounds().intersects(targetRect.getGlobalBounds()))
+		if (jogador.intercepta(alvo))
 			janela.close();
-		if (playerRect.getGlobalBounds().intersects(badRect.getGlobalBounds())) {
+		if (jogador.intercepta(obstaculo)) {
 
-			playerRect.setPosition(startPos);
+			jogador.resetarPosicao();
 			//playerRect.move(-1, 0);
 		}
 
 		//Render cycle 
 		janela.clear(sf::Color::Black);
 
-		janela.draw(playerRect);
-		janela.draw(targetRect);
-		janela.draw(badRect);
+		jogador.desenhar(janela);
+		obstaculo.desenhar(janela);
+		alvo.desenhar(janela);
 
 		janela.display();
 
