@@ -153,11 +153,12 @@
   <ItemGroup>
     <ClCompile Include="ColiRun.cpp" />
     <ClCompile Include="Ente.cpp" />
+    <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ente.h" />
-    <ClInclude Include="Gerenciador_Grafico.h" />
+    <ClInclude Include="Entidade.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
