@@ -1,5 +1,7 @@
 #include "Gerenciador_Grafico.h"
 
+namespace Gerenciadores {
+
 Gerenciador_Grafico* Gerenciador_Grafico::instance = nullptr;
 
 
@@ -11,7 +13,7 @@ Gerenciador_Grafico* Gerenciador_Grafico::get_instance() {
 }
 
 Gerenciador_Grafico::Gerenciador_Grafico() {
-	janela = new sf::RenderWindow(sf::VideoMode(800, 600), "Gerenciador Grafico");
+	janela = new sf::RenderWindow(sf::VideoMode(800, 600), "ColiRun");
 	janela->setFramerateLimit(60);
 }
 
@@ -23,14 +25,14 @@ sf::RenderWindow* Gerenciador_Grafico::getJanela() {
 	return janela;
 }
 
-void Gerenciador_Grafico::desenhar(sf::RectangleShape* corpo) {
+void Gerenciador_Grafico::desenhar(sf::RectangleShape corpo) {
 	if (abreJanela()) {
-		janela->draw(*corpo);
+		janela->draw(corpo);
 	}
 }
-void Gerenciador_Grafico::desenhar(sf::CircleShape* corpo) {
+void Gerenciador_Grafico::desenhar(sf::CircleShape corpo) {
 	if (abreJanela()) {
-		janela->draw(*corpo);
+		janela->draw(corpo);
 	}
 }
 
@@ -52,4 +54,5 @@ void Gerenciador_Grafico::fechajanela() {
 
 const bool Gerenciador_Grafico::abreJanela() {
 	return (janela->isOpen());
+}
 }

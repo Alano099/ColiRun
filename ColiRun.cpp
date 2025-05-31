@@ -3,23 +3,14 @@
 #include<iostream>
 #include<stdlib.h>
 #include "Entidade.h"
+#include "Gerenciador_Grafico.h"
 
 using namespace std;
 
-
-void initShape(sf::RectangleShape& shape, sf::Vector2f const& pos, sf::Color const& color) {
-
-	shape.setFillColor(color);
-	shape.setPosition(pos);
-	shape.setOrigin(shape.getSize() * 0.5f);
-
-}
-
 int main() {
 
-	sf::RenderWindow janela(sf::VideoMode(480, 180), "NOME");
 
-	janela.setFramerateLimit(60);
+	Gerenciadores::Gerenciador_Grafico* pGG = Gerenciadores::Gerenciador_Grafico::get_instance();
 
 	Entidades::Entidade jogador({ 50, 50 }, { 50, 50 }, sf::Color::Green);
 	Entidades::Entidade alvo({ 50,50 }, { 400,50 }, sf::Color::Blue);
@@ -28,7 +19,7 @@ int main() {
 
 	bool moving = false;
 
-	while (janela.isOpen()) {
+	while (pGG->abreJanela()) {
 
 
 
@@ -44,7 +35,7 @@ int main() {
 
 		//Alvo encontrado vc vence
 		if (jogador.intercepta(alvo))
-			janela.close();
+			pGG->fechajanela();
 		if (jogador.intercepta(obstaculo)) {
 
 			jogador.resetarPosicao();
@@ -52,14 +43,13 @@ int main() {
 		}
 
  		//Render cycle 
-		janela.clear(sf::Color::Black);
+		pGG->limpar();
 
+		pGG->desenhar(jogador.getCorpo());
+		pGG->desenhar(alvo.getCorpo());
+		pGG->desenhar(obstaculo.getCorpo());
 
-		janela.draw(jogador.getCorpo());
-		janela.draw(obstaculo.getCorpo());
-		janela.draw(alvo.getCorpo());
-
-		janela.display();
+		pGG->mostrar();
 
 
 
