@@ -18,5 +18,13 @@
     <ClCompile Include="ColiRun.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ente.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ente.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
