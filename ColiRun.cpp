@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdlib.h>
-#include "Entidade.h"
+#include "Ente.h"
 
 using namespace std;
 
@@ -21,9 +21,9 @@ int main() {
 
 	janela.setFramerateLimit(60);
 
-	Entidades::Entidade jogador({ 50, 50 }, { 50, 50 }, sf::Color::Green);
-	Entidades::Entidade alvo({ 50,50 }, { 400,50 }, sf::Color::Blue);
-	Entidades::Entidade obstaculo({ 50,100 }, { 200,50 }, { sf::Color::Red });
+	Ente jogador({ 50, 50 }, { 50, 50 }, sf::Color::Green);
+	Ente alvo({ 50,50 }, { 400,50 }, sf::Color::Blue);
+	Ente obstaculo({ 50,100 }, { 200,50 }, { sf::Color::Red });
 
 
 	bool moving = false;
@@ -51,13 +51,12 @@ int main() {
 			//playerRect.move(-1, 0);
 		}
 
- 		//Render cycle 
+		//Render cycle 
 		janela.clear(sf::Color::Black);
 
-
-		janela.draw(jogador.getCorpo());
-		janela.draw(obstaculo.getCorpo());
-		janela.draw(alvo.getCorpo());
+		jogador.desenhar(janela);
+		obstaculo.desenhar(janela);
+		alvo.desenhar(janela);
 
 		janela.display();
 
