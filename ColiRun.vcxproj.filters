@@ -21,10 +21,14 @@
     <ClCompile Include="Ente.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+
     <ClCompile Include="Entidade.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx\stdafx.cpp">
+
+    <ClCompile Include="Gerenciador_Grafico.cpp">
+
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,6 +36,7 @@
     <ClInclude Include="Ente.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+
     <ClInclude Include="Entidade.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -39,6 +44,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx\stdafx.h">
+
+    <ClInclude Include="Gerenciador_Grafico.h">
+
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
