@@ -153,15 +153,6 @@
   <ItemGroup>
     <ClCompile Include="ColiRun.cpp" />
     <ClCompile Include="Ente.cpp" />
-
-    <ClCompile Include="Entidade.cpp" />
-    <ClCompile Include="stdafx\stdafx.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Ente.h" />
-    <ClInclude Include="Entidade.h" />
-    <ClInclude Include="IDs\IDs.h" />
-    <ClInclude Include="stdafx\stdafx.h" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
   </ItemGroup>
   <ItemGroup>
