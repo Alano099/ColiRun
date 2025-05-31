@@ -21,9 +21,15 @@
     <ClCompile Include="Ente.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Gerenciador_Grafico.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ente.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Grafico.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

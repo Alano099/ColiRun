@@ -16,10 +16,10 @@ private:
 public:
 
 	~Gerenciador_Grafico();
-	static Gerenciador_Grafico* getGrafico();
+	static Gerenciador_Grafico* get_instance();
 	sf::RenderWindow* getJanela();
-	void draw(sf::RectangleShape* corpo);
-	void draw(sf::CircleShape* corpo);
+	void desenhar(sf::RectangleShape* corpo);
+	void desenhar(sf::CircleShape* corpo);
 	void mostrar();
 	void limpar();
 	void fechajanela();
