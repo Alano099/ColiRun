@@ -13,6 +13,8 @@ namespace Gerenciadores {
 	{
 	private:
 		sf::RenderWindow* janela;
+		static float dt;
+		sf::Clock relogio;
 
 		static Gerenciador_Grafico* instance;
 		Gerenciador_Grafico();
@@ -27,6 +29,7 @@ namespace Gerenciadores {
 		void limpar();
 		void fechajanela();
 		const bool abreJanela();
+		void atualizarTempo();
 	};
 
 

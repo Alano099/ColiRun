@@ -1,5 +1,7 @@
 #include "Gerenciador_Grafico.h"
 
+float Gerenciadores::Gerenciador_Grafico::dt = 0.f;
+
 namespace Gerenciadores {
 
 Gerenciador_Grafico* Gerenciador_Grafico::instance = nullptr;
@@ -54,5 +56,10 @@ void Gerenciador_Grafico::fechajanela() {
 
 const bool Gerenciador_Grafico::abreJanela() {
 	return (janela->isOpen());
+}
+void Gerenciador_Grafico::atualizarTempo()
+{
+	dt = relogio.getElapsedTime().asSeconds();
+	relogio.restart();
 }
 }

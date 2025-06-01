@@ -2,60 +2,34 @@
 #include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdlib.h>
-#include "Entidade.h"
-#include "Gerenciador_Grafico.h"
+#include "ColiRun.h"
 
 using namespace std;
 
-int main() {
+ColiRun::ColiRun() : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()), p1({ 100, 400 }, true)
+	
+{
+	chao.setSize({ 800, 50 });
+	chao.setFillColor(sf::Color::White);
+	chao.setPosition({ 0, 550 });
 
+	executar();
+}
 
-	Gerenciadores::Gerenciador_Grafico* pGG = Gerenciadores::Gerenciador_Grafico::get_instance();
+ColiRun::~ColiRun(){}
 
-	Entidades::Entidade jogador({ 50, 50 }, { 50, 50 }, sf::Color::Green);
-	Entidades::Entidade alvo({ 50,50 }, { 400,50 }, sf::Color::Blue);
-	Entidades::Entidade obstaculo({ 50,100 }, { 200,50 }, { sf::Color::Red });
-
-
-	bool moving = false;
-
+void ColiRun::executar() {
 	while (pGG->abreJanela()) {
-
-
-
-		//Update scene
-
-		//Sempre andando pra direita
-		jogador.mover(1, 0);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-			jogador.mover(0, -1);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-			jogador.mover(0, 1);
-
-		//Alvo encontrado vc vence
-		if (jogador.intercepta(alvo))
-			pGG->fechajanela();
-		if (jogador.intercepta(obstaculo)) {
-
-			jogador.resetarPosicao();
-			//playerRect.move(-1, 0);
-		}
-
- 		//Render cycle 
+		pGG->atualizarTempo();
 		pGG->limpar();
 
-		pGG->desenhar(jogador.getCorpo());
-		pGG->desenhar(alvo.getCorpo());
-		pGG->desenhar(obstaculo.getCorpo());
+		sf::RectangleShape corpoJogador;
+		corpoJogador.setSize(p1.getTamanho());
+		corpoJogador.setPosition(p1.getPosicao());
+		corpoJogador.setFillColor(sf::Color::Green);
 
+		pGG->desenhar(corpoJogador);
+		pGG->desenhar(chao);
 		pGG->mostrar();
-
-
-
-
 	}
-
-	return 0;
-
 }
