@@ -22,6 +22,8 @@ namespace Entidades {
 
         sf::RectangleShape getCorpo() { return corpo; }
 
+        void setCorpo(sf::RectangleShape c) { corpo = c; }
+
         virtual void desenhar();
         virtual void atualizar(float dt) = 0;
         virtual void inicializar() = 0;

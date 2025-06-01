@@ -37,38 +37,41 @@ namespace Gerenciadores {
 	}
 
     // Método para tratar eventos de movimento para dois jogadores
-    void Gerenciador_Eventos::tratarEventoJogador(int jogadorID) {
+    void Gerenciador_Eventos::tratarEventoJogador(Entidades::Personagens::Personagem* p1, Entidades::Personagens::Personagem* p2) {
+
+        const float velocidade = 5.f;
+
         while (pGG->getJanela()->pollEvent(evento)) {
             if (evento.type == sf::Event::Closed) {
                 pGG->fechajanela();
             }
             if (evento.type == sf::Event::KeyPressed) {
-                if (jogadorID == 1) {
+                if (p1) {
                     if (evento.key.code == sf::Keyboard::W) {
-                        // Jogador 1: cima
+                        p1->setPosition(p1->getPosicao() + sf::Vector2f(0.f, -velocidade));
                     }
                     if (evento.key.code == sf::Keyboard::S) {
-                        // Jogador 1: baixo
+                        p1->setPosition(p1->getPosicao() + sf::Vector2f(0.f, velocidade));
                     }
                     if (evento.key.code == sf::Keyboard::A) {
-                        // Jogador 1: esquerda
+                        p1->setPosition(p1->getPosicao() + sf::Vector2f(-velocidade, 0.f));
                     }
                     if (evento.key.code == sf::Keyboard::D) {
-                        // Jogador 1: direita
+                        p1->setPosition(p1->getPosicao() + sf::Vector2f(velocidade, 0.f));
                     }
                 }
-                else if (jogadorID == 2) {
+                if (p2) {
                     if (evento.key.code == sf::Keyboard::Up) {
-                        // Jogador 2: cima
+                        p2->setPosition(p2->getPosicao() + sf::Vector2f(0.f, -velocidade));
                     }
                     if (evento.key.code == sf::Keyboard::Down) {
-                        // Jogador 2: baixo
+                        p2->setPosition(p2->getPosicao() + sf::Vector2f(0.f, velocidade));
                     }
                     if (evento.key.code == sf::Keyboard::Left) {
-                        // Jogador 2: esquerda
+                        p2->setPosition(p2->getPosicao() + sf::Vector2f(-velocidade, 0.f));
                     }
                     if (evento.key.code == sf::Keyboard::Right) {
-                        // Jogador 2: direita
+                        p2->setPosition(p2->getPosicao() + sf::Vector2f(velocidade, 0.f));
                     }
                 }
             }
