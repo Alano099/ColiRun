@@ -154,7 +154,9 @@
     <ClCompile Include="ColiRun.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
+    <ClCompile Include="Estado.cpp" />
     <ClCompile Include="Fase.cpp" />
+    <ClCompile Include="Gerenciador_Estado.cpp" />
     <ClCompile Include="Gerenciador_Eventos.cpp" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
     <ClCompile Include="main.cpp" />
@@ -164,7 +166,9 @@
     <ClInclude Include="ColiRun.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
+    <ClInclude Include="Estado.h" />
     <ClInclude Include="Fase.h" />
+    <ClInclude Include="Gerenciador_Estado.h" />
     <ClInclude Include="Gerenciador_Eventos.h" />
     <ClInclude Include="Gerenciador_Grafico.h" />
     <ClInclude Include="Lista.h" />

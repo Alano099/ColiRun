@@ -39,6 +39,12 @@
     <ClCompile Include="Fase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Gerenciador_Estado.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Estado.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ente.h">
@@ -69,6 +75,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Subject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Estado.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Estado.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
