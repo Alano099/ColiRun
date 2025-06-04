@@ -27,12 +27,48 @@
     <ClCompile Include="Gerenciador_Grafico.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Personagem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Eventos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ente.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Entidade.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColiRun.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Grafico.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Personagem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Eventos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lista.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ListaEntidades.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

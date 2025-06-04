@@ -53,7 +53,7 @@ namespace Lista {
 	private:
 		Elemento<TL>* pInicio;
 		Elemento<TL>* pFim;
-		unsifned int tamanho; // Tamanho da lista
+		unsigned int tamanho; // Tamanho da lista
 	public:
 		Lista();
 		~Lista();
