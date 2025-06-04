@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 
+
 #include "Entidade.h"
 #include "Personagem.h"
 #include "ListaEntidades.h"
@@ -16,4 +17,7 @@
 #include <string>
 #include <iostream>
 
-names
+namespace Fases
+{
+	class Fase: public
+}
