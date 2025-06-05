@@ -36,6 +36,12 @@
     <ClCompile Include="Gerenciador_Eventos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Animacao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimacaoEstatica.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ente.h">
@@ -62,5 +68,28 @@
     <ClInclude Include="ListaEntidades.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Animacao.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimacaoEstatica.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\jogador_andar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador_ataque.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador_parado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\fundo1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="fundo1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

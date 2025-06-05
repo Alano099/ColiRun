@@ -4,6 +4,8 @@
 #define PLAYER_SIZE_X 100.f
 #define PLAYER_SIZE_Y 100.f
 
+constexpr auto PARADO_PATH = "..\\assets\\jogador_parado.png";
+
 namespace Entidades {
 
 	namespace Personagens {
@@ -12,7 +14,8 @@ namespace Entidades {
 	{
 	protected:
 		const bool jogador1;
-		
+		float tempo;
+
 	public:
 
 		~Personagem();

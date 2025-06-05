@@ -3,6 +3,7 @@
 #include "Personagem.h"
 #include "Gerenciador_Grafico.h"
 #include "Gerenciador_Eventos.h"
+#include "AnimacaoEstatica.h"
 
 class ColiRun {
 
@@ -12,8 +13,7 @@ private:
 
 
 	Entidades::Personagens::Personagem p1;
-	Entidades::Personagens::Personagem p2;
-	sf::RectangleShape chao;
+	ElementosGraficos::AnimacaoEstatica fundo;
 
 public:
 	ColiRun();

@@ -1,14 +1,18 @@
 #pragma once
 #include "Ente.h"
+#include "Animacao.h"
 
 namespace Entidades {
 
     class Entidade :public Ente
     {
-    private:
-        sf::RectangleShape corpo;
+    protected:
+        
         sf::Vector2f pos;
         sf::Vector2f tam;
+
+        ElementosGraficos::Animacao sprite;
+
     public:
         Entidade(sf::Vector2f tam = { 0.f,0.f }, sf::Vector2f position = { 0.f,0.f }, IDs::IDs id = IDs::IDs::nulo);
 
@@ -19,10 +23,6 @@ namespace Entidades {
         sf::Vector2f getPosicao() const;
 
         sf::Vector2f getTamanho() const;
-
-        sf::RectangleShape getCorpo() { return corpo; }
-
-        void setCorpo(sf::RectangleShape c) { corpo = c; }
 
         virtual void desenhar();
         virtual void atualizar(float dt) = 0;

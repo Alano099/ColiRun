@@ -2,7 +2,7 @@
 
 namespace Entidades {
 
-	Entidade::Entidade(sf::Vector2f tam, sf::Vector2f position, IDs::IDs id):Ente(id),pos(pos),tam(tam)
+	Entidade::Entidade(sf::Vector2f tam, sf::Vector2f position, IDs::IDs id):Ente(id),pos(position),tam(tam),sprite()
 	{
 	}
 
@@ -25,6 +25,7 @@ namespace Entidades {
 
 	void Entidade::desenhar()
 	{
+		sprite.desenhar();
 	}
 
 	
