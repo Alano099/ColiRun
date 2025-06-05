@@ -20,7 +20,7 @@ namespace Gerenciadores
 		static Gerenciador_Estado* get_instance();
 		void set_AtualEstado(int i);
 		int get_AtualEstadoID();
-		void add_estado(Estados::Estado* estado);
+		void add_estado(Estados::Estado* pEstado);
 		void reseta_AtualEstado();
 		void executar();
 
