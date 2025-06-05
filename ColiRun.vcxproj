@@ -161,6 +161,7 @@
     <ClCompile Include="Gerenciador_Grafico.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Personagem.cpp" />
+    <ClCompile Include="Subject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColiRun.h" />
