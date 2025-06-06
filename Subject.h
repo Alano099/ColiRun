@@ -10,7 +10,7 @@ namespace Gerenciadores {
 	class Subject {
 	protected:
 		std::list<Observers::Observer*> lista_observers;
-		std::list<Observers::Observer*>::iterator it_observer;
+		std::list<Observers::Observer*>::iterator it;
 	public:
 		Subject();
 		virtual ~Subject();

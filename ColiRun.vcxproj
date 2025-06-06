@@ -160,6 +160,7 @@
     <ClCompile Include="Gerenciador_Eventos.cpp" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Subject.cpp" />
   </ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="Gerenciador_Grafico.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
+    <ClInclude Include="Observer.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Subject.h" />
   </ItemGroup>
