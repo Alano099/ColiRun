@@ -1,8 +1,11 @@
 #pragma once
 
-#include "Personagem.h"
+#include "Jogador.h"
+#include "plataforma.h"
+#include "ListaEntidades.h"
 #include "Gerenciador_Grafico.h"
 #include "Gerenciador_Eventos.h"
+#include "Gerenciador_Colisoes.h"
 #include "AnimacaoEstatica.h"
 
 class ColiRun {
@@ -12,7 +15,13 @@ private:
 	Gerenciadores::Gerenciador_Eventos* pGE;
 
 
-	Entidades::Personagens::Personagem p1;
+	Entidades::Personagens::Jogador* p1;
+
+	Lista::ListaEntidade listaPersonagens;
+	Lista::ListaEntidade listaObstaculo;
+	Gerenciadores::Gerenciador_Colisoes gerenciadorColisoes;
+
+	
 	ElementosGraficos::AnimacaoEstatica fundo;
 
 public:

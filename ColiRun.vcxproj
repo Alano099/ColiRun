@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -153,31 +153,45 @@
   <ItemGroup>
     <ClCompile Include="Animacao.cpp" />
     <ClCompile Include="AnimacaoEstatica.cpp" />
+    <ClCompile Include="AnimacaoMovimento.cpp" />
     <ClCompile Include="ColiRun.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
+    <ClCompile Include="Gerenciador_Colisoes.cpp" />
     <ClCompile Include="Gerenciador_Eventos.cpp" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
+    <ClCompile Include="Jogador.cpp" />
+    <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
+    <ClCompile Include="Plataforma.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animacao.h" />
     <ClInclude Include="AnimacaoEstatica.h" />
+    <ClInclude Include="AnimacaoMovimento.h" />
     <ClInclude Include="ColiRun.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
+    <ClInclude Include="Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciador_Eventos.h" />
     <ClInclude Include="Gerenciador_Grafico.h" />
+    <ClInclude Include="IDs\IDs.h" />
+    <ClInclude Include="Jogador.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
+    <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
+    <ClInclude Include="Plataforma.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\fundo1.png" />
     <Image Include="assets\jogador_andar.png" />
     <Image Include="assets\jogador_ataque.png" />
     <Image Include="assets\jogador_parado.png" />
+    <Image Include="assets\pedra.png" />
+    <Image Include="assets\red.png" />
     <Image Include="fundo1.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

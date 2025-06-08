@@ -11,7 +11,8 @@ namespace Entidades {
         sf::Vector2f pos;
         sf::Vector2f tam;
 
-        ElementosGraficos::Animacao sprite;
+        bool remover;
+
 
     public:
         Entidade(sf::Vector2f tam = { 0.f,0.f }, sf::Vector2f position = { 0.f,0.f }, IDs::IDs id = IDs::IDs::nulo);
@@ -20,14 +21,19 @@ namespace Entidades {
 
         void setPosition(sf::Vector2f position);
 
-        sf::Vector2f getPosicao() const;
+        virtual sf::Vector2f getPosicao() const;
+
+        void setTamanho(sf::Vector2f t) { tam = t; }
 
         sf::Vector2f getTamanho() const;
 
-        virtual void desenhar();
+        void podeRemover() { remover = true; }
+        bool getRemover() { return remover; }
+
+        virtual void desenhar() = 0;
         virtual void atualizar(float dt) = 0;
         virtual void inicializar() = 0;
-
+        virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
     };
 
 

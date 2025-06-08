@@ -1,3 +1,5 @@
+#pragma once
+
 namespace IDs {
 
 	enum class IDs {

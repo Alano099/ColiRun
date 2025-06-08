@@ -4,16 +4,9 @@
 
 namespace ElementosGraficos {
 
-	AnimacaoEstatica::AnimacaoEstatica(const char* caminho, sf::Vector2f posicao, sf::Vector2f tamanho, float escala):textura(NULL),
-	corpo(sf::Vector2f(tamanho.x , tamanho.y)){
 
-		textura = Gerenciadores::Gerenciador_Grafico::get_instance()->carregarTextura(caminho);
+	AnimacaoEstatica::AnimacaoEstatica():textura(NULL){}
 
-		corpo.setPosition(sf::Vector2f(posicao.x, posicao.y));
-		corpo.setScale(sf::Vector2f(escala, escala));
-
-		corpo.setTexture(textura);
-	}
 
 	AnimacaoEstatica::~AnimacaoEstatica() {
 
@@ -21,13 +14,29 @@ namespace ElementosGraficos {
 
 	void AnimacaoEstatica::atualizar(sf::Vector2f posicao)
 	{
-		corpo.setPosition(sf::Vector2f(posicao.x, posicao.y));
+		corpo.setPosition(posicao);
 	}
 
-	void AnimacaoEstatica::desenhar()
-	{
-		Gerenciadores::Gerenciador_Grafico::get_instance()->desenhar(&corpo);
+	sf::Texture* AnimacaoEstatica::getTextura() const {
+		return textura; // ou &textura, conforme já estiver
 	}
+
+	void AnimacaoEstatica::inicializar(const char* caminho, sf::Vector2f posicao, sf::Vector2f tamanho) {
+		textura = Gerenciadores::Gerenciador_Grafico::get_instance()->carregarTextura(caminho);
+		if (!textura) {
+			std::cout << "ERRO ao carregar textura em AnimacaoEstatica." << std::endl;
+			return;
+		}
+
+		
+		corpo.setTextureRect(sf::IntRect(0, 0, tamanho.x, tamanho.y));
+		corpo.setSize(tamanho);
+		corpo.setTextureRect(sf::IntRect(0, 0, static_cast<int>(tamanho.x), static_cast<int>(tamanho.y)));
+		corpo.setOrigin(tamanho.x / 2.f, tamanho.y / 2.f);
+		corpo.setPosition(posicao);
+		corpo.setTexture(textura);
+	}
+
 
 
 		

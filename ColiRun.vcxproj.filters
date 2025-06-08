@@ -42,6 +42,24 @@
     <ClCompile Include="AnimacaoEstatica.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Obstaculo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Plataforma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Jogador.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Colisoes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ListaEntidades.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimacaoMovimento.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ente.h">
@@ -74,6 +92,24 @@
     <ClInclude Include="AnimacaoEstatica.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Obstaculo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Plataforma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Jogador.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Colisoes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDs\IDs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimacaoMovimento.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\jogador_andar.png">
@@ -89,6 +125,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="fundo1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\pedra.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\red.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

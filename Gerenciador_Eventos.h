@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "Gerenciador_Grafico.h"
-#include "Personagem.h"
+#include "Jogador.h"
 
 
 
@@ -19,7 +19,7 @@ namespace Gerenciadores {
 		~Gerenciador_Eventos();
 		static Gerenciador_Eventos* getGerEventos();
 		void tratarEventoJanela();
-		void tratarEventoJogador(Entidades::Personagens::Personagem* p1, Entidades::Personagens::Personagem* p2);
+		void tratarEventoJogador(Entidades::Personagens::Jogador* p1, Entidades::Personagens::Jogador* p2);
 		const sf::Event getEvento() const;
 		
 	};

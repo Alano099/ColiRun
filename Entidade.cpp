@@ -1,9 +1,10 @@
-#include "Entidade.h"
+ #include "Entidade.h"
 
 namespace Entidades {
 
-	Entidade::Entidade(sf::Vector2f tam, sf::Vector2f position, IDs::IDs id):Ente(id),pos(position),tam(tam),sprite()
+	Entidade::Entidade(sf::Vector2f position, sf::Vector2f tam, IDs::IDs id):Ente(id),pos(position),tam(tam),remover(false)
 	{
+		std::cout << "Entidade criada em: " << pos.x << ", " << pos.y << std::endl;
 	}
 
 	Entidade::~Entidade(){}
@@ -13,20 +14,19 @@ namespace Entidades {
 		this->pos = position;
 	}
 
+	
+	
 	sf::Vector2f Entidade::getPosicao() const
 	{
 		return pos;
 	}
+	
 
 	sf::Vector2f Entidade::getTamanho() const
 	{
 		return tam;
 	}
 
-	void Entidade::desenhar()
-	{
-		sprite.desenhar();
-	}
 
 	
 

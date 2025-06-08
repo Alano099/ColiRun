@@ -1,21 +1,28 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Gerenciador_Grafico.h"
+#include "Animacao.h"
 
 namespace ElementosGraficos {
 
-	class AnimacaoEstatica
+	class AnimacaoEstatica : public Animacao
 	{
 	private:
 		sf::Texture* textura;
-		sf::RectangleShape corpo;
 
 	public:
-		AnimacaoEstatica(const char* caminho, sf::Vector2f posicao, sf::Vector2f tamanho, float escala);
+		AnimacaoEstatica();
 		~AnimacaoEstatica();
 
+		sf::Vector2f getPosicao() const {
+			return corpo.getPosition();
+		}
+		sf::Texture* getTextura() const;
+
 		void atualizar(sf::Vector2f posicao);
-		void desenhar();
+	
+		void inicializar(const char* caminho, sf::Vector2f posicao, sf::Vector2f tamanho);
 	};
 
 }

@@ -37,7 +37,7 @@ namespace Gerenciadores {
 	}
 
     // Método para tratar eventos de movimento para dois jogadores
-    void Gerenciador_Eventos::tratarEventoJogador(Entidades::Personagens::Personagem* p1, Entidades::Personagens::Personagem* p2) {
+    void Gerenciador_Eventos::tratarEventoJogador(Entidades::Personagens::Jogador* p1, Entidades::Personagens::Jogador* p2) {
 
         const float velocidade = 5.f;
 
