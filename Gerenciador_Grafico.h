@@ -14,6 +14,12 @@ namespace Gerenciadores {
 	private:
 		sf::RenderWindow* janela;
 
+		//novas
+		static float dt;
+		sf::Clock relogio;
+		sf::View view;
+		std::map<const char*, sf::Texture*> mapaTexturas;
+
 		static Gerenciador_Grafico* instance;
 		Gerenciador_Grafico();
 	public:
@@ -21,12 +27,20 @@ namespace Gerenciadores {
 		~Gerenciador_Grafico();
 		static Gerenciador_Grafico* get_instance();
 		sf::RenderWindow* getJanela();
-		void desenhar(sf::RectangleShape corpo);
+		void desenhar(sf::RectangleShape* corpo);
 		void desenhar(sf::CircleShape corpo);
 		void mostrar();
 		void limpar();
 		void fechajanela();
 		const bool abreJanela();
+
+		//novas
+
+		float atualizarTempo();
+		sf::Texture* carregarTextura(const char* caminho);
+		sf::Vector2u getTamjanela();
+		void lidarTamJanela();
+		void centralizarView(sf::Vector2f pos);
 	};
 
 

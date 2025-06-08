@@ -1,46 +1,33 @@
-#include "Entidade.h"
+ #include "Entidade.h"
 
 namespace Entidades {
 
-
-
-	Entidade::Entidade(sf::Vector2f tam, sf::Vector2f position, sf::Color cor):Ente(ID),pos(position)
+	Entidade::Entidade(sf::Vector2f position, sf::Vector2f tam, IDs::IDs id):Ente(id),pos(position),tam(tam),remover(false)
 	{
-		corpo.setFillColor(cor);
-		corpo.setSize(tam);
-		corpo.setPosition(position);
-		corpo.setOrigin(tam * 0.5f);
+		std::cout << "Entidade criada em: " << pos.x << ", " << pos.y << std::endl;
 	}
 
-	void Entidade::mover(float dx, float dy)
-	{
-		corpo.move(dx, dy);
-	}
+	Entidade::~Entidade(){}
 
 	void Entidade::setPosition(sf::Vector2f position)
 	{
-		corpo.setPosition(position);
+		this->pos = position;
 	}
 
-	void Entidade::resetarPosicao()
+	
+	
+	sf::Vector2f Entidade::getPosicao() const
 	{
-		corpo.setPosition(pos);
+		return pos;
 	}
+	
 
-	void Entidade::desenhar()
+	sf::Vector2f Entidade::getTamanho() const
 	{
-		
-	}
-
-	bool Entidade::intercepta(const Entidade& outro) const
-	{
-		return corpo.getGlobalBounds().intersects(outro.corpo.getGlobalBounds());
+		return tam;
 	}
 
 
-	sf::Vector2f Entidade::getPosition() const
-	{
-		return corpo.getPosition();
-	}
+	
 
 }

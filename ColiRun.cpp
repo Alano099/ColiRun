@@ -2,60 +2,67 @@
 #include <SFML/Graphics.hpp>
 #include<iostream>
 #include<stdlib.h>
-#include "Entidade.h"
-#include "Gerenciador_Grafico.h"
+#include "ColiRun.h"
 
 using namespace std;
 
-int main() {
+ColiRun::ColiRun() : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()), p1(new Entidades::Personagens::Jogador({100.f,200.f}, true)),
+pGE(Gerenciadores::Gerenciador_Eventos::getGerEventos()), fundo(), listaObstaculo(),listaPersonagens(), gerenciadorColisoes(&listaPersonagens, &listaObstaculo)
+	
+{
+
+	sf::Texture* tex = pGG->carregarTextura("assets/fundo1.png");
+	sf::Vector2u texSize = tex->getSize();
+	sf::Vector2f centro = pGG->getJanela()->getView().getCenter();
 
 
-	Gerenciadores::Gerenciador_Grafico* pGG = Gerenciadores::Gerenciador_Grafico::get_instance();
 
-	Entidades::Entidade jogador({ 50, 50 }, { 50, 50 }, sf::Color::Green);
-	Entidades::Entidade alvo({ 50,50 }, { 400,50 }, sf::Color::Blue);
-	Entidades::Entidade obstaculo({ 50,100 }, { 200,50 }, { sf::Color::Red });
+	//fundo.inicializar("assets/fundo1.png", centro, sf::Vector2f(texSize.x, texSize.y));
 
+	Entidades::Entidade* tmp;
 
-	bool moving = false;
+	tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(200.f, 600.f), sf::Vector2f(700.f, 32.f));
+	listaObstaculo.inserirEnt(tmp);
+	
+	tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(600.f, 550.f), sf::Vector2f(100.f,100.f));
+	listaObstaculo.inserirEnt(tmp);
+	
+	
+	listaPersonagens.inserirEnt(p1);
+
+	
+
+	executar();
+}
+
+ColiRun::~ColiRun(){}
+
+void ColiRun::executar() {
+	float dt;
 
 	while (pGG->abreJanela()) {
 
-
-
-		//Update scene
-
-		//Sempre andando pra direita
-		jogador.mover(1, 0);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-			jogador.mover(0, -1);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-			jogador.mover(0, 1);
-
-		//Alvo encontrado vc vence
-		if (jogador.intercepta(alvo))
-			pGG->fechajanela();
-		if (jogador.intercepta(obstaculo)) {
-
-			jogador.resetarPosicao();
-			//playerRect.move(-1, 0);
-		}
-
- 		//Render cycle 
+		dt = pGG->atualizarTempo();
 		pGG->limpar();
 
-		pGG->desenhar(jogador.getCorpo());
-		pGG->desenhar(alvo.getCorpo());
-		pGG->desenhar(obstaculo.getCorpo());
+		fundo.desenhar();
+
+		listaPersonagens.executar(dt);
+
+		listaObstaculo.executar(dt);
+
+		gerenciadorColisoes.colidir();
+
+		listaObstaculo.desenharEntidades();
+
+		listaPersonagens.desenharEntidades();
+
 
 		pGG->mostrar();
 
-
+		pGG->centralizarView(p1->getPosicao());
 
 
 	}
-
-	return 0;
 
 }
