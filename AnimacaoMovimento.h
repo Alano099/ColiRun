@@ -7,8 +7,8 @@ namespace ElementosGraficos {
 
 			andar = 0,
 			parado = 1,
-			ataque = 2
-
+			ataque = 2,
+			pulo = 3
 
 		};
 
@@ -38,7 +38,7 @@ namespace ElementosGraficos {
 					exit(1);
 				}
 
-				rectSize.width = textura->getSize().x / float(imageCount);
+				rectSize.width = static_cast<int>(textura->getSize().x / static_cast<float>(imageCount));
 				rectSize.height = textura->getSize().y;
 
 			}

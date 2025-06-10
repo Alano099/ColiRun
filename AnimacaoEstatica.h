@@ -15,6 +15,8 @@ namespace ElementosGraficos {
 		AnimacaoEstatica();
 		~AnimacaoEstatica();
 
+		void setScale(sf::Vector2f esc);
+
 		sf::Vector2f getPosicao() const {
 			return corpo.getPosition();
 		}

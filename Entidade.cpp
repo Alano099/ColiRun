@@ -4,7 +4,7 @@ namespace Entidades {
 
 	Entidade::Entidade(sf::Vector2f position, sf::Vector2f tam, IDs::IDs id):Ente(id),pos(position),tam(tam),remover(false)
 	{
-		std::cout << "Entidade criada em: " << pos.x << ", " << pos.y << std::endl;
+		
 	}
 
 	Entidade::~Entidade(){}

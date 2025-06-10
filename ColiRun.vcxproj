@@ -190,6 +190,7 @@
     <Image Include="assets\jogador_andar.png" />
     <Image Include="assets\jogador_ataque.png" />
     <Image Include="assets\jogador_parado.png" />
+    <Image Include="assets\jogador_pulo.png" />
     <Image Include="assets\pedra.png" />
     <Image Include="assets\red.png" />
     <Image Include="fundo1.png" />

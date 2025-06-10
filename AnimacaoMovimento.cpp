@@ -3,7 +3,7 @@
 
 namespace ElementosGraficos {
 
-	const float AnimacaoMovimento::AnimacaoUnica::switchTime = 0.2;
+	const float AnimacaoMovimento::AnimacaoUnica::switchTime = 0.2f;
 
 	AnimacaoMovimento::AnimacaoMovimento():mapaAnimacao(),ID_Atual(ID_Animacao::parado){}
 
@@ -30,8 +30,9 @@ namespace ElementosGraficos {
 		mapaAnimacao.insert(std::pair<ID_Animacao, AnimacaoUnica*>(id, tmp));
 		sf::IntRect rectSize = tmp->getSize();
 
-		corpo.setSize(sf::Vector2f(rectSize.width, rectSize.height));
-		corpo.setOrigin(sf::Vector2f(rectSize.width, rectSize.height) / 2.0f);
+		corpo.setSize(sf::Vector2f(static_cast<float>(rectSize.width), static_cast<float>(rectSize.height)));
+		corpo.setOrigin(sf::Vector2f(static_cast<float>(rectSize.width) / 2.f, static_cast<float>(rectSize.height) / 2.f));
+
 	}
 
 	void AnimacaoMovimento::atualizar(ID_Animacao id, bool olhandoEsquerda, sf::Vector2f posicao, float dt)
