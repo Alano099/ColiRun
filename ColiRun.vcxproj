@@ -157,15 +157,24 @@
     <ClCompile Include="ColiRun.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
+
+    <ClCompile Include="Estado.cpp" />
+    <ClCompile Include="Fase.cpp" />
+    <ClCompile Include="Gerenciador_Estado.cpp" />
     <ClCompile Include="Gerenciador_Colisoes.cpp" />
+
     <ClCompile Include="Gerenciador_Eventos.cpp" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="main.cpp" />
+
+    <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="Subject.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Plataforma.cpp" />
+
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animacao.h" />
@@ -174,6 +183,13 @@
     <ClInclude Include="ColiRun.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
+
+    <ClInclude Include="Estado.h" />
+    <ClInclude Include="Fase.h" />
+    <ClInclude Include="Gerenciador_Estado.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="Subject.h" />
+
     <ClInclude Include="Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciador_Eventos.h" />
     <ClInclude Include="Gerenciador_Grafico.h" />
@@ -194,6 +210,7 @@
     <Image Include="assets\pedra.png" />
     <Image Include="assets\red.png" />
     <Image Include="fundo1.png" />
+
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -36,6 +36,21 @@
     <ClCompile Include="Gerenciador_Eventos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+
+    <ClCompile Include="Fase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Estado.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Estado.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Observer.cpp">
+
     <ClCompile Include="Animacao.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,6 +73,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AnimacaoMovimento.cpp">
+
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,6 +102,22 @@
     <ClInclude Include="ListaEntidades.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Fase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Estado.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Estado.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+
     <ClInclude Include="Animacao.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -136,5 +168,6 @@
     <Image Include="assets\jogador_pulo.png">
       <Filter>Resource Files</Filter>
     </Image>
+
   </ItemGroup>
 </Project>

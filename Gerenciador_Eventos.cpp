@@ -1,42 +1,43 @@
 #include "Gerenciador_Eventos.h"
-
-#include <iostream>
-
-using namespace std;
+#include "Observer.h"
 
 namespace Gerenciadores {
+	Gerenciador_Eventos* Gerenciador_Eventos::instance = nullptr;
 
-	Gerenciador_Eventos* Gerenciador_Eventos::pGE = nullptr;
-	Gerenciador_Grafico* Gerenciador_Eventos::pGG = Gerenciador_Grafico::get_instance();
-
-	Gerenciador_Eventos::Gerenciador_Eventos() : evento() {
-		if (pGG == nullptr) {
-			//cout << "Erro ao criar gerenciador de eventos : gerenciador grafico nao foi criado" << endl;
-			exit(1);
+	Gerenciador_Eventos* Gerenciador_Eventos::get_instance() {
+		if (instance == nullptr) {
+			instance = new Gerenciador_Eventos();
 		}
+		return instance;
+	}
 
-		
+	Gerenciador_Eventos::Gerenciador_Eventos() : Subject()
+	{
+		pGG = Gerenciador_Grafico::get_instance();
 	}
 
 	Gerenciador_Eventos::~Gerenciador_Eventos() {
-		pGG = nullptr;
-		pGE = nullptr;
-		
+	
 	}
+	
+	void Gerenciador_Eventos::executar()
+	{
+		sf::Event event;
 
-	Gerenciador_Eventos* Gerenciador_Eventos::getGerEventos() {
-		if (pGE == nullptr) {
-			pGE = new Gerenciador_Eventos();
+		while(pGG->getJanela()->pollEvent(event)) {
+			if (event.type == sf::Event::KeyPressed)
+			{
+				notify((event.key.code));
+			}
+			else if (event.type == sf::Event::Closed)
+			{
+				pGG->fechajanela();
+			}
+			
 		}
-
-		return pGE;
 	}
 
-	void Gerenciador_Eventos::tratarEventoJanela() {
-		pGG->fechajanela();
-	}
-
-    // Método para tratar eventos de movimento para dois jogadores
+   /* // MÃ©todo para tratar eventos de movimento para dois jogadores
     void Gerenciador_Eventos::tratarEventoJogador(Entidades::Personagens::Jogador* p1, Entidades::Personagens::Jogador* p2) {
 
         const float velocidade = 5.f;
@@ -76,11 +77,10 @@ namespace Gerenciadores {
                 }
             }
         }
-    }
+    }*/
 
 	const sf::Event Gerenciador_Eventos::getEvento() const {
 		return evento;
 	}
 
-	
 }
