@@ -22,6 +22,6 @@ namespace Lista {
 		Entidades::Entidade* getEntidade(const IDs::IDs ID);
 		void limparLista();
 		void desenharEntidades();
-		void executar();
+		void executar( float dt);
 	};
 }

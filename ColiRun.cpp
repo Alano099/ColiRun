@@ -6,12 +6,41 @@
 
 using namespace std;
 
-ColiRun::ColiRun() : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()), p1({ 100, 400 }, true)
+ColiRun::ColiRun() : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()), p1(new Entidades::Personagens::Jogador({100.f,200.f}, true)),
+pGE(Gerenciadores::Gerenciador_Eventos::getGerEventos()), fundo(), listaObstaculo(),listaPersonagens(), gerenciadorColisoes(&listaPersonagens, &listaObstaculo)
 	
 {
-	chao.setSize({ 800, 50 });
-	chao.setFillColor(sf::Color::White);
-	chao.setPosition({ 0, 550 });
+
+	sf::Texture* tex = pGG->carregarTextura("assets/fundo1.png");
+	sf::Vector2u texSize = tex->getSize();
+	sf::Vector2f centro = pGG->getJanela()->getView().getCenter();
+
+
+
+	fundo.inicializar("assets/fundo1.png", centro, sf::Vector2f(static_cast<float>(texSize.x), static_cast<float>(texSize.y)));
+
+
+	sf::Vector2u janelaSize = pGG->getJanela()->getSize();
+	sf::Vector2f escala(
+		static_cast<float>(janelaSize.x) / static_cast<float>(texSize.x),
+		static_cast<float>(janelaSize.y) / static_cast<float>(texSize.y)
+	);
+
+	fundo.setScale(escala);
+
+
+	Entidades::Entidade* tmp;
+
+	tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(399.f, 600.f), sf::Vector2f(1800.f, 32.f));
+	listaObstaculo.inserirEnt(tmp);
+	
+	tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(600.f, 550.f), sf::Vector2f(100.f,100.f));
+	listaObstaculo.inserirEnt(tmp);
+	
+	
+	listaPersonagens.inserirEnt(p1);
+
+	
 
 	executar();
 }
@@ -19,17 +48,31 @@ ColiRun::ColiRun() : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()), p1
 ColiRun::~ColiRun(){}
 
 void ColiRun::executar() {
+	float dt;
+
 	while (pGG->abreJanela()) {
-		pGG->atualizarTempo();
+
+		dt = pGG->atualizarTempo();
 		pGG->limpar();
 
-		sf::RectangleShape corpoJogador;
-		corpoJogador.setSize(p1.getTamanho());
-		corpoJogador.setPosition(p1.getPosicao());
-		corpoJogador.setFillColor(sf::Color::Green);
+		fundo.desenhar();
 
-		pGG->desenhar(corpoJogador);
-		pGG->desenhar(chao);
+		listaPersonagens.executar(dt);
+
+		listaObstaculo.executar(dt);
+
+		gerenciadorColisoes.colidir();
+
+		listaObstaculo.desenharEntidades();
+
+		listaPersonagens.desenharEntidades();
+
+
 		pGG->mostrar();
+
+		pGG->centralizarView(fundo.getPosicao());
+
+
 	}
+
 }

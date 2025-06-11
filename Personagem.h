@@ -1,8 +1,11 @@
 #pragma once
 #include "Entidade.h"
+#include "AnimacaoMovimento.h"
 
-#define PLAYER_SIZE_X 100.f
-#define PLAYER_SIZE_Y 100.f
+#define PLAYER_SIZE_X 85.f
+#define PLAYER_SIZE_Y 32.f
+
+constexpr auto PARADO_PATH = "..\\assets\\jogador_parado.png";
 
 namespace Entidades {
 
@@ -11,17 +14,36 @@ namespace Entidades {
 	class Personagem :public Entidade
 	{
 	protected:
-		const bool jogador1;
-		
+		sf::Vector2f velocidade;
+		int vida;
+		bool olhandoEsquerda;
+		bool ativo;
+
+		ElementosGraficos::AnimacaoMovimento sprite;
+
 	public:
 
 		~Personagem();
 
-		Personagem(sf::Vector2f pos = {0.f,0.f},bool jogador1 = true);
+		Personagem(sf::Vector2f pos, sf::Vector2f tam, IDs::IDs id, int vida = 1,bool ativo = true, bool olhandoEsquerda = true);
 
-		void atualizar(float dt);
+		const int getVida() const;
 
-		void inicializar();
+		virtual void desenhar();
+
+		virtual void atualizar(float dt) = 0;
+
+		virtual void inicializar() = 0;
+
+		virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
+
+		void tomarDano(const int dano);
+
+		void moverNaColisao(sf::Vector2f instercepta, sf::Vector2f outraPos);
+
+		const bool estaOlhandoEsquerda() const;
+
+		const bool estaAtivo() const;
 
 	};
 

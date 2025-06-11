@@ -36,6 +36,7 @@
     <ClCompile Include="Gerenciador_Eventos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+
     <ClCompile Include="Fase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,6 +50,30 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Observer.cpp">
+
+    <ClCompile Include="Animacao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimacaoEstatica.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstaculo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Plataforma.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Jogador.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Colisoes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ListaEntidades.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimacaoMovimento.cpp">
+
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,5 +117,57 @@
     <ClInclude Include="Observer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+
+    <ClInclude Include="Animacao.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimacaoEstatica.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstaculo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Plataforma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Jogador.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Colisoes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IDs\IDs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimacaoMovimento.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\jogador_andar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador_ataque.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador_parado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\fundo1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="fundo1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\pedra.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\red.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador_pulo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+
   </ItemGroup>
 </Project>
