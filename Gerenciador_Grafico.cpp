@@ -1,8 +1,5 @@
 #include "Gerenciador_Grafico.h"
 
-#define LARGURA 1200
-#define ALTURA 720
-#define FRAME_RATE 100
 
 float Gerenciadores::Gerenciador_Grafico::dt = 0.f;
 
@@ -22,17 +19,24 @@ namespace Gerenciadores {
 		janela(new sf::RenderWindow(sf::VideoMode(LARGURA,ALTURA), "ColiRun")),
 		view(sf::Vector2f(LARGURA/2,ALTURA/2),sf::Vector2f(LARGURA,ALTURA)),
 		mapaTexturas(),
-		relogio() {
-	
-		relogio.restart();
+		relogio() 
+	{
+			fonte = new sf::Font();
+			if(!fonte->loadFromFile(FONT_PATH))
+			{
+				std::cout << "FONTE NAO ENCONTRADA NO CAMINHO: " << std::endl;
+				exit(1);
+			}
+			relogio.restart();
 
-		}
+	}
 
 	Gerenciador_Grafico::~Gerenciador_Grafico() {
 		std::map<const char*, sf::Texture*>::iterator it;
 		for (it = mapaTexturas.begin(); it != mapaTexturas.end(); it++)
 			delete (it->second);
 		delete(janela);
+		delete(fonte);
 
 	}
 
@@ -41,19 +45,16 @@ namespace Gerenciadores {
 	}
 
 	void Gerenciador_Grafico::desenhar(sf::RectangleShape* corpo) {
-		if (abreJanela()) {
 			janela->draw(*corpo);
-		}
 	}
-	/*
 	
-	
-	void Gerenciador_Grafico::desenhar(sf::CircleShape corpo) {
-		if (abreJanela()) {
-			janela->draw(corpo);
-		}
+	void Gerenciador_Grafico::desenhar(sf::CircleShape* corpo) {
+			janela->draw(*corpo);
 	}
-	*/
+	
+	void Gerenciador_Grafico::desenhar(sf::Text* texto) {	
+			janela->draw(*texto);
+	}
 
 	void Gerenciador_Grafico::mostrar() {
 		if (abreJanela()) {
@@ -139,5 +140,8 @@ namespace Gerenciadores {
 		view.setCenter(sf::Vector2f(pos.x, pos.y));
 		janela->setView(view);
 
+	}
+	sf::Font* Gerenciador_Grafico::getFonte() const{
+		return fonte;
 	}
 }

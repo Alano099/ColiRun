@@ -154,42 +154,45 @@
     <ClCompile Include="Animacao.cpp" />
     <ClCompile Include="AnimacaoEstatica.cpp" />
     <ClCompile Include="AnimacaoMovimento.cpp" />
+    <ClCompile Include="Botao.cpp" />
     <ClCompile Include="ColiRun.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
-
     <ClCompile Include="Estado.cpp" />
     <ClCompile Include="Fase.cpp" />
     <ClCompile Include="Gerenciador_Estado.cpp" />
     <ClCompile Include="Gerenciador_Colisoes.cpp" />
-
     <ClCompile Include="Gerenciador_Eventos.cpp" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="main.cpp" />
-
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuObserver.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Plataforma.cpp" />
-
+    <ClCompile Include="Texto.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animacao.h" />
     <ClInclude Include="AnimacaoEstatica.h" />
     <ClInclude Include="AnimacaoMovimento.h" />
+    <ClInclude Include="Botao.h" />
     <ClInclude Include="ColiRun.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
-
     <ClInclude Include="Estado.h" />
     <ClInclude Include="Fase.h" />
     <ClInclude Include="Gerenciador_Estado.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuObserver.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Subject.h" />
-
     <ClInclude Include="Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciador_Eventos.h" />
     <ClInclude Include="Gerenciador_Grafico.h" />
@@ -200,6 +203,7 @@
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Plataforma.h" />
+    <ClInclude Include="Texto.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\fundo1.png" />
@@ -210,7 +214,6 @@
     <Image Include="assets\pedra.png" />
     <Image Include="assets\red.png" />
     <Image Include="fundo1.png" />
-
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

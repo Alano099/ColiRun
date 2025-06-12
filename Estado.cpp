@@ -4,21 +4,21 @@
 
 namespace Estados 
 {
-	Gerenciadores::Gerenciador_Estado *Estado::pGE(Gerenciadores::Gerenciador_Estado::get_instance());
+	Gerenciadores::Gerenciador_Estado *Estado::pEG(Gerenciadores::Gerenciador_Estado::get_instance());
 
 	Estado::Estado(int id) : id_estado(id)
 	{
-		pGE->add_estado(this);
+		pEG->add_estado(this);
 	}
 
 	Estado::~Estado()
 	{
-		pGE = nullptr;
+		pEG = nullptr;
 	}
 
 	void Estado::setGerenciadorEstado(Gerenciadores::Gerenciador_Estado* p)
 	{
-		pGE = p;
+		pEG = p;
 	}
 
 	int Estado::getId() const
@@ -28,7 +28,7 @@ namespace Estados
 
 	const bool Estado::get_ativo()
 	{
-		return (id_estado == pGE->get_AtualEstadoID() ? true : false);
+		return (id_estado == pEG->get_AtualEstadoID() ? true : false);
 	}
 
 }

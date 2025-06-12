@@ -13,7 +13,6 @@ namespace Entidades {
 
         bool remover;
 
-
     public:
         Entidade(sf::Vector2f tam = { 0.f,0.f }, sf::Vector2f position = { 0.f,0.f }, IDs::IDs id = IDs::IDs::nulo);
 
@@ -26,6 +25,7 @@ namespace Entidades {
         void setTamanho(sf::Vector2f t) { tam = t; }
 
         sf::Vector2f getTamanho() const;
+        
 
         void podeRemover() { remover = true; }
         bool getRemover() { return remover; }

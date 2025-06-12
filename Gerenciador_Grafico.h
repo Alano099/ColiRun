@@ -5,7 +5,11 @@
 #include<iostream>
 #include<stdlib.h>
 
-using namespace std;
+#define LARGURA 1200
+#define ALTURA 720
+#define FRAME_RATE 100
+
+#define FONT_PATH "assets/PressStart2P-Regular.ttf"
 
 namespace Gerenciadores {
 
@@ -19,6 +23,7 @@ namespace Gerenciadores {
 		sf::Clock relogio;
 		sf::View view;
 		std::map<const char*, sf::Texture*> mapaTexturas;
+		sf::Font* fonte;
 
 		static Gerenciador_Grafico* instance;
 		Gerenciador_Grafico();
@@ -28,7 +33,8 @@ namespace Gerenciadores {
 		static Gerenciador_Grafico* get_instance();
 		sf::RenderWindow* getJanela();
 		void desenhar(sf::RectangleShape* corpo);
-		void desenhar(sf::CircleShape corpo);
+		void desenhar(sf::CircleShape* corpo);
+		void desenhar(sf::Text* texto);
 		void mostrar();
 		void limpar();
 		void fechajanela();
@@ -41,6 +47,7 @@ namespace Gerenciadores {
 		sf::Vector2u getTamjanela();
 		void lidarTamJanela();
 		void centralizarView(sf::Vector2f pos);
+		sf::Font* getFonte() const;
 	};
 
 

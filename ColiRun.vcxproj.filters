@@ -1,173 +1,68 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Animacao.cpp" />
+    <ClCompile Include="AnimacaoEstatica.cpp" />
+    <ClCompile Include="AnimacaoMovimento.cpp" />
+    <ClCompile Include="ColiRun.cpp" />
+    <ClCompile Include="Ente.cpp" />
+    <ClCompile Include="Entidade.cpp" />
+    <ClCompile Include="Estado.cpp" />
+    <ClCompile Include="Fase.cpp" />
+    <ClCompile Include="Gerenciador_Estado.cpp" />
+    <ClCompile Include="Gerenciador_Colisoes.cpp" />
+    <ClCompile Include="Gerenciador_Eventos.cpp" />
+    <ClCompile Include="Gerenciador_Grafico.cpp" />
+    <ClCompile Include="Jogador.cpp" />
+    <ClCompile Include="ListaEntidades.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="Subject.cpp" />
+    <ClCompile Include="Obstaculo.cpp" />
+    <ClCompile Include="Personagem.cpp" />
+    <ClCompile Include="Plataforma.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuObserver.cpp" />
+    <ClCompile Include="Texto.cpp" />
+    <ClCompile Include="Botao.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ColiRun.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ente.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Entidade.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciador_Grafico.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Personagem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciador_Eventos.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-
-    <ClCompile Include="Fase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciador_Estado.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Estado.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Subject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Observer.cpp">
-
-    <ClCompile Include="Animacao.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimacaoEstatica.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstaculo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Plataforma.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Jogador.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciador_Colisoes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ListaEntidades.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimacaoMovimento.cpp">
-
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="Animacao.h" />
+    <ClInclude Include="AnimacaoEstatica.h" />
+    <ClInclude Include="AnimacaoMovimento.h" />
+    <ClInclude Include="ColiRun.h" />
+    <ClInclude Include="Ente.h" />
+    <ClInclude Include="Entidade.h" />
+    <ClInclude Include="Estado.h" />
+    <ClInclude Include="Fase.h" />
+    <ClInclude Include="Gerenciador_Estado.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="Subject.h" />
+    <ClInclude Include="Gerenciador_Colisoes.h" />
+    <ClInclude Include="Gerenciador_Eventos.h" />
+    <ClInclude Include="Gerenciador_Grafico.h" />
+    <ClInclude Include="IDs\IDs.h" />
+    <ClInclude Include="Jogador.h" />
+    <ClInclude Include="Lista.h" />
+    <ClInclude Include="ListaEntidades.h" />
+    <ClInclude Include="Obstaculo.h" />
+    <ClInclude Include="Personagem.h" />
+    <ClInclude Include="Plataforma.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuObserver.h" />
+    <ClInclude Include="Texto.h" />
+    <ClInclude Include="Botao.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ente.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entidade.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ColiRun.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gerenciador_Grafico.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Personagem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gerenciador_Eventos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Lista.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ListaEntidades.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Fase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Subject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Estado.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gerenciador_Estado.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Observer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-
-    <ClInclude Include="Animacao.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimacaoEstatica.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstaculo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Plataforma.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Jogador.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Gerenciador_Colisoes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IDs\IDs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimacaoMovimento.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="assets\jogador_andar.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\jogador_ataque.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\jogador_parado.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\fundo1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="fundo1.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\pedra.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\red.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="assets\jogador_pulo.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-
+    <Image Include="assets\fundo1.png" />
+    <Image Include="assets\jogador_andar.png" />
+    <Image Include="assets\jogador_ataque.png" />
+    <Image Include="assets\jogador_parado.png" />
+    <Image Include="assets\jogador_pulo.png" />
+    <Image Include="assets\pedra.png" />
+    <Image Include="assets\red.png" />
+    <Image Include="fundo1.png" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
 using namespace std;
 
 ColiRun::ColiRun() : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()), p1(new Entidades::Personagens::Jogador({100.f,200.f}, true)),
-pGE(Gerenciadores::Gerenciador_Eventos::getGerEventos()), fundo(), listaObstaculo(),listaPersonagens(), gerenciadorColisoes(&listaPersonagens, &listaObstaculo)
+pGE(Gerenciadores::Gerenciador_Eventos::get_instance()), fundo(), listaObstaculo(),listaPersonagens(), gerenciadorColisoes(&listaPersonagens, &listaObstaculo)
 	
 {
 

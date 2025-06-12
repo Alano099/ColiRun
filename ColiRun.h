@@ -1,9 +1,12 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 #include "Jogador.h"
 #include "plataforma.h"
 #include "ListaEntidades.h"
 #include "Gerenciador_Grafico.h"
+#include "MainMenu.h"
 #include "Gerenciador_Eventos.h"
 #include "Gerenciador_Colisoes.h"
 #include "AnimacaoEstatica.h"
@@ -12,6 +15,7 @@ class ColiRun {
 
 private:
 	Gerenciadores::Gerenciador_Grafico* pGG;
+	Gerenciadores::Gerenciador_Estado* pEG;
 	Gerenciadores::Gerenciador_Eventos* pGE;
 
 

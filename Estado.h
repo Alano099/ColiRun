@@ -10,20 +10,20 @@ namespace Estados
 	class Estado
 	{
 	protected:
-		static Gerenciadores::Gerenciador_Estado* pGE;
+		static Gerenciadores::Gerenciador_Estado* pEG;
 		const int id_estado;
 	public:
 		Estado(int id = -1);
 
 		virtual ~Estado();
 
-		void setGerenciadorEstado(Gerenciadores::Gerenciador_Estado* pGE);
+		void setGerenciadorEstado(Gerenciadores::Gerenciador_Estado* pEG);
 
 		int getId() const;
 
 		const bool get_ativo();
 		
 		virtual void executar() = 0;
-		virtual void reiniciar();
+		virtual void reiniciar() {};
 	};
 }

@@ -1,13 +1,12 @@
 #include "Gerenciador_Colisoes.h"
 
-#include "Personagem.h"
-#include "Obstaculo.h"
+
 
 namespace Gerenciadores {
 
 
 
-	Gerenciador_Colisoes::Gerenciador_Colisoes(Lista::ListaEntidade* listaPersonagens, Lista::ListaEntidade* listaObstaculos):listaPersonagens(listaPersonagens),
+	Gerenciador_Colisoes::Gerenciador_Colisoes(Lista::ListaEntidade* listaJogadores, Lista::ListaEntidade* listaObstaculos):listaJogadores(listaJogadores),
 		listaObstaculos(listaObstaculos)
 	{
 
@@ -16,7 +15,7 @@ namespace Gerenciadores {
 	Gerenciador_Colisoes::~Gerenciador_Colisoes()
 	{
 		listaObstaculos = NULL;
-		listaPersonagens = NULL;
+		listaJogadores = NULL;
 	}
 
 	void Gerenciador_Colisoes::colidir()
@@ -31,9 +30,9 @@ namespace Gerenciadores {
 		int i, j;
 
 		for (i = 0; i < listaObstaculos->getTamanho(); i++) {
-			for (j = 0; j < listaPersonagens->getTamanho(); j++) {
+			for (j = 0; j < listaJogadores->getTamanho(); j++) {
 				ent1 = (*listaObstaculos)[i];
-				ent2 = (*listaPersonagens)[j];
+				ent2 = (*listaJogadores)[j];
 
 				distanciaCentro.x = ent2->getPosicao().x - ent1->getPosicao().x;
 				distanciaCentro.y = ent2->getPosicao().y - ent1->getPosicao().y;
@@ -51,10 +50,10 @@ namespace Gerenciadores {
 		}
 
 		for (i = 0; i < listaObstaculos->getTamanho(); i++) {
-			for (j = 0; j < listaPersonagens->getTamanho(); j++) {
+			for (j = 0; j < listaJogadores->getTamanho(); j++) {
 
 				ent1 = (*listaObstaculos)[i];
-				ent2 = (*listaPersonagens)[j];
+				ent2 = (*listaJogadores)[j];
 
 
 				distanciaCentro.x = ent2->getPosicao().x - ent1->getPosicao().x;
@@ -81,12 +80,12 @@ namespace Gerenciadores {
 	void Gerenciador_Colisoes::limpar() {
 		Entidades::Personagens::Personagem* pAux = NULL;
 
-		for (int i = 0; i < listaPersonagens->getTamanho(); i++) {
-			pAux = static_cast<Entidades::Personagens::Personagem*>((*listaPersonagens)[i]);
+		for (int i = 0; i < listaJogadores->getTamanho(); i++) {
+			pAux = static_cast<Entidades::Personagens::Personagem*>((*listaJogadores)[i]);
 
 			if (pAux != nullptr) {
 				if (!pAux->estaAtivo()) {
-					listaPersonagens->removerEnt(i);
+					listaJogadores->removerEnt(i);
 					i--; // Ajusta o índice após remover um elemento
 				}
 			}
