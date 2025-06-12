@@ -14,6 +14,7 @@ namespace Entidades {
 			inicializar();
 			tempo = 0;
 			velocidade.x = 100;
+			noChao = true;
 		}
 
 		Jogador::~Jogador(){}
@@ -24,7 +25,15 @@ namespace Entidades {
 
 			tempo += dt;
 
-			// Zera a velocidade horizontal
+			float tempoPulo = 1.f;
+
+			float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 7;
+			float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
+
+	
+			velocidade.y += GRAVIDADE * dt;
+
+
 			velocidade.x = 0.f;
 
 			// Movimento horizontal com teclado
@@ -34,24 +43,29 @@ namespace Entidades {
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 				velocidade.x = -200.f;
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-				velocidade.y = -200.f;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao) {
+				velocidade.y = -velPulo;
+				noChao = false;
 			}
 			// Atualiza posição com velocidade
 			pos.x += velocidade.x * dt;
 
-			
-			velocidade.y += 300 * dt;
 			pos.y += velocidade.y * dt;
 
+			
 			// Atualiza animação
-			if (velocidade.x > 0.f) {
+
+			if (velocidade.x > 0.f && noChao) {
 				olhandoEsquerda = true;
 				sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
 			}
-			else if (velocidade.x < 0.0f) {
+			else if (velocidade.x < 0.0f && noChao) {
 				olhandoEsquerda = false;
 				sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+			}
+
+			else if (!noChao) {
+				sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
 			}
 
 			else {
@@ -59,14 +73,15 @@ namespace Entidades {
 				sprite.atualizar(ElementosGraficos::ID_Animacao::parado, estaOlhandoEsquerda(), pos, dt);
 			}
 
+
 		}
 
 		void Jogador::inicializar() {
 
-			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::parado, "assets/jogador_parado.png", 4);
-			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::andar, "assets/jogador_andar.png", 6);
-			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::ataque, "assets/jogador_ataque.png", 6);
-			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::pulo, "assets/jogador_pulo.png", 3);
+			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::parado, "assets/jogador/jogador_parado.png", 4);
+			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::andar, "assets/jogador/jogador_andar.png", 6);
+			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::ataque, "assets/jogador/jogador_ataque.png", 6);
+			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::pulo, "assets/jogador/jogador_pulo.png", 3);
 		}
 
 		void Jogador::colidir(Entidade* outraEntidade, sf::Vector2f intercepta)
@@ -74,6 +89,7 @@ namespace Entidades {
 			switch (outraEntidade->getID()) {
 			case IDs::IDs::plataforma:
 				moverNaColisao(intercepta, outraEntidade->getPosicao());
+				noChao = true;
 				break;
 
 			default:
@@ -82,6 +98,7 @@ namespace Entidades {
 			}
 		}
 
+	
 		
 
 	}

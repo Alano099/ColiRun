@@ -3,6 +3,7 @@
 #include<iostream>
 #include<stdlib.h>
 #include "ColiRun.h"
+#include "Inimigo.h"
 
 using namespace std;
 
@@ -11,13 +12,15 @@ pGE(Gerenciadores::Gerenciador_Eventos::getGerEventos()), fundo(), listaObstacul
 	
 {
 
-	sf::Texture* tex = pGG->carregarTextura("assets/fundo1.png");
+	sf::Texture* tex = pGG->carregarTextura("assets/fundos/coliseu.png");
 	sf::Vector2u texSize = tex->getSize();
 	sf::Vector2f centro = pGG->getJanela()->getView().getCenter();
 
+	Entidades::Personagens::Inimigos::Inimigo* inimigo = new Entidades::Personagens::Inimigos::Inimigo(sf::Vector2f(700.f, 200.f));
+	inimigo->setJogador(p1); // seguir jogador
+	listaPersonagens.inserirEnt(inimigo);
 
-
-	fundo.inicializar("assets/fundo1.png", centro, sf::Vector2f(static_cast<float>(texSize.x), static_cast<float>(texSize.y)));
+	fundo.inicializar("assets/fundos/coliseu.png", centro, sf::Vector2f(static_cast<float>(1320), static_cast<float>(440)));
 
 
 	sf::Vector2u janelaSize = pGG->getJanela()->getSize();

@@ -60,6 +60,9 @@
     <ClCompile Include="AnimacaoMovimento.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Inimigo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ente.h">
@@ -110,6 +113,9 @@
     <ClInclude Include="AnimacaoMovimento.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Inimigo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\jogador_andar.png">
@@ -134,6 +140,27 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="assets\jogador_pulo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador\jogador_andar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador\jogador_ataque.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador\jogador_parado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador\jogador_pulo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\fundos\fundo1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\obstaculos\red.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\soldado_andar.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

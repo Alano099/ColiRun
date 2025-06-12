@@ -2,6 +2,8 @@
 #include "Ente.h"
 #include "Animacao.h"
 
+constexpr float GRAVIDADE = 800.f;
+
 namespace Entidades {
 
     class Entidade :public Ente
@@ -11,6 +13,7 @@ namespace Entidades {
         sf::Vector2f pos;
         sf::Vector2f tam;
 
+        static float gravidade;
         bool remover;
 
 
@@ -39,3 +42,4 @@ namespace Entidades {
 
 
 }
+

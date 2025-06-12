@@ -160,6 +160,7 @@
     <ClCompile Include="Gerenciador_Colisoes.cpp" />
     <ClCompile Include="Gerenciador_Eventos.cpp" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
+    <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
     <ClCompile Include="main.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Gerenciador_Eventos.h" />
     <ClInclude Include="Gerenciador_Grafico.h" />
     <ClInclude Include="IDs\IDs.h" />
+    <ClInclude Include="Inimigo.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaEntidades.h" />
@@ -187,10 +189,17 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\fundo1.png" />
+    <Image Include="assets\fundos\fundo1.png" />
+    <Image Include="assets\inimigos\soldado_andar.png" />
+    <Image Include="assets\jogador\jogador_andar.png" />
+    <Image Include="assets\jogador\jogador_ataque.png" />
+    <Image Include="assets\jogador\jogador_parado.png" />
+    <Image Include="assets\jogador\jogador_pulo.png" />
     <Image Include="assets\jogador_andar.png" />
     <Image Include="assets\jogador_ataque.png" />
     <Image Include="assets\jogador_parado.png" />
     <Image Include="assets\jogador_pulo.png" />
+    <Image Include="assets\obstaculos\red.png" />
     <Image Include="assets\pedra.png" />
     <Image Include="assets\red.png" />
     <Image Include="fundo1.png" />
