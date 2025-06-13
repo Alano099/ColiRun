@@ -1,0 +1,17 @@
+#pragma once
+#include "Gerenciador_Grafico.h"
+#include "Gerenciador_Eventos.h"
+#include "Fase.h"
+
+class ColiRun {
+private:
+    Gerenciadores::Gerenciador_Grafico* pGG;
+    Gerenciadores::Gerenciador_Eventos* pGE;
+    Fases::Fase* fase;
+
+public:
+    ColiRun();
+    ~ColiRun();
+
+    void executar();
+};
