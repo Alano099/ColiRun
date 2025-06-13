@@ -8,7 +8,8 @@ namespace IDs {
 		jogador, //1
 		jogador2, //2
 		inimigo, //3
-		plataforma //4
+		plataforma, //4
+		fase
 	};
 
 }

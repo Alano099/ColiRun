@@ -22,10 +22,10 @@
 
 namespace Fases
 {
-	class Fase : public Ente, public Estados::Estado
+	class Fase : public Ente
 	{
 	protected:
-		
+
 		Lista::ListaEntidade listaObstaculo;
 		//Lista::ListaEntidade* inimigos;
 		Lista::ListaEntidade listaPersonagens;
@@ -42,10 +42,14 @@ namespace Fases
 
 		//sf::RectangleShape corpo;
 	public:
-		Fase();
-		virtual ~Fase();
+		Fase(IDs::IDs id = IDs::IDs::nulo);
+		~Fase();
 		void executar();
-		//void desenhar();
+		Entidades::Personagens::Jogador* getJogador() const;
+		void desenhar();
+		void atualizar(float dt);
+		void inicializar();
+		ElementosGraficos::AnimacaoEstatica getFundo()const;
 
 		//void add_Obstaculo(Entidades::Entidade* obstaculo);
 		//void add_Inimigo(Entidades::Entidade* inimigo);
