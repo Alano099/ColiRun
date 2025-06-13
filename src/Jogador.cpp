@@ -1,6 +1,6 @@
-#include "jogador.h"
+#include "../include/Jogador.h"
 
-#include "Animacao.h"
+#include "../include/Animacao.h"
 
 namespace Entidades {
 
