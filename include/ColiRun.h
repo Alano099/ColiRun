@@ -21,6 +21,7 @@ private:
 
 
 	Entidades::Personagens::Jogador* p1;
+	Entidades::Personagens::Jogador* p2;
 
 	Lista::ListaEntidade listaPersonagens;
 	Lista::ListaEntidade listaObstaculo;

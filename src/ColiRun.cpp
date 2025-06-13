@@ -6,7 +6,7 @@
 
 using namespace std;
 
-ColiRun::ColiRun() : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()), p1(new Entidades::Personagens::Jogador({ 100.f,200.f }, true)),
+ColiRun::ColiRun() : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()), p1(new Entidades::Personagens::Jogador({ 100.f,200.f }, true, false)), p2(new Entidades::Personagens::Jogador({ 100.f,200.f }, false, true)),
 pGE(Gerenciadores::Gerenciador_Eventos::get_instance()), fundo(), listaObstaculo(), listaPersonagens(), gerenciadorColisoes(&listaPersonagens, &listaObstaculo)
 
 {
@@ -17,6 +17,7 @@ pGE(Gerenciadores::Gerenciador_Eventos::get_instance()), fundo(), listaObstaculo
 
 	Entidades::Personagens::Inimigos::Inimigo* inimigo = new Entidades::Personagens::Inimigos::Inimigo(sf::Vector2f(700.f, 200.f));
 	inimigo->setJogador(p1); // seguir jogador
+	inimigo->setJogador(p2); // seguir jogador 2 (opcional, se quiser ter dois jogadores)
 	listaPersonagens.inserirEnt(inimigo);
 
 	fundo.inicializar("assets/fundos/coliseu.png", centro, sf::Vector2f(static_cast<float>(1320), static_cast<float>(440)));
@@ -41,6 +42,7 @@ pGE(Gerenciadores::Gerenciador_Eventos::get_instance()), fundo(), listaObstaculo
 
 
 	listaPersonagens.inserirEnt(p1);
+	listaPersonagens.inserirEnt(p2);
 
 
 

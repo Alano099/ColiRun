@@ -5,7 +5,7 @@
 
 #include "Entidade.h"
 #include "Jogador.h"
-//#include "Inimigo.h"
+#include "Inimigo.h"
 #include "Plataforma.h"
 #include "ListaEntidades.h"
 #include "Gerenciador_Colisoes.h"
@@ -34,6 +34,7 @@ namespace Fases
 		Gerenciadores::Gerenciador_Eventos* gerenciador_Eventos;
 
 		Entidades::Personagens::Jogador* p1;
+		Entidades::Personagens::Jogador* p2;
 
 		ElementosGraficos::AnimacaoEstatica fundo;
 

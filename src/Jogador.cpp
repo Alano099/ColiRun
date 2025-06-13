@@ -8,8 +8,8 @@ namespace Entidades {
 
 
 
-		Jogador::Jogador(sf::Vector2f pos, bool ehJogador1) :Personagem(pos, sf::Vector2f(JOGADOR_TAMANHO_X, JOGADOR_TAMANHO_Y), IDs::IDs::jogador, 100),
-			ehJogador1(ehJogador1)
+		Jogador::Jogador(sf::Vector2f pos, bool ehJogador1, bool ehJogador2) :Personagem(pos, sf::Vector2f(JOGADOR_TAMANHO_X, JOGADOR_TAMANHO_Y), IDs::IDs::jogador, 100),
+			ehJogador1(ehJogador1), ehJogador2(ehJogador2)
 		{
 			inicializar();
 			tempo = 0;
@@ -23,57 +23,113 @@ namespace Entidades {
 
 		void Jogador::atualizar(float dt) {
 
-			tempo += dt;
+			if (ehJogador1)
+			{
+				tempo += dt;
 
-			float tempoPulo = 1.f;
+				float tempoPulo = 1.f;
 
-			float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 7;
-			float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
-
-
-			velocidade.y += GRAVIDADE * dt;
+				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 7;
+				float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
 
 
-			velocidade.x = 0.f;
+				velocidade.y += GRAVIDADE * dt;
 
-			// Movimento horizontal com teclado
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-				velocidade.x = +200.f;
+
+				velocidade.x = 0.f;
+
+				// Movimento horizontal com teclado
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+					velocidade.x = +200.f;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+					velocidade.x = -200.f;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao) {
+					velocidade.y = -velPulo;
+					noChao = false;
+				}
+				// Atualiza posição com velocidade
+				pos.x += velocidade.x * dt;
+
+				pos.y += velocidade.y * dt;
+
+
+				// Atualiza animação
+
+				if (velocidade.x > 0.f && noChao) {
+					olhandoEsquerda = true;
+					sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+				}
+				else if (velocidade.x < 0.0f && noChao) {
+					olhandoEsquerda = false;
+					sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+				}
+
+				else if (!noChao) {
+					sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
+				}
+
+				else {
+
+					sprite.atualizar(ElementosGraficos::ID_Animacao::parado, estaOlhandoEsquerda(), pos, dt);
+				}
+
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-				velocidade.x = -200.f;
+			if (ehJogador2)
+			{
+				tempo += dt;
+
+				float tempoPulo = 1.f;
+
+				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 7;
+				float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
+
+
+				velocidade.y += GRAVIDADE * dt;
+
+
+				velocidade.x = 0.f;
+
+				// Movimento horizontal com teclado
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+					velocidade.x = +200.f;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+					velocidade.x = -200.f;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && noChao) {
+					velocidade.y = -velPulo;
+					noChao = false;
+				}
+				// Atualiza posição com velocidade
+				pos.x += velocidade.x * dt;
+
+				pos.y += velocidade.y * dt;
+
+
+				// Atualiza animação
+
+				if (velocidade.x > 0.f && noChao) {
+					olhandoEsquerda = true;
+					sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+				}
+				else if (velocidade.x < 0.0f && noChao) {
+					olhandoEsquerda = false;
+					sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+				}
+
+				else if (!noChao) {
+					sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
+				}
+
+				else {
+
+					sprite.atualizar(ElementosGraficos::ID_Animacao::parado, estaOlhandoEsquerda(), pos, dt);
+				}
+
+
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao) {
-				velocidade.y = -velPulo;
-				noChao = false;
-			}
-			// Atualiza posição com velocidade
-			pos.x += velocidade.x * dt;
-
-			pos.y += velocidade.y * dt;
-
-
-			// Atualiza animação
-
-			if (velocidade.x > 0.f && noChao) {
-				olhandoEsquerda = true;
-				sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
-			}
-			else if (velocidade.x < 0.0f && noChao) {
-				olhandoEsquerda = false;
-				sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
-			}
-
-			else if (!noChao) {
-				sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
-			}
-
-			else {
-
-				sprite.atualizar(ElementosGraficos::ID_Animacao::parado, estaOlhandoEsquerda(), pos, dt);
-			}
-
-
 		}
 
 		void Jogador::inicializar() {

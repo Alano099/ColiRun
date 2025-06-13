@@ -15,12 +15,13 @@ namespace Entidades {
 
 		private:
 			const bool ehJogador1;
+			const float ehJogador2;
 			float tempo;
 			bool noChao;
 
 		public:
 
-			Jogador(sf::Vector2f pos = { 0.f,0.f }, bool ehJogador1 = true);
+			Jogador(sf::Vector2f pos = { 0.f,0.f }, bool ehJogador1 = true, bool ehJogador2 = true);
 			~Jogador();
 
 			void mover(float dx, float dy);
