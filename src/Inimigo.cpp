@@ -16,8 +16,9 @@ namespace Entidades {
 
 				inicializar();
 				velocidade.x = 100;
-				sentido = -1;
+				sentido = 1;
 				perseguindo = false;
+				tempoDano = 0.f;
 
 			}
 
@@ -25,37 +26,42 @@ namespace Entidades {
 
 
 			void Inimigo::atualizar(float dt) {
+				if (tempoDano > 0.f)
+					tempoDano -= dt;
 
 				sf::Vector2f posJog = pJog->getPosicao();
 				float distancia = std::hypot(posJog.x - pos.x, posJog.y - pos.y);
 
-				// Persegue se estiver perto
 				if (distancia < 200.f) {
 					perseguindo = true;
+
 					sf::Vector2f dir = posJog - pos;
 					float mag = std::sqrt(dir.x * dir.x + dir.y * dir.y);
 					if (mag != 0.f) dir /= mag;
+
 					velocidade.x = dir.x * 100.f;
 					olhandoEsquerda = dir.x < 0;
 				}
-				// Caso contrário, patrulha
 				else {
 					perseguindo = false;
+
 					velocidade.x = sentido * 60.f;
-					if (pos.x > pontoDireita.x || pos.x < pontoEsquerda.x) {
-						sentido *= -1;
-					}
 				}
 
 				pos.x += velocidade.x * dt;
 				velocidade.y += GRAVIDADE * dt;
 				pos.y += velocidade.y * dt;
 
-				if (perseguindo)
-					sprite.atualizar(ElementosGraficos::ID_Animacao::andar, !olhandoEsquerda, pos, dt);
-				else
-					sprite.atualizar(ElementosGraficos::ID_Animacao::parado, !olhandoEsquerda, pos, dt);
+				if (!perseguindo && (pos.x > pontoDireita.x || pos.x < pontoEsquerda.x)) {
+					sentido *= -1;
 
+					if (pos.x > pontoDireita.x)
+						pos.x = pontoDireita.x;
+					else if (pos.x < pontoEsquerda.x)
+						pos.x = pontoEsquerda.x;
+				}
+
+				sprite.atualizar(ElementosGraficos::ID_Animacao::andar, !(velocidade.x < 0.f), pos, dt);
 			}
 
 			void Inimigo::inicializar() {
@@ -70,19 +76,28 @@ namespace Entidades {
 					moverNaColisao(intercepta, outraEntidade->getPosicao());
 					break;
 
-				default:
-
+				case IDs::IDs::jogador: {
+					Jogador* jogador = dynamic_cast<Jogador*>(outraEntidade);
+					if (jogador && jogador->getAtacando() && tempoDano <= 0.f) {
+						std::cout << "ATAQUE COLIDIU!\n";
+						moverNaColisao(intercepta, jogador->getPosicao());
+						tempoDano = 0.5f;
+					}
 					break;
 				}
 
+				default:
+					break;
+				}
 			}
-
 			void Inimigo::definirLimitesDePatrulha(float alcance)
 			{
 				pontoEsquerda = sf::Vector2f(pos.x - alcance, pos.y);
 				pontoDireita = sf::Vector2f(pos.x + alcance, pos.y);
 			}
 
+
+			void Inimigo::atacar(float dt){}
 
 		}
 

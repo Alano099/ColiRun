@@ -21,6 +21,7 @@ namespace Entidades {
                 sf::Vector2f pontoEsquerda;
                 sf::Vector2f pontoDireita;
                 float perseguindo;
+                float tempoDano;
 
             public:
                 Inimigo(sf::Vector2f pos = { 0.f,0.f });
@@ -34,6 +35,8 @@ namespace Entidades {
                 void inicializar();
 
                 void colidir(Entidade* outraEntidade, sf::Vector2f intercepta);
+
+                void atacar(float dt);
 
                 void definirLimitesDePatrulha(float alcance);
 

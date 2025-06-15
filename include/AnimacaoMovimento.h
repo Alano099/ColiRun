@@ -95,7 +95,7 @@ namespace ElementosGraficos {
 		AnimacaoMovimento();
 		~AnimacaoMovimento();
 
-
+		sf::FloatRect getGlobalBounds() const { return corpo.getGlobalBounds(); }
 
 		void adicionarNovaAnimacao(ID_Animacao id, const char* caminho, unsigned int imagemCount);
 		void atualizar(ID_Animacao id, bool olhandoEsquerda, sf::Vector2f posicao, float dt);

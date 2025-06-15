@@ -22,7 +22,7 @@ namespace Entidades {
 			sprite.desenhar();
 			sf::RectangleShape debug;
 			
-			/*
+			
 			
 			debug.setFillColor(sf::Color::Transparent);
 			debug.setOutlineColor(sf::Color::Red);
@@ -32,7 +32,13 @@ namespace Entidades {
 			debug.setPosition(getPosicao());       // posição central da entidade
 			Gerenciadores::Gerenciador_Grafico::get_instance()->getJanela()->draw(debug);
 			
-			*/
+			if (!podeAtacar) {
+				ataque.setFillColor(sf::Color(255, 0, 0, 100)); // vermelho semi-transparente
+				ataque.setOutlineColor(sf::Color::Yellow);
+				ataque.setOutlineThickness(2.f);
+				Gerenciadores::Gerenciador_Grafico::get_instance()->getJanela()->draw(ataque);
+			}
+			
 		}
 
 		void Personagem::tomarDano(const int dano)
@@ -72,6 +78,11 @@ namespace Entidades {
 		const bool Personagem::estaAtivo() const
 		{
 			return ativo;
+		}
+
+		sf::FloatRect Personagem::getHitbox() const
+		{
+			return sprite.getGlobalBounds();
 		}
 
 		

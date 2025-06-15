@@ -27,8 +27,8 @@ namespace Fases
 	protected:
 
 		Lista::ListaEntidade listaObstaculo;
-		//Lista::ListaEntidade* inimigos;
-		Lista::ListaEntidade listaPersonagens;
+		Lista::ListaEntidade listaInimigos;
+		Lista::ListaEntidade listaJogadores;
 
 		Gerenciadores::Gerenciador_Colisoes gerenciadorColisoes;
 		Gerenciadores::Gerenciador_Eventos* gerenciador_Eventos;

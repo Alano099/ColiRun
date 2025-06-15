@@ -6,7 +6,7 @@ namespace Fases {
     Fase::Fase(IDs::IDs id)
         :Ente(id), gerenciador_Eventos(Gerenciadores::Gerenciador_Eventos::get_instance()),
         p1(new Entidades::Personagens::Jogador({ 100.f, 200.f }, true)),
-        gerenciadorColisoes(&listaPersonagens, &listaObstaculo) {
+        gerenciadorColisoes(&listaJogadores,&listaInimigos, &listaObstaculo) {
 
         inicializar();
     }
@@ -26,7 +26,8 @@ namespace Fases {
 
 
     void Fase::atualizar(float dt) {
-        listaPersonagens.executar(dt);
+        listaJogadores.executar(dt);
+        listaInimigos.executar(dt);
         listaObstaculo.executar(dt);
         gerenciadorColisoes.colidir();
     }
@@ -34,7 +35,10 @@ namespace Fases {
     void Fase::desenhar() {
         fundo.desenhar();
         listaObstaculo.desenharEntidades();
-        listaPersonagens.desenharEntidades();
+        listaJogadores.desenharEntidades();
+        listaInimigos.desenharEntidades();
+
+
     }
 
     void Fases::Fase::inicializar() {
@@ -57,14 +61,15 @@ namespace Fases {
         tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(399.f, 600.f), sf::Vector2f(1800.f, 32.f));
         listaObstaculo.inserirEnt(tmp);
 
-        tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(600.f, 550.f), sf::Vector2f(100.f, 100.f));
-        listaObstaculo.inserirEnt(tmp);
+        //tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(600.f, 550.f), sf::Vector2f(100.f, 100.f));
+        //listaObstaculo.inserirEnt(tmp);
 
         Entidades::Personagens::Inimigos::Inimigo* inimigo = new Entidades::Personagens::Inimigos::Inimigo(sf::Vector2f(700.f, 200.f));
+        inimigo->definirLimitesDePatrulha(150.f);
         inimigo->setJogador(p1);
-        listaPersonagens.inserirEnt(inimigo);
+        listaInimigos.inserirEnt(inimigo);
 
-        listaPersonagens.inserirEnt(p1);
+        listaJogadores.inserirEnt(p1);
 
     }
 

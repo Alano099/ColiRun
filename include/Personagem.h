@@ -19,6 +19,12 @@ namespace Entidades {
 		bool olhandoEsquerda;
 		bool ativo;
 
+		sf::RectangleShape ataque;
+		bool podeAtacar;
+		float tempoAtaque;
+		bool estaAtacando;
+		float ataqueCooldown;
+
 		ElementosGraficos::AnimacaoMovimento sprite;
 
 	public:
@@ -37,6 +43,10 @@ namespace Entidades {
 
 		virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
 
+		virtual void atacar(float dt) = 0;
+
+		bool getAtacando() { return estaAtacando; }
+
 		void tomarDano(const int dano);
 
 		void moverNaColisao(sf::Vector2f instercepta, sf::Vector2f outraPos);
@@ -44,6 +54,10 @@ namespace Entidades {
 		const bool estaOlhandoEsquerda() const;
 
 		const bool estaAtivo() const;
+
+		sf::FloatRect getHitbox() const;
+
+
 
 	};
 

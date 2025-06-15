@@ -15,6 +15,9 @@ namespace Entidades {
 			tempo = 0;
 			velocidade.x = 100;
 			noChao = true;
+			podeAtacar = true;
+			tempoAtaque = 0.f;
+			ataqueCooldown = 0.0f;
 		}
 
 		Jogador::~Jogador(){}
@@ -47,31 +50,62 @@ namespace Entidades {
 				velocidade.y = -velPulo;
 				noChao = false;
 			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+				if (!estaAtacando && podeAtacar && ataqueCooldown <= 0.f) {
+					atacar(dt);
+					estaAtacando = true;
+					ataqueCooldown = 0.5f;  // cooldown de meio segundo
+				}
+			}
+			else {
+				estaAtacando = false;
+			}
+			
+
 			// Atualiza posição com velocidade
 			pos.x += velocidade.x * dt;
 
 			pos.y += velocidade.y * dt;
 
+			if (!podeAtacar) {
+				
+
+				if (olhandoEsquerda) {
+					ataque.setPosition(pos.x + 30.f, pos.y -20.f);
+				}
+				else {
+					ataque.setPosition(pos.x - 30.f, pos.y - 20.f);
+				}
+			}
 			
+			if (ataqueCooldown > 0.f)
+				ataqueCooldown -= dt;
+
 			// Atualiza animação
 
-			if (velocidade.x > 0.f && noChao) {
-				olhandoEsquerda = true;
-				sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+			if (!podeAtacar) {
+				tempoAtaque -= dt;
+				sprite.atualizar(ElementosGraficos::ID_Animacao::ataque, estaOlhandoEsquerda(), pos, dt);
+				if (tempoAtaque <= 0.f) podeAtacar = true;
 			}
-			else if (velocidade.x < 0.0f && noChao) {
-				olhandoEsquerda = false;
-				sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
-			}
-
-			else if (!noChao) {
-				sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
-			}
-
 			else {
-				
-				sprite.atualizar(ElementosGraficos::ID_Animacao::parado, estaOlhandoEsquerda(), pos, dt);
+				if (velocidade.x > 0.f && noChao) {
+					olhandoEsquerda = true;
+					sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+				}
+				else if (velocidade.x < 0.0f && noChao) {
+					olhandoEsquerda = false;
+					sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+				}
+				else if (!noChao) {
+					sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
+				}
+				else {
+					sprite.atualizar(ElementosGraficos::ID_Animacao::parado, estaOlhandoEsquerda(), pos, dt);
+				}
 			}
+
+
 
 
 		}
@@ -95,6 +129,26 @@ namespace Entidades {
 			default:
 
 				break;
+			}
+		}
+
+		void Jogador::atacar(float dt)
+		{
+			podeAtacar = false;
+			tempoAtaque = 0.7f;
+
+			ataque.setSize(sf::Vector2f(15.f, 15.f));
+
+		
+		}
+
+		void Jogador::desenharAtaque()
+		{
+			if (!podeAtacar) {
+				ataque.setFillColor(sf::Color::Transparent);
+				ataque.setOutlineColor(sf::Color::Red);
+				ataque.setOutlineThickness(1.f);
+				Gerenciadores::Gerenciador_Grafico::get_instance()->getJanela()->draw(ataque);
 			}
 		}
 
