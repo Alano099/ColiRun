@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Inimigo.h"
 #include <SFML/Graphics.hpp>
 
 
@@ -14,6 +14,10 @@
 #include "Gerenciador_Estado.h"
 #include "Estado.h"
 #include "AnimacaoEstatica.h"
+#include "Soldado.h"
+#include "Medusa.h"
+#include "Minotauro.h"
+#include "Espinho.h"
 
 
 #include <fstream>

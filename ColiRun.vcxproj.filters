@@ -99,6 +99,18 @@
     <ClInclude Include="include\Texto.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Soldado.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Medusa.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Minotauro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Espinho.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\jogador_andar.png">
@@ -140,22 +152,79 @@
     <Image Include="assets\obstaculos\red.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\inimigos\soldado_andar.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="assets\fundos\coliseu.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\inimigos\soldado_ataque.png">
+    <Image Include="assets\inimigos\gorgona\gorgona_andar.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\inimigos\soldado_machucado.png">
+    <Image Include="assets\inimigos\gorgona\gorgona_ataque.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\inimigos\soldado_morte.png">
+    <Image Include="assets\inimigos\gorgona\gorgona_especial.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="assets\inimigos\soldado_parado.png">
+    <Image Include="assets\inimigos\gorgona\gorgona_machucado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\gorgona\gorgona_morte.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\gorgona\gorgona_parado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\minotauro\minotauro_andar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\minotauro\minotauro_ataque.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\minotauro\minotauro_ataque2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\minotauro\minotauro_machucado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\minotauro\minotauro_morte.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\minotauro\minotauro_parado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\soldado\soldado_andar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\soldado\soldado_ataque.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\soldado\soldado_machucado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\soldado\soldado_morte.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\soldado\soldado_parado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\medusa\medusa_andar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\medusa\medusa_ataque.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\medusa\medusa_especial.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\medusa\medusa_machucado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\medusa\medusa_morte.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\inimigos\medusa\medusa_parado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\obstaculos\espinhos.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -239,6 +308,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Texto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Soldado.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Medusa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Minotauro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Espinho.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

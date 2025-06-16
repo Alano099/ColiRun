@@ -61,13 +61,25 @@ namespace Fases {
         tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(399.f, 600.f), sf::Vector2f(1800.f, 32.f));
         listaObstaculo.inserirEnt(tmp);
 
+        tmp = new Entidades::Obstaculos::Espinho(sf::Vector2f(600.f, 550.f), sf::Vector2f(100.f, 100.f));
+		listaObstaculo.inserirEnt(tmp);
+
         //tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(600.f, 550.f), sf::Vector2f(100.f, 100.f));
         //listaObstaculo.inserirEnt(tmp);
 
-        Entidades::Personagens::Inimigos::Inimigo* inimigo = new Entidades::Personagens::Inimigos::Inimigo(sf::Vector2f(700.f, 200.f));
+        Entidades::Personagens::Inimigos::Soldado* inimigo = new Entidades::Personagens::Inimigos::Soldado(sf::Vector2f(700.f, 200.f));
         inimigo->definirLimitesDePatrulha(150.f);
         inimigo->setJogador(p1);
         listaInimigos.inserirEnt(inimigo);
+        Entidades::Personagens::Inimigos::Medusa* inimigo2 = new Entidades::Personagens::Inimigos::Medusa(sf::Vector2f(500.f, 200.f));
+        inimigo2->definirLimitesDePatrulha(150.f);
+        inimigo2->setJogador(p1);
+        listaInimigos.inserirEnt(inimigo2);
+
+		Entidades::Personagens::Inimigos::Minotauro* inimigo3 = new Entidades::Personagens::Inimigos::Minotauro(sf::Vector2f(800.f, 200.f));
+		inimigo3->definirLimitesDePatrulha(150.f);
+		inimigo3->setJogador(p1);
+        listaInimigos.inserirEnt(inimigo3);
 
         listaJogadores.inserirEnt(p1);
 

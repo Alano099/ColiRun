@@ -18,15 +18,7 @@ namespace Entidades {
 			float tempo;
 			bool noChao;
 
-			/*
-			bool	podeAtacar;
-			float tempoAtaque;
-			bool estaAtacando;
-			sf::RectangleShape ataque;
-			float ataqueCooldown;
-			
-			*/
-
+		
 		public:
 
 			Jogador(sf::Vector2f pos = { 0.f,0.f }, bool ehJogador1 = true);

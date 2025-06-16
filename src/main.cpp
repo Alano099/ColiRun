@@ -1,7 +1,7 @@
 #include "../include/ColiRun.h"
 
 int main() {
-	ColiRun Desest;
+	ColiRun jogo;
 
 	return 0;
 

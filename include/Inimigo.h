@@ -15,12 +15,13 @@ namespace Entidades {
             class Inimigo :public Personagem
             {
 
-            private:
+            protected:
                 Jogador* pJog;
+                float perseguindo;
+
                 int sentido;
                 sf::Vector2f pontoEsquerda;
                 sf::Vector2f pontoDireita;
-                float perseguindo;
                 float tempoDano;
 
             public:
@@ -30,15 +31,15 @@ namespace Entidades {
 
                 void setJogador(Jogador* jog) { pJog = jog; }
 
-                void atualizar(float dt);
+                virtual void atualizar(float dt) = 0;
                 
-                void inicializar();
+                virtual void inicializar() = 0;
 
-                void colidir(Entidade* outraEntidade, sf::Vector2f intercepta);
+                virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
 
-                void atacar(float dt);
+                virtual void atacar(float dt) = 0;
 
-                void definirLimitesDePatrulha(float alcance);
+                virtual void definirLimitesDePatrulha(float alcance) = 0;
 
 
 

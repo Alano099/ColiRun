@@ -151,6 +151,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Espinho.h" />
     <ClInclude Include="IDs\IDs.h" />
     <ClInclude Include="include\Animacao.h" />
     <ClInclude Include="include\AnimacaoEstatica.h" />
@@ -178,17 +179,38 @@
     <ClInclude Include="include\Plataforma.h" />
     <ClInclude Include="include\Subject.h" />
     <ClInclude Include="include\Texto.h" />
+    <ClInclude Include="include\Soldado.h" />
+    <ClInclude Include="include\Medusa.h" />
+    <ClInclude Include="include\Minotauro.h" />
     <ClInclude Include="stdafx\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\fundo1.png" />
     <Image Include="assets\fundos\coliseu.png" />
     <Image Include="assets\fundos\fundo1.png" />
-    <Image Include="assets\inimigos\soldado_andar.png" />
-    <Image Include="assets\inimigos\soldado_ataque.png" />
-    <Image Include="assets\inimigos\soldado_machucado.png" />
-    <Image Include="assets\inimigos\soldado_morte.png" />
-    <Image Include="assets\inimigos\soldado_parado.png" />
+    <Image Include="assets\inimigos\gorgona\gorgona_andar.png" />
+    <Image Include="assets\inimigos\gorgona\gorgona_ataque.png" />
+    <Image Include="assets\inimigos\gorgona\gorgona_especial.png" />
+    <Image Include="assets\inimigos\gorgona\gorgona_machucado.png" />
+    <Image Include="assets\inimigos\gorgona\gorgona_morte.png" />
+    <Image Include="assets\inimigos\gorgona\gorgona_parado.png" />
+    <Image Include="assets\inimigos\medusa\medusa_andar.png" />
+    <Image Include="assets\inimigos\medusa\medusa_ataque.png" />
+    <Image Include="assets\inimigos\medusa\medusa_especial.png" />
+    <Image Include="assets\inimigos\medusa\medusa_machucado.png" />
+    <Image Include="assets\inimigos\medusa\medusa_morte.png" />
+    <Image Include="assets\inimigos\medusa\medusa_parado.png" />
+    <Image Include="assets\inimigos\minotauro\minotauro_andar.png" />
+    <Image Include="assets\inimigos\minotauro\minotauro_ataque.png" />
+    <Image Include="assets\inimigos\minotauro\minotauro_ataque2.png" />
+    <Image Include="assets\inimigos\minotauro\minotauro_machucado.png" />
+    <Image Include="assets\inimigos\minotauro\minotauro_morte.png" />
+    <Image Include="assets\inimigos\minotauro\minotauro_parado.png" />
+    <Image Include="assets\inimigos\soldado\soldado_andar.png" />
+    <Image Include="assets\inimigos\soldado\soldado_ataque.png" />
+    <Image Include="assets\inimigos\soldado\soldado_machucado.png" />
+    <Image Include="assets\inimigos\soldado\soldado_morte.png" />
+    <Image Include="assets\inimigos\soldado\soldado_parado.png" />
     <Image Include="assets\jogador\jogador_andar.png" />
     <Image Include="assets\jogador\jogador_ataque.png" />
     <Image Include="assets\jogador\jogador_parado.png" />
@@ -197,11 +219,16 @@
     <Image Include="assets\jogador_ataque.png" />
     <Image Include="assets\jogador_parado.png" />
     <Image Include="assets\jogador_pulo.png" />
+    <Image Include="assets\obstaculos\espinhos.png" />
     <Image Include="assets\obstaculos\red.png" />
     <Image Include="assets\pedra.png" />
     <Image Include="assets\red.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Espinho.cpp" />
+    <ClCompile Include="src\Minotauro.cpp" />
+    <ClCompile Include="src\Medusa.cpp" />
+    <ClCompile Include="src\Soldado.cpp" />
     <ClCompile Include="src\Animacao.cpp" />
     <ClCompile Include="src\AnimacaoEstatica.cpp" />
     <ClCompile Include="src\AnimacaoMovimento.cpp" />

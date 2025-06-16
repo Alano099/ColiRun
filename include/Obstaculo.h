@@ -11,6 +11,7 @@ namespace Entidades {
 		{
 		protected:
 			ElementosGraficos::AnimacaoEstatica sprite;
+			bool danoso;
 
 		public:
 			Obstaculo(sf::Vector2f posicao = { 0.f,0.f }, sf::Vector2f tamanho = {0.f,0.f}, IDs::IDs id = IDs::IDs::nulo);
