@@ -1,11 +1,10 @@
 #pragma once
-#include "Inimigo.h"
 #include <SFML/Graphics.hpp>
 
 
 #include "Entidade.h"
 #include "Jogador.h"
-//#include "Inimigo.h"
+#include "Inimigo.h"
 #include "Plataforma.h"
 #include "ListaEntidades.h"
 #include "Gerenciador_Colisoes.h"
