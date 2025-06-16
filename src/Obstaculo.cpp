@@ -6,16 +6,16 @@ namespace Entidades {
 	namespace Obstaculos {
 
 
-		Obstaculo::Obstaculo(sf::Vector2f posicao, sf::Vector2f tamanho, IDs::IDs id):Entidade(posicao,tamanho,id),sprite(){
+		Obstaculo::Obstaculo(sf::Vector2f posicao, sf::Vector2f tamanho,IDs::IDs id):Entidade(posicao,tamanho,id),sprite(){
 
-
+			danoso = false;
 
 		}
 
 		Obstaculo::~Obstaculo(){}
 
 		sf::Vector2f Obstaculo::getPosicao() const {
-			return pos;// <- agora isso funciona!
+			return pos;
 		}
 
 		void Obstaculo::desenhar() {

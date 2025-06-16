@@ -24,7 +24,7 @@ namespace Entidades {
 			Jogador(sf::Vector2f pos = { 0.f,0.f }, bool ehJogador1 = true);
 			~Jogador();
 
-			void atualizar(float dt);
+			void executar(float dt);
 			void inicializar();
 			void colidir(Entidade* outraEntidade, sf::Vector2f intercepta);
 			void atacar(float dt);

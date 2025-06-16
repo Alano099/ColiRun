@@ -34,7 +34,7 @@ namespace Gerenciadores {
 				if (hitboxAtaque.intersects(hitboxInimigo)) {
 					
 					// Aplica o "empurrão"
-					sf::Vector2f empurrao = jogador->estaOlhandoEsquerda()
+					sf::Vector2f empurrao = (jogador->estaOlhandoEsquerda())
 						? sf::Vector2f(-100.f, 0.f)
 						: sf::Vector2f(100.f, 0.f);
 					inimigo->moverNaColisao(empurrao, inimigo->getPosicao());

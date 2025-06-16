@@ -11,8 +11,8 @@ namespace Entidades {
 		namespace Inimigos {
 
 
-			Inimigo::Inimigo(sf::Vector2f pos)
-				: Personagem(pos, sf::Vector2f(32.f, 63.f), IDs::IDs::nulo), // Ajuste o ID conforme necessário
+			Inimigo::Inimigo(sf::Vector2f pos,sf::Vector2f tamanho, IDs::IDs id)
+				: Personagem(pos,tamanho,id),
 				pJog(nullptr), perseguindo(0.f), sentido(1), tempoDano(0.f)
 			{
 				

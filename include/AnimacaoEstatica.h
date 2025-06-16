@@ -22,7 +22,7 @@ namespace ElementosGraficos {
 		}
 		sf::Texture* getTextura() const;
 
-		void atualizar(sf::Vector2f posicao);
+		void executar(sf::Vector2f posicao);
 	
 		void inicializar(const char* caminho, sf::Vector2f posicao, sf::Vector2f tamanho);
 	};

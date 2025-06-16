@@ -8,7 +8,7 @@ namespace Entidades {
 
 
 
-			Medusa::Medusa(sf::Vector2f pos):Inimigo(pos)
+			Medusa::Medusa(sf::Vector2f pos,sf::Vector2f tamanho, IDs::IDs id):Inimigo(pos,tamanho,id)
 			{
 				inicializar();
 			}
@@ -17,7 +17,7 @@ namespace Entidades {
 			{
 			}
 
-			void Medusa::atualizar(float dt)
+			void Medusa::executar(float dt)
 			{
 				if (tempoDano > 0.f)
 					tempoDano -= dt;

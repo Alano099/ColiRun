@@ -23,15 +23,16 @@ namespace Entidades {
                 sf::Vector2f pontoEsquerda;
                 sf::Vector2f pontoDireita;
                 float tempoDano;
+               
 
             public:
-                Inimigo(sf::Vector2f pos = { 0.f,0.f });
+                Inimigo(sf::Vector2f pos,sf::Vector2f tamanho,IDs::IDs id);
 
                 ~Inimigo();
 
                 void setJogador(Jogador* jog) { pJog = jog; }
 
-                virtual void atualizar(float dt) = 0;
+                virtual void executar(float dt) = 0;
                 
                 virtual void inicializar() = 0;
 

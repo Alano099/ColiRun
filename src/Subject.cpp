@@ -31,7 +31,7 @@ namespace Gerenciadores
     {
         for (it = lista_observers.begin(); it != lista_observers.end(); it++)
         {
-            (*it)->atualizar((key_code));
+            (*it)->executar((key_code));
         }
     }
 }

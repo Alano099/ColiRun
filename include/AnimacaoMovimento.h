@@ -45,7 +45,7 @@ namespace ElementosGraficos {
 
 			~AnimacaoUnica() {}
 
-			void atualizar(float dt, bool olhandoEsquerda) {
+			void executar(float dt, bool olhandoEsquerda) {
 
 				tempoTotal += dt;
 

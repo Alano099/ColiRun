@@ -14,12 +14,12 @@ namespace Entidades {
 			bool danoso;
 
 		public:
-			Obstaculo(sf::Vector2f posicao = { 0.f,0.f }, sf::Vector2f tamanho = {0.f,0.f}, IDs::IDs id = IDs::IDs::nulo);
+			Obstaculo(sf::Vector2f posicao, sf::Vector2f tamanho,IDs::IDs id);
 			~Obstaculo();
 
 			void desenhar();
 
-			virtual void atualizar(float dt) = 0;
+			virtual void executar(float dt) = 0;
 			virtual void inicializar() = 0;
 			virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
 

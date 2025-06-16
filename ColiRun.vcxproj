@@ -151,6 +151,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Coliseu.h" />
     <ClInclude Include="include\Espinho.h" />
     <ClInclude Include="IDs\IDs.h" />
     <ClInclude Include="include\Animacao.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="include\Soldado.h" />
     <ClInclude Include="include\Medusa.h" />
     <ClInclude Include="include\Minotauro.h" />
+    <ClInclude Include="include\Lama.h" />
     <ClInclude Include="stdafx\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +213,10 @@
     <Image Include="assets\inimigos\soldado\soldado_machucado.png" />
     <Image Include="assets\inimigos\soldado\soldado_morte.png" />
     <Image Include="assets\inimigos\soldado\soldado_parado.png" />
+    <Image Include="assets\jogador\jogador2_andar.png" />
+    <Image Include="assets\jogador\jogador2_ataque.png" />
+    <Image Include="assets\jogador\jogador2_parado.png" />
+    <Image Include="assets\jogador\jogador2_pulo.png" />
     <Image Include="assets\jogador\jogador_andar.png" />
     <Image Include="assets\jogador\jogador_ataque.png" />
     <Image Include="assets\jogador\jogador_parado.png" />
@@ -225,6 +231,8 @@
     <Image Include="assets\red.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Coliseu.cpp" />
+    <ClCompile Include="src\Lama.cpp" />
     <ClCompile Include="src\Espinho.cpp" />
     <ClCompile Include="src\Minotauro.cpp" />
     <ClCompile Include="src\Medusa.cpp" />

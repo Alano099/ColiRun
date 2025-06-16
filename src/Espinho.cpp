@@ -4,7 +4,7 @@ namespace Entidades {
 
 	namespace Obstaculos {
 
-		Espinho::Espinho(sf::Vector2f posicao, sf::Vector2f tamanho) : Obstaculo(posicao, tamanho, IDs::IDs::espinho)
+		Espinho::Espinho(sf::Vector2f posicao, sf::Vector2f tamanho, IDs::IDs id) : Obstaculo(posicao, tamanho,id)
 		{
 			inicializar();
 		}
@@ -12,8 +12,8 @@ namespace Entidades {
 
 		Espinho::~Espinho() {}
 
-		void Espinho::atualizar(float dt) {
-			sprite.atualizar(pos);
+		void Espinho::executar(float dt) {
+			sprite.executar(pos);
 		}
 
 		void Espinho::inicializar() {

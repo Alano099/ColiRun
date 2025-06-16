@@ -5,7 +5,7 @@ namespace Entidades {
 	namespace Obstaculos {
 
 
-		Plataforma::Plataforma(sf::Vector2f posicao, sf::Vector2f tamanho):Obstaculo(posicao, tamanho, IDs::IDs::plataforma)
+		Plataforma::Plataforma(sf::Vector2f posicao, sf::Vector2f tamanho,IDs::IDs id):Obstaculo(posicao, tamanho,id)
 		{
 			inicializar();
 		}
@@ -13,9 +13,9 @@ namespace Entidades {
 		Plataforma::~Plataforma() {
 		}
 		
-		void Plataforma::atualizar(float dt) {
+		void Plataforma::executar(float dt) {
 			
-			sprite.atualizar(pos);
+			sprite.executar(pos);
 		}
 
 		void Plataforma::inicializar() {

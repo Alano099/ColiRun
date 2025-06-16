@@ -11,7 +11,12 @@ namespace IDs {
 		plataforma, //4
 		fase,
 		soldado,
-		espinho
+		espinho,
+		medusa,
+		minotauro,
+		lama,
+		coliseu,
+		masmorra
 	};
 
 }

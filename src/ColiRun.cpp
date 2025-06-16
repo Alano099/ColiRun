@@ -10,7 +10,7 @@ using namespace Fases;
 ColiRun::ColiRun()
     : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()),
     pGE(Gerenciadores::Gerenciador_Eventos::get_instance()),
-    fase(new Fase(IDs::IDs::fase)) // inicializa fase com todos objetos
+    fase(new Coliseu()) // inicializa fase com todos objetos
 {
     executar();
 }
@@ -28,8 +28,8 @@ void ColiRun::executar() {
         pGG->limpar();
 
 
-        fase->atualizar(dt);
-        fase->desenhar();
+        fase->executar(dt);
+       
 
         pGG->mostrar();
         sf::Vector2f centroFundo = sf::Vector2f(

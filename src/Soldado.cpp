@@ -6,15 +6,16 @@ namespace Entidades {
 
 		namespace Inimigos {
 
-			Soldado::Soldado(sf::Vector2f pos): Inimigo(pos)
+			Soldado::Soldado(sf::Vector2f pos, sf::Vector2f tamanho,IDs::IDs id): Inimigo(pos,tamanho,id)
 			{
+
 				inicializar();
 				forca = 0.f;
 			}
 
 			Soldado::~Soldado() {}
 
-			void Soldado::atualizar(float dt) {
+			void Soldado::executar(float dt) {
 				if (tempoDano > 0.f)
 					tempoDano -= dt;
 

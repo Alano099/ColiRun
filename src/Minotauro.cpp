@@ -8,14 +8,14 @@ namespace Entidades {
 
 		namespace Inimigos {
 
-			Minotauro::Minotauro(sf::Vector2f pos) : Inimigo(pos)
+			Minotauro::Minotauro(sf::Vector2f pos,sf::Vector2f tamanho, IDs::IDs id) : Inimigo(pos,tamanho,id)
 			{
 				inicializar();
 			}
 
 			Minotauro::~Minotauro() {}
 
-			void Minotauro::atualizar(float dt) {
+			void Minotauro::executar(float dt) {
 
 
 				if (tempoDano > 0.f)

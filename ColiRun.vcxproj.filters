@@ -111,6 +111,12 @@
     <ClInclude Include="include\Espinho.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Lama.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Coliseu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\jogador_andar.png">
@@ -227,6 +233,18 @@
     <Image Include="assets\obstaculos\espinhos.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\jogador\jogador2_parado.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador\jogador2_ataque.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador\jogador2_andar.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\jogador\jogador2_pulo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx\stdafx.cpp">
@@ -320,6 +338,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Espinho.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lama.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Coliseu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

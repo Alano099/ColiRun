@@ -42,7 +42,7 @@ namespace ElementosGraficos {
 			mapaAnimacao[ID_Atual]->reseta();
 		}
 
-		mapaAnimacao[ID_Atual]->atualizar(dt, olhandoEsquerda);
+		mapaAnimacao[ID_Atual]->executar(dt, olhandoEsquerda);
 
 		corpo.setPosition(sf::Vector2f(posicao.x, posicao.y));
 		corpo.setTextureRect(mapaAnimacao[ID_Atual]->getSize());
