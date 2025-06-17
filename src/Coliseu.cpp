@@ -45,6 +45,7 @@ namespace Fases {
 		criarInimigos();
 		criarObstaculos();
 		listaJogadores.inserirEnt(p1);
+		listaJogadores.inserirEnt(p2);
 	}
 
 

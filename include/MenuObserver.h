@@ -16,7 +16,7 @@ namespace Observers {
 		~MenuObserver();
 
 		void executar(sf::Keyboard::Key key_code);
-		void setMenu(Menus::MainMenu* pM) { pMenu = pM; }
+		void setMenu(Menus::MainMenu *pM) { pMenu = pM; }
 
 	};
 }

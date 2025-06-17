@@ -13,7 +13,7 @@ namespace Estados
 		static Gerenciadores::Gerenciador_Estado* pEG;
 		const int id_estado;
 	public:
-		Estado(int id = -1);
+		Estado(int id);
 
 		virtual ~Estado();
 
