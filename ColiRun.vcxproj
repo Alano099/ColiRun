@@ -184,12 +184,14 @@
     <ClInclude Include="include\Medusa.h" />
     <ClInclude Include="include\Minotauro.h" />
     <ClInclude Include="include\Lama.h" />
+    <ClInclude Include="include\Masmorra.h" />
     <ClInclude Include="stdafx\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\fundo1.png" />
     <Image Include="assets\fundos\coliseu.png" />
     <Image Include="assets\fundos\fundo1.png" />
+    <Image Include="assets\fundos\Masmorra.png" />
     <Image Include="assets\inimigos\gorgona\gorgona_andar.png" />
     <Image Include="assets\inimigos\gorgona\gorgona_ataque.png" />
     <Image Include="assets\inimigos\gorgona\gorgona_especial.png" />
@@ -231,6 +233,7 @@
     <Image Include="assets\red.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Masmorra.cpp" />
     <ClCompile Include="src\Coliseu.cpp" />
     <ClCompile Include="src\Lama.cpp" />
     <ClCompile Include="src\Espinho.cpp" />

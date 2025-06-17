@@ -19,6 +19,7 @@ namespace Fases {
         void criarObstaculos();
         void inicializar();
 
+		void setFinalFase(int final) { finalFase = 1000; }
     };
 
 }

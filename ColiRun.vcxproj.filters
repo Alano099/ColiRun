@@ -117,6 +117,9 @@
     <ClInclude Include="include\Coliseu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Masmorra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\jogador_andar.png">
@@ -245,6 +248,9 @@
     <Image Include="assets\jogador\jogador2_pulo.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\fundos\Masmorra.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx\stdafx.cpp">
@@ -344,6 +350,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Coliseu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Masmorra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

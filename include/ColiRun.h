@@ -3,6 +3,7 @@
 #include "Gerenciador_Eventos.h"
 #include "Fase.h"
 #include "Coliseu.h"
+#include "Masmorra.h"
 
 class ColiRun {
 private:

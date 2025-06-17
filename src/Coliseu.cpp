@@ -16,14 +16,21 @@ namespace Fases {
 	{
 
 		sf::Vector2f distancia = {0.f,0.f};
-		for (int i = 0; i < MAX_INIMIGOS; i++) {
+		for (int i = 0; i < 3; i++) {
 
 			criarSoldados({ 250.f + distancia.x,250.f + distancia.y });
 			distancia += {10.f, 10.f};
 
 		}
 
-		
+		for (int i = 0; i < 3; i++) {
+
+			criarMedusas({ 250.f + distancia.x,250.f + distancia.y });
+			distancia += {10.f, 10.f};
+
+		}
+
+
 
 	}
 
