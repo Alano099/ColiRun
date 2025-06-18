@@ -1,8 +1,8 @@
 #pragma once
 #include "Obstaculo.h"
 
-#define ESPINHO_TAMANHO_X 32.f
-#define ESPINHO_TAMANHO_Y 32.f
+#define ESPINHO_TAMANHO_X 60.f
+#define ESPINHO_TAMANHO_Y 60.f
 
 namespace Entidades
 {

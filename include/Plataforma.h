@@ -3,7 +3,7 @@
 
 #define PLATAFORMA_LARGURA 1800.f
 #define PLATAFORMA_ALTURA 55.f
-#define PLATAFORMA_CAMINHO "assets/obstaculos/red.png"
+#define PLATAFORMA_CAMINHO "assets/obstaculos/areia.jpg"
 
 
 namespace Entidades {

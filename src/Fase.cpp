@@ -30,17 +30,20 @@ namespace Fases {
         listaInimigos.executar(dt);
         listaObstaculo.executar(dt);
         gerenciar_colisoes();
+
+        fundo.atualizar(dt, p1->getVelocidade().x/8);
+
     }
 
 
 
     void Fase::desenhar() {
-        fundo.desenhar();
+
+        fundo.desenhar(pGG->getJanela());
+        
         listaObstaculo.desenharEntidades();
         listaJogadores.desenharEntidades();
         listaInimigos.desenharEntidades();
-
-
     }
 
     /*
@@ -93,32 +96,12 @@ namespace Fases {
     }
     */
 
-    ElementosGraficos::AnimacaoEstatica Fase::getFundo() const
-    {
-        return fundo;
-    }
-
-    void Fase::criarPlataformas(sf::Vector2f pos)
+  
+    void Fase::criarPlataformas(sf::Vector2f pos, sf::Vector2f tam)
     {
         Entidades::Entidade* tmp = nullptr;
 
-        tmp = new Entidades::Obstaculos::Plataforma(pos, {PLATAFORMA_LARGURA, PLATAFORMA_ALTURA}, IDs::IDs::plataforma);
-        listaObstaculo.inserirEnt(tmp);
-    }
-
-    void Fase::criarEspinhos(sf::Vector2f pos)
-    {
-        Entidades::Entidade* tmp = nullptr;
-
-        tmp = new Entidades::Obstaculos::Espinho(pos, { ESPINHO_TAMANHO_X, ESPINHO_TAMANHO_Y}, IDs::IDs::espinho);
-        listaObstaculo.inserirEnt(tmp);
-    }
-
-    void Fase::criarLamas(sf::Vector2f pos)
-    {
-        Entidades::Entidade* tmp = nullptr;
-
-        tmp = new Entidades::Obstaculos::Lama(pos, {LAMA_TAMANHO_X, LAMA_TAMANHO_Y}, IDs::IDs::lama);
+        tmp = new Entidades::Obstaculos::Plataforma(pos, tam, IDs::IDs::plataforma);
         listaObstaculo.inserirEnt(tmp);
     }
 
@@ -127,24 +110,6 @@ namespace Fases {
         Entidades::Personagens::Inimigos::Soldado* inimigo = 
             new Entidades::Personagens::Inimigos::Soldado(pos, { SOLDADO_TAMANHO_X,SOLDADO_TAMANHO_Y }, IDs::IDs::soldado);
         inimigo->definirLimitesDePatrulha(SOLDADO_LIMITE_PATRULHA);
-        inimigo->setJogador(p1);
-        listaInimigos.inserirEnt(inimigo);
-    }
-
-    void Fase::criarMinotauros(sf::Vector2f pos)
-    {
-        Entidades::Personagens::Inimigos::Minotauro* inimigo = 
-            new Entidades::Personagens::Inimigos::Minotauro(pos, { MINOTAURO_TAMANHO_X,MINOTAURO_TAMANHO_Y }, IDs::IDs::minotauro);
-        inimigo->definirLimitesDePatrulha(MINOTAURO_LIMITE_PATRULHA);
-        inimigo->setJogador(p1);
-        listaInimigos.inserirEnt(inimigo);
-    }
-
-    void Fase::criarMedusas(sf::Vector2f pos)
-    {
-        Entidades::Personagens::Inimigos::Medusa* inimigo = 
-            new Entidades::Personagens::Inimigos::Medusa(pos, { MEDUSA_TAMANHO_X,MEDUSA_TAMANHO_Y }, IDs::IDs::medusa);
-        inimigo->definirLimitesDePatrulha(MEDUSA_LIMITE_PATRULHA);
         inimigo->setJogador(p1);
         listaInimigos.inserirEnt(inimigo);
     }

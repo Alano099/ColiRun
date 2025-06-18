@@ -151,6 +151,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\Fundo.h" />
     <ClInclude Include="include\Coliseu.h" />
     <ClInclude Include="include\Espinho.h" />
     <ClInclude Include="IDs\IDs.h" />
@@ -233,6 +234,7 @@
     <Image Include="assets\red.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Fundo.cpp" />
     <ClCompile Include="src\Masmorra.cpp" />
     <ClCompile Include="src\Coliseu.cpp" />
     <ClCompile Include="src\Lama.cpp" />
@@ -267,6 +269,9 @@
     <ClCompile Include="src\Subject.cpp" />
     <ClCompile Include="src\Texto.cpp" />
     <ClCompile Include="stdafx\stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="assets\mapas\mapaColiseu.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

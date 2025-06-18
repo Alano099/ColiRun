@@ -32,7 +32,7 @@ namespace Entidades {
 
 				float tempoPulo = 1.f;
 
-				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 7;
+				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 10;
 				float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
 
 
@@ -114,7 +114,7 @@ namespace Entidades {
 
 				float tempoPulo = 1.f;
 
-				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 7;
+				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 10;
 				float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
 
 

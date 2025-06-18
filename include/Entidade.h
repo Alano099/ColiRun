@@ -2,7 +2,7 @@
 #include "Ente.h"
 #include "Animacao.h"
 
-constexpr float GRAVIDADE = 800.f;
+constexpr float GRAVIDADE = 900.f;
 
 namespace Entidades {
 

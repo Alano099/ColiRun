@@ -22,6 +22,8 @@ namespace Entidades {
 
 			sprite.desenhar();
 
+			/*
+			
 			sf::RectangleShape debug;
 			debug.setFillColor(sf::Color::Transparent);
 			debug.setOutlineColor(sf::Color::Red);
@@ -30,6 +32,8 @@ namespace Entidades {
 			debug.setOrigin(tam.x / 2, tam.y / 2);
 			debug.setPosition(getPosicao());       // posição central da entidade
 			Gerenciadores::Gerenciador_Grafico::get_instance()->getJanela()->draw(debug);
+			
+			*/
 
 		}
 

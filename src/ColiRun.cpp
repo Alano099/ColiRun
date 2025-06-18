@@ -36,6 +36,6 @@ void ColiRun::executar() {
             static_cast<float>(pGG->getJanela()->getSize().x) / 2.f,
             static_cast<float>(pGG->getJanela()->getSize().y) / 2.f
         );
-        pGG->centralizarView(centroFundo);
+        pGG->centralizarView(sf::Vector2f(fase->getJogador()->getPosicao().x,fase->getJogador()->getPosicao().y));
     }
 }

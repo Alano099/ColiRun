@@ -58,7 +58,7 @@ namespace Entidades {
 
 		sf::FloatRect getHitbox() const;
 
-
+		const sf::Vector2f getVelocidade() { return velocidade; }
 
 	};
 

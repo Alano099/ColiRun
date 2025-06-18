@@ -19,23 +19,37 @@ namespace Fases {
 	}
 
 	void Masmorra::criarObstaculos() {
-		criarPlataformas(sf::Vector2f(399.f, 600.f));
+		//criarPlataformas(sf::Vector2f(399.f, 600.f));
 	}
 
 	void Masmorra::inicializar() {
 
-		Gerenciadores::Gerenciador_Grafico* pGG = Gerenciadores::Gerenciador_Grafico::get_instance();
-		sf::Texture* tex = pGG->carregarTextura("assets/fundos/masmorra.jpg");
-		sf::Vector2u texSize = tex->getSize();
-		sf::Vector2u janelaSize = pGG->getJanela()->getSize();
-
-		sf::Vector2f centro = pGG->getJanela()->getView().getCenter();
-		fundo.inicializar("assets/fundos/masmorra.jpg", centro, sf::Vector2f(static_cast<float>(1320), static_cast<float>(440)));
+		
+		fundo.inicializar("assets/fundos/masmorra.jpg",sf::Vector2f(static_cast<float>(1320), static_cast<float>(440)));
 
 		criarInimigos();
 		criarObstaculos();
 		listaJogadores.inserirEnt(p1);
 
 	}
+
+	void Masmorra::criarMedusas(sf::Vector2f pos)
+	{
+		Entidades::Personagens::Inimigos::Medusa* inimigo =
+			new Entidades::Personagens::Inimigos::Medusa(pos, { MEDUSA_TAMANHO_X,MEDUSA_TAMANHO_Y }, IDs::IDs::medusa);
+		inimigo->definirLimitesDePatrulha(MEDUSA_LIMITE_PATRULHA);
+		inimigo->setJogador(p1);
+		listaInimigos.inserirEnt(inimigo);
+	}
+
+	void Masmorra::criarEspinhos(sf::Vector2f pos)
+	{
+		Entidades::Entidade* tmp = nullptr;
+
+		tmp = new Entidades::Obstaculos::Espinho(pos, { ESPINHO_TAMANHO_X, ESPINHO_TAMANHO_Y }, IDs::IDs::espinho);
+		listaObstaculo.inserirEnt(tmp);
+	}
+
+	void Masmorra::carregarMapa(const std::string& caminho){}
 
 }

@@ -24,8 +24,13 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include "Fundo.h"
 
-#define MAX_INIMIGOS 2
+#define MAX_INIMIGOS 6
+#define TAMANHO_TILE 86.f
+#define TAMANHO_PLATAFORMA_X 100.f
+#define TAMANHO_PLATAFORMA_Y 30.f
+
 
 namespace Fases
 {
@@ -43,7 +48,7 @@ namespace Fases
 		Entidades::Personagens::Jogador* p1;
 		Entidades::Personagens::Jogador* p2;
 
-		ElementosGraficos::AnimacaoEstatica fundo;
+		ElementosGraficos::Fundo fundo;
 
 		//int nao_nasceu;
 		//bool carregado;
@@ -57,18 +62,14 @@ namespace Fases
 		void desenhar();
 		void atualizar(float dt);
 		virtual void inicializar() = 0;
+		virtual void carregarMapa(const std::string& caminho) = 0;
 
 	
 		Entidades::Personagens::Jogador* getJogador() const;
 		ElementosGraficos::AnimacaoEstatica getFundo()const;
 
-		void criarPlataformas(sf::Vector2f pos);
-		void criarEspinhos(sf::Vector2f pos);
-		void criarLamas(sf::Vector2f pos);
-
+		void criarPlataformas(sf::Vector2f pos, sf::Vector2f tam);
 		void criarSoldados(sf::Vector2f pos);
-		void criarMinotauros(sf::Vector2f pos);
-		void criarMedusas(sf::Vector2f pos);
 
 		virtual void criarInimigos() = 0;
 		virtual void criarObstaculos() = 0;

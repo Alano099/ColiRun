@@ -2,7 +2,7 @@
 
 #include "Personagem.h"
 
-#define JOGADOR_TAMANHO_Y 40.0f
+#define JOGADOR_TAMANHO_Y 58.0f
 #define JOGADOR_TAMANHO_X 32.0f
 #define JOGADOR_VIDA 100
 
