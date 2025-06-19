@@ -50,6 +50,9 @@ namespace Fases
 
 		ElementosGraficos::Fundo fundo;
 
+		float mapaLargura;
+		float mapaAltura;
+
 		//int nao_nasceu;
 		//bool carregado;
 
@@ -66,7 +69,7 @@ namespace Fases
 
 	
 		Entidades::Personagens::Jogador* getJogador() const;
-		ElementosGraficos::AnimacaoEstatica getFundo()const;
+		
 
 		void criarPlataformas(sf::Vector2f pos, sf::Vector2f tam);
 		void criarSoldados(sf::Vector2f pos);
@@ -74,6 +77,9 @@ namespace Fases
 		virtual void criarInimigos() = 0;
 		virtual void criarObstaculos() = 0;
 
+
+		float getMapaLargura() const { return mapaLargura; }
+		float getMapaAltura() const { return mapaAltura; }
 
 		void gerenciar_colisoes();
 

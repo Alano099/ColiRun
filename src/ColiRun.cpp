@@ -30,12 +30,14 @@ void ColiRun::executar() {
 
         fase->executar(dt);
        
+        sf::Vector2f posJogador = fase->getJogador()->getPosicao();
+        sf::FloatRect limitesMapa(0.f, 0.f, fase->getMapaLargura(), fase->getMapaAltura());
+        pGG->atualizarCamera(fase->getJogador()->getPosicao(), limitesMapa);
+
+        pGG->atualizarCamera(posJogador, limitesMapa);
+
 
         pGG->mostrar();
-        sf::Vector2f centroFundo = sf::Vector2f(
-            static_cast<float>(pGG->getJanela()->getSize().x) / 2.f,
-            static_cast<float>(pGG->getJanela()->getSize().y) / 2.f
-        );
-        pGG->centralizarView(sf::Vector2f(fase->getJogador()->getPosicao().x,fase->getJogador()->getPosicao().y));
+      
     }
 }

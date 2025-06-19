@@ -45,10 +45,10 @@ namespace Fases {
 	}
 
 	void Coliseu::inicializar() {
-		fundo.inicializar("assets/fundos/coliseu.png", sf::Vector2f(1600.f, 600.f));
 
 		carregarMapa("assets/mapas/mapaColiseu.txt");
 
+		fundo.inicializar("assets/fundos/coliseu.png", sf::Vector2f(mapaLargura, mapaAltura));
 		listaJogadores.inserirEnt(p1);
 		listaJogadores.inserirEnt(p2);
 	}
@@ -63,7 +63,14 @@ namespace Fases {
 
 		std::string linha;
 
+		int numLinhas = 0;
+		int numColunas = 0;
+
+	
+
 		for (int i = 0; std::getline(arquivo, linha); i++) {
+			numLinhas++;
+			
 			int j = 0;
 
 			for (char tile : linha) {
@@ -98,7 +105,14 @@ namespace Fases {
 
 				j++;
 			}
+
+			if (j > numColunas)
+				numColunas = j;
+
 		}
+
+		mapaLargura = numColunas * TAMANHO_TILE;
+		mapaAltura = numLinhas * TAMANHO_TILE;
 
 		arquivo.close();
 	}

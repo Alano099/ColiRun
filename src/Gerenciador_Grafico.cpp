@@ -141,6 +141,24 @@ namespace Gerenciadores {
 		janela->setView(view);
 
 	}
+	void Gerenciador_Grafico::atualizarCamera(sf::Vector2f centro, sf::FloatRect limites)
+	{
+
+		sf::Vector2f tamanhoview = view.getSize();
+
+		float metadeAltura = tamanhoview.y / 2.f;
+		float metadeLargura = tamanhoview.x / 2.f;
+
+		float cameraX = std::max(limites.left + metadeLargura,
+			std::min(centro.x, limites.left + limites.width - metadeLargura));
+
+		float cameraY = std::max(limites.top + metadeAltura,
+			std::min(centro.y, limites.top + limites.height - metadeAltura));
+
+		sf::Vector2f cameraCentro(cameraX, cameraY);
+		centralizarView(cameraCentro);
+
+	}
 	sf::Font* Gerenciador_Grafico::getFonte() const{
 		return fonte;
 	}

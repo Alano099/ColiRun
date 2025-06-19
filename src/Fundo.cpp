@@ -15,10 +15,12 @@ namespace ElementosGraficos {
 			std::cerr << "Erro ao carregar textura de fundo parallax.\n";
 			return false;
 		}
+
 		textura.setRepeated(true);
 
 		sprite.setTexture(textura);
-		sprite.setTextureRect(sf::IntRect(0, 0, static_cast<int>(tamanho.x), static_cast<int>(tamanho.y)));
+		sprite.setTextureRect(sf::IntRect(0, 0, static_cast<int>(tamanho.x),textura.getSize().y));
+
 		return true;
 	}
 

@@ -31,7 +31,7 @@ namespace Fases {
         listaObstaculo.executar(dt);
         gerenciar_colisoes();
 
-        fundo.atualizar(dt, p1->getVelocidade().x/8);
+        fundo.atualizar(dt, p1->getVelocidade().x/10);
 
     }
 

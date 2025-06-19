@@ -47,6 +47,7 @@ namespace Gerenciadores {
 		sf::Vector2u getTamjanela();
 		void lidarTamJanela();
 		void centralizarView(sf::Vector2f pos);
+		void atualizarCamera(sf::Vector2f centro, sf::FloatRect limites);
 		sf::Font* getFonte() const;
 	};
 
