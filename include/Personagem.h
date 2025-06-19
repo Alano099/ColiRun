@@ -15,10 +15,11 @@ namespace Entidades {
 	{
 	protected:
 		sf::Vector2f velocidade;
+		sf::Vector2f velocidadeMaxima;
 		int vida;
 		bool olhandoEsquerda;
 		bool ativo;
-
+		bool colidiu;
 		sf::RectangleShape ataque;
 		bool podeAtacar;
 		float tempoAtaque;
@@ -37,7 +38,7 @@ namespace Entidades {
 
 		virtual void desenhar();
 
-		virtual void atualizar(float dt) = 0;
+		virtual void executar(float dt) = 0;
 
 		virtual void inicializar() = 0;
 
@@ -57,7 +58,7 @@ namespace Entidades {
 
 		sf::FloatRect getHitbox() const;
 
-
+		const sf::Vector2f getVelocidade() { return velocidade; }
 
 	};
 

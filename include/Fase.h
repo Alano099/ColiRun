@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Inimigo.h"
 #include <SFML/Graphics.hpp>
 
 
@@ -14,11 +14,23 @@
 #include "Gerenciador_Estado.h"
 #include "Estado.h"
 #include "AnimacaoEstatica.h"
+#include "Soldado.h"
+#include "Medusa.h"
+#include "Minotauro.h"
+#include "Espinho.h"
+#include "Lama.h"
 
 
 #include <fstream>
 #include <string>
 #include <iostream>
+#include "Fundo.h"
+
+#define MAX_INIMIGOS 6
+#define TAMANHO_TILE 86.f
+#define TAMANHO_PLATAFORMA_X 100.f
+#define TAMANHO_PLATAFORMA_Y 30.f
+
 
 namespace Fases
 {
@@ -34,8 +46,9 @@ namespace Fases
 		Gerenciadores::Gerenciador_Eventos* gerenciador_Eventos;
 
 		Entidades::Personagens::Jogador* p1;
+		Entidades::Personagens::Jogador* p2;
 
-		ElementosGraficos::AnimacaoEstatica fundo;
+		ElementosGraficos::Fundo fundo;
 
 		//int nao_nasceu;
 		//bool carregado;
@@ -44,12 +57,25 @@ namespace Fases
 	public:
 		Fase(IDs::IDs id = IDs::IDs::nulo);
 		~Fase();
-		void executar();
-		Entidades::Personagens::Jogador* getJogador() const;
+
+		void executar(float dt);
 		void desenhar();
 		void atualizar(float dt);
-		void inicializar();
+		virtual void inicializar() = 0;
+		virtual void carregarMapa(const std::string& caminho) = 0;
+
+	
+		Entidades::Personagens::Jogador* getJogador() const;
 		ElementosGraficos::AnimacaoEstatica getFundo()const;
+
+		void criarPlataformas(sf::Vector2f pos, sf::Vector2f tam);
+		void criarSoldados(sf::Vector2f pos);
+
+		virtual void criarInimigos() = 0;
+		virtual void criarObstaculos() = 0;
+
+
+		void gerenciar_colisoes();
 
 		//void add_Obstaculo(Entidades::Entidade* obstaculo);
 		//void add_Inimigo(Entidades::Entidade* inimigo);

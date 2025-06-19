@@ -17,7 +17,7 @@ namespace ElementosGraficos {
 		corpo.setScale(esc);
 	}
 
-	void AnimacaoEstatica::atualizar(sf::Vector2f posicao)
+	void AnimacaoEstatica::executar(sf::Vector2f posicao)
 	{
 		corpo.setPosition(posicao);
 	}

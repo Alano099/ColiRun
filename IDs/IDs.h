@@ -9,7 +9,14 @@ namespace IDs {
 		jogador2, //2
 		inimigo, //3
 		plataforma, //4
-		fase
+		fase,
+		soldado,
+		espinho,
+		medusa,
+		minotauro,
+		lama,
+		coliseu,
+		masmorra
 	};
 
 }

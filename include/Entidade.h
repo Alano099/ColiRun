@@ -2,7 +2,7 @@
 #include "Ente.h"
 #include "Animacao.h"
 
-constexpr float GRAVIDADE = 800.f;
+constexpr float GRAVIDADE = 900.f;
 
 namespace Entidades {
 
@@ -34,7 +34,7 @@ namespace Entidades {
         bool getRemover() { return remover; }
 
         virtual void desenhar() = 0;
-        virtual void atualizar(float dt) = 0;
+        virtual void executar(float dt) = 0;
         virtual void inicializar() = 0;
         virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
     };

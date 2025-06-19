@@ -9,7 +9,8 @@ namespace Entidades {
 		}
 
 		Personagem::Personagem(sf::Vector2f pos, sf::Vector2f tam, IDs::IDs id, int vida, bool ativo, bool olhandoEsquerda)
-			: Entidade(pos, tam, id), vida(vida), ativo(ativo), olhandoEsquerda(olhandoEsquerda) {
+			: Entidade(pos, tam, id), vida(vida), ativo(ativo), olhandoEsquerda(olhandoEsquerda),colidiu(false),ataqueCooldown(0.f),
+				estaAtacando(false),podeAtacar(true),tempoAtaque(0.f){
 		}
 
 		const int Personagem::getVida() const
@@ -23,6 +24,7 @@ namespace Entidades {
 			sf::RectangleShape debug;
 			
 			
+			/*
 			
 			debug.setFillColor(sf::Color::Transparent);
 			debug.setOutlineColor(sf::Color::Red);
@@ -31,6 +33,7 @@ namespace Entidades {
 			debug.setOrigin(tam.x / 2, tam.y / 2);
 			debug.setPosition(getPosicao());       // posição central da entidade
 			Gerenciadores::Gerenciador_Grafico::get_instance()->getJanela()->draw(debug);
+			*/
 			
 			if (!podeAtacar) {
 				ataque.setFillColor(sf::Color(255, 0, 0, 100)); // vermelho semi-transparente

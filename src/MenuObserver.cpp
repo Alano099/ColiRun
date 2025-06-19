@@ -11,7 +11,7 @@ namespace Observers {
 		pMenu = nullptr;
 	}
 
-	void MenuObserver::atualizar(sf::Keyboard::Key key_code)
+	void MenuObserver::executar(sf::Keyboard::Key key_code)
 	{
 		if (!pMenu)
 		{

@@ -42,7 +42,7 @@ namespace Lista {
 					aux = nullptr;
 				}
 				else {
-					aux->atualizar(dt);
+					aux->executar(dt);
 				}
 			}
 		}

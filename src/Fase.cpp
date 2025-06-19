@@ -5,16 +5,16 @@ namespace Fases {
 
     Fase::Fase(IDs::IDs id)
         :Ente(id), gerenciador_Eventos(Gerenciadores::Gerenciador_Eventos::get_instance()),
-        p1(new Entidades::Personagens::Jogador({ 100.f, 200.f }, true)),
+        p1(new Entidades::Personagens::Jogador({ 100.f, 200.f }, true)),p2(new Entidades::Personagens::Jogador({ 100.f, 200.f }, false)),
         gerenciadorColisoes(&listaJogadores,&listaInimigos, &listaObstaculo) {
 
-        inicializar();
+       
     }
 
     Fase::~Fase() {}
 
-    void Fase::executar() {
-        float dt = Gerenciadores::Gerenciador_Grafico::get_instance()->atualizarTempo();
+    void Fase::executar(float dt) {
+        
         atualizar(dt);
         desenhar();
     }
@@ -24,23 +24,31 @@ namespace Fases {
         return p1;
     }
 
-
+    
     void Fase::atualizar(float dt) {
         listaJogadores.executar(dt);
         listaInimigos.executar(dt);
         listaObstaculo.executar(dt);
-        gerenciadorColisoes.colidir();
+        gerenciar_colisoes();
+
+        fundo.atualizar(dt, p1->getVelocidade().x/8);
+
     }
 
+
+
     void Fase::desenhar() {
-        fundo.desenhar();
+
+        fundo.desenhar(pGG->getJanela());
+        
         listaObstaculo.desenharEntidades();
         listaJogadores.desenharEntidades();
         listaInimigos.desenharEntidades();
-
-
     }
 
+    /*
+    
+    
     void Fases::Fase::inicializar() {
 
         Gerenciadores::Gerenciador_Grafico* pGG = Gerenciadores::Gerenciador_Grafico::get_instance();
@@ -58,24 +66,57 @@ namespace Fases {
 
         Entidades::Entidade* tmp = nullptr;
 
-        tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(399.f, 600.f), sf::Vector2f(1800.f, 32.f));
+        tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(399.f, 600.f), sf::Vector2f(1800.f, 32.f),IDs::IDs::plataforma);
         listaObstaculo.inserirEnt(tmp);
+
+        tmp = new Entidades::Obstaculos::Espinho(sf::Vector2f(600.f, 550.f), sf::Vector2f(100.f, 100.f),IDs::IDs::plataforma);
+		listaObstaculo.inserirEnt(tmp);
 
         //tmp = new Entidades::Obstaculos::Plataforma(sf::Vector2f(600.f, 550.f), sf::Vector2f(100.f, 100.f));
         //listaObstaculo.inserirEnt(tmp);
 
-        Entidades::Personagens::Inimigos::Inimigo* inimigo = new Entidades::Personagens::Inimigos::Inimigo(sf::Vector2f(700.f, 200.f));
+        Entidades::Personagens::Inimigos::Soldado* inimigo = new Entidades::Personagens::Inimigos::Soldado(sf::Vector2f(700.f, 200.f),{SOLDADO_TAMANHO_X,SOLDADO_TAMANHO_Y},IDs::IDs::soldado);
         inimigo->definirLimitesDePatrulha(150.f);
         inimigo->setJogador(p1);
         listaInimigos.inserirEnt(inimigo);
+        Entidades::Personagens::Inimigos::Medusa* inimigo2 = new Entidades::Personagens::Inimigos::Medusa(sf::Vector2f(500.f, 200.f),{MEDUSA_TAMANHO_X,MEDUSA_TAMANHO_Y},IDs::IDs::medusa);
+        inimigo2->definirLimitesDePatrulha(150.f);
+        inimigo2->setJogador(p1);
+        listaInimigos.inserirEnt(inimigo2);
+
+        Entidades::Personagens::Inimigos::Minotauro* inimigo3 = new Entidades::Personagens::Inimigos::Minotauro(sf::Vector2f(800.f, 200.f), { MINOTAURO_TAMANHO_X,MINOTAURO_TAMANHO_Y }, IDs::IDs::minotauro);
+		inimigo3->definirLimitesDePatrulha(150.f);
+		inimigo3->setJogador(p1);
+        listaInimigos.inserirEnt(inimigo3);
+
+        listaJogadores.inserirEnt(p2);
 
         listaJogadores.inserirEnt(p1);
 
     }
+    */
 
-    ElementosGraficos::AnimacaoEstatica Fase::getFundo() const
+  
+    void Fase::criarPlataformas(sf::Vector2f pos, sf::Vector2f tam)
     {
-        return fundo;
+        Entidades::Entidade* tmp = nullptr;
+
+        tmp = new Entidades::Obstaculos::Plataforma(pos, tam, IDs::IDs::plataforma);
+        listaObstaculo.inserirEnt(tmp);
+    }
+
+    void Fase::criarSoldados(sf::Vector2f pos)
+    {
+        Entidades::Personagens::Inimigos::Soldado* inimigo = 
+            new Entidades::Personagens::Inimigos::Soldado(pos, { SOLDADO_TAMANHO_X,SOLDADO_TAMANHO_Y }, IDs::IDs::soldado);
+        inimigo->definirLimitesDePatrulha(SOLDADO_LIMITE_PATRULHA);
+        inimigo->setJogador(p1);
+        listaInimigos.inserirEnt(inimigo);
+    }
+
+    void Fase::gerenciar_colisoes()
+    {
+        gerenciadorColisoes.colidir();
     }
 
 } // namespace Fases

@@ -24,87 +24,175 @@ namespace Entidades {
 
 		
 
-		void Jogador::atualizar(float dt) {
+		void Jogador::executar(float dt) {
 
-			tempo += dt;
+			if (ehJogador1)
+			{
+				tempo += dt;
 
-			float tempoPulo = 1.f;
+				float tempoPulo = 1.f;
 
-			float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 7;
-			float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
-
-	
-			velocidade.y += GRAVIDADE * dt;
+				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 10;
+				float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
 
 
-			velocidade.x = 0.f;
+				velocidade.y += GRAVIDADE * dt;
 
-			// Movimento horizontal com teclado
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-				velocidade.x = +200.f;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-				velocidade.x = -200.f;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao) {
-				velocidade.y = -velPulo;
-				noChao = false;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-				if (!estaAtacando && podeAtacar && ataqueCooldown <= 0.f) {
-					atacar(dt);
-					estaAtacando = true;
-					ataqueCooldown = 0.5f;  // cooldown de meio segundo
+
+				velocidade.x = 0.f;
+
+				// Movimento horizontal com teclado
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+					velocidade.x = +200.f;
 				}
-			}
-			else {
-				estaAtacando = false;
-			}
-			
-
-			// Atualiza posição com velocidade
-			pos.x += velocidade.x * dt;
-
-			pos.y += velocidade.y * dt;
-
-			if (!podeAtacar) {
-				
-
-				if (olhandoEsquerda) {
-					ataque.setPosition(pos.x + 30.f, pos.y -20.f);
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+					velocidade.x = -200.f;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao) {
+					velocidade.y = -velPulo;
+					noChao = false;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::J)) {
+					if (!estaAtacando && podeAtacar && ataqueCooldown <= 0.f) {
+						atacar(dt);
+						estaAtacando = true;
+						ataqueCooldown = 0.5f;  // cooldown de meio segundo
+					}
 				}
 				else {
-					ataque.setPosition(pos.x - 30.f, pos.y - 20.f);
+					estaAtacando = false;
 				}
-			}
-			
-			if (ataqueCooldown > 0.f)
-				ataqueCooldown -= dt;
 
-			// Atualiza animação
 
-			if (!podeAtacar) {
-				tempoAtaque -= dt;
-				sprite.atualizar(ElementosGraficos::ID_Animacao::ataque, estaOlhandoEsquerda(), pos, dt);
-				if (tempoAtaque <= 0.f) podeAtacar = true;
-			}
-			else {
-				if (velocidade.x > 0.f && noChao) {
-					olhandoEsquerda = true;
-					sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+				// Atualiza posição com velocidade
+				pos.x += velocidade.x * dt;
+
+				pos.y += velocidade.y * dt;
+
+				if (!podeAtacar) {
+
+
+					if (olhandoEsquerda) {
+						ataque.setPosition(pos.x + 30.f, pos.y - 20.f);
+					}
+					else {
+						ataque.setPosition(pos.x - 30.f, pos.y - 20.f);
+					}
 				}
-				else if (velocidade.x < 0.0f && noChao) {
-					olhandoEsquerda = false;
-					sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
-				}
-				else if (!noChao) {
-					sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
+
+				if (ataqueCooldown > 0.f)
+					ataqueCooldown -= dt;
+
+				// Atualiza animação
+
+				if (!podeAtacar) {
+					tempoAtaque -= dt;
+					sprite.atualizar(ElementosGraficos::ID_Animacao::ataque, estaOlhandoEsquerda(), pos, dt);
+					if (tempoAtaque <= 0.f) podeAtacar = true;
 				}
 				else {
-					sprite.atualizar(ElementosGraficos::ID_Animacao::parado, estaOlhandoEsquerda(), pos, dt);
+					if (velocidade.x > 0.f && noChao) {
+						olhandoEsquerda = true;
+						sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+					}
+					else if (velocidade.x < 0.0f && noChao) {
+						olhandoEsquerda = false;
+						sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+					}
+					else if (!noChao) {
+						sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
+					}
+					else {
+						sprite.atualizar(ElementosGraficos::ID_Animacao::parado, estaOlhandoEsquerda(), pos, dt);
+					}
 				}
-			}
 
+			}
+			if (!ehJogador1)
+			{
+				tempo += dt;
+
+				float tempoPulo = 1.f;
+
+				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 10;
+				float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
+
+
+				velocidade.y += GRAVIDADE * dt;
+
+
+				velocidade.x = 0.f;
+
+				// Movimento horizontal com teclado
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+					velocidade.x = +200.f;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+					velocidade.x = -200.f;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && noChao) {
+					velocidade.y = -velPulo;
+					noChao = false;
+				}
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
+					if (!estaAtacando && podeAtacar && ataqueCooldown <= 0.f) {
+						atacar(dt);
+						estaAtacando = true;
+						ataqueCooldown = 0.5f;  // cooldown de meio segundo
+					}
+				}
+				else {
+					estaAtacando = false;
+				}
+
+
+				// Atualiza posição com velocidade
+				pos.x += velocidade.x * dt;
+
+				pos.y += velocidade.y * dt;
+
+				if (!podeAtacar) {
+
+
+					if (olhandoEsquerda) {
+						ataque.setPosition(pos.x + 30.f, pos.y - 20.f);
+					}
+					else {
+						ataque.setPosition(pos.x - 30.f, pos.y - 20.f);
+					}
+				}
+
+				if (ataqueCooldown > 0.f)
+					ataqueCooldown -= dt;
+
+				// Atualiza animação
+
+				if (!podeAtacar) {
+					tempoAtaque -= dt;
+					sprite.atualizar(ElementosGraficos::ID_Animacao::ataque, estaOlhandoEsquerda(), pos, dt);
+					if (tempoAtaque <= 0.f) podeAtacar = true;
+				}
+				else {
+					if (velocidade.x > 0.f && noChao) {
+						olhandoEsquerda = true;
+						sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+					}
+					else if (velocidade.x < 0.0f && noChao) {
+						olhandoEsquerda = false;
+						sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
+					}
+					else if (!noChao) {
+						sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
+					}
+					else {
+						sprite.atualizar(ElementosGraficos::ID_Animacao::parado, estaOlhandoEsquerda(), pos, dt);
+					}
+				}
+
+
+
+
+			}
 
 
 
@@ -112,10 +200,20 @@ namespace Entidades {
 
 		void Jogador::inicializar() {
 
-			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::parado, "assets/jogador/jogador_parado.png", 4);
-			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::andar, "assets/jogador/jogador_andar.png", 6);
-			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::ataque, "assets/jogador/jogador_ataque.png", 6);
-			sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::pulo, "assets/jogador/jogador_pulo.png", 3);
+			if (ehJogador1)
+			{
+				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::parado, "assets/jogador/jogador_parado.png", 4);
+				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::andar, "assets/jogador/jogador_andar.png", 6);
+				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::ataque, "assets/jogador/jogador_ataque.png", 6);
+				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::pulo, "assets/jogador/jogador_pulo.png", 3);
+			}
+			if (!ehJogador1)
+			{
+				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::parado, "assets/jogador/jogador2_parado.png", 4);
+				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::andar, "assets/jogador/jogador2_andar.png", 6);
+				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::ataque, "assets/jogador/jogador2_ataque.png", 6);
+				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::pulo, "assets/jogador/jogador2_pulo.png", 3);
+			}
 		}
 
 		void Jogador::colidir(Entidade* outraEntidade, sf::Vector2f intercepta)
