@@ -22,7 +22,7 @@ namespace ElementosGraficos{
         Vida();
         ~Vida();
 
-        void atualizar(VidaID id, Math::CoordF posicao);
+        void atualizar(VidaID id, sf::Vector2f posicao);
     };
 
 }

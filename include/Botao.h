@@ -15,7 +15,7 @@ namespace Menus{
         sf::Texture* selecionarTextura;
 
     public:
-        Botao(Math::CoordF posicao = Math::CoordF(0, 0), std::string info = "");
+        Botao(sf::Vector2f posicao = sf::Vector2f(0, 0), std::string info = "");
 
         ~Botao();
 

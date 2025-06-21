@@ -11,17 +11,17 @@ namespace Menus
         Gerenciadores::Gerenciador_Grafico* pGG = Gerenciadores::Gerenciador_Grafico::get_instance();  
         Menus::Botao* bt = NULL;  
 
-        bt = new Menus::Botao(Math::CoordF(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2), "PLAY GAME");  
+        bt = new Menus::Botao(sf::Vector2f(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2), "PLAY GAME");
         bt->selecionar(true);  
         vectorBotao.push_back(bt);  
 
-        bt = new Menus::Botao(Math::CoordF(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 100), "LEADERBOARD");  
+        bt = new Menus::Botao(sf::Vector2f(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 100), "LEADERBOARD");
         vectorBotao.push_back(bt);  
 
-        bt = new Menus::Botao(Math::CoordF(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 200), "SETTINGS");  
+        bt = new Menus::Botao(sf::Vector2f(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 200), "SETTINGS");
         vectorBotao.push_back(bt);  
 
-        bt = new Menus::Botao(Math::CoordF(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 300), "EXIT GAME");  
+        bt = new Menus::Botao(sf::Vector2f(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 300), "EXIT GAME");
         vectorBotao.push_back(bt);  
 
         titulo->setTextoInfo("Colirun");  
@@ -29,7 +29,7 @@ namespace Menus
         titulo->setTextoCor(77.6, 68.2, 44.3);
         titulo->setTextoAlinhamento(Menus::TextoAlinhamento::centro);
 
-        titulo->setPosicao(Math::CoordF(pGG->getTamjanela().x / 2.0f, 0.0f - titulo->getTamanho().y / 2));  
+        titulo->setPosicao(sf::Vector2f(pGG->getTamjanela().x / 2.0f, 0.0f - titulo->getTamanho().y / 2));
 
         max = 3;  
     }  
@@ -40,7 +40,7 @@ namespace Menus
     void MainMenu::Atualizar(float dt) {  
         ativado= true;  
         if (titulo->getPosicao().y < 200)  
-            titulo->setPosicao(Math::CoordF(titulo->getPosicao().x, titulo->getPosicao().y + 1));
+            titulo->setPosicao(sf::Vector2f(titulo->getPosicao().x, titulo->getPosicao().y + 1));
     }  
 
     void MainMenu::renderizar() {  
@@ -73,7 +73,7 @@ namespace Menus
         vectorBotao[selecionar]->selecionar(false);
         selecionar = 0;
         vectorBotao[selecionar]->selecionar(true);
-        titulo->setPosicao(Math::CoordF(titulo->getPosicao().x, 0.0f - titulo->getTamanho().y / 2));
+        titulo->setPosicao(sf::Vector2f(titulo->getPosicao().x, 0.0f - titulo->getTamanho().y / 2));
         
     }  
 }

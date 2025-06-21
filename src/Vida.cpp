@@ -20,7 +20,7 @@ namespace ElementosGraficos {
 
     Vida::~Vida() {}
 
-    void Vida::atualizar(VidaID id, Math::CoordF posicao) {
+    void Vida::atualizar(VidaID id, sf::Vector2f posicao) {
         switch (id) {
         case VidaID::vazio:
             corpo.setTexture(vazio);

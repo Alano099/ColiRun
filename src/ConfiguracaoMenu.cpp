@@ -9,78 +9,59 @@ namespace Menus {
         Menu(),
         Estado(dynamic_cast<Gerenciadores::Gerenciador_Estado*>(pG), Estados::estadoID::configuracoes),
         pFase(pG) {
-        Managers::Graphics* GM = Managers::Graphics::getInstance();
-        GraphicalElements::Button* bt = NULL;
+        Gerenciadores::Gerenciador_Grafico* pGG = Gerenciadores::Gerenciador_Grafico::get_instance();
+        Menus::Botao* bt = NULL;
 
-        bt = new GraphicalElements::Button(Math::CoordF(GM->getWindowSize().x / 2.0f, GM->getWindowSize().y / 2), "Render distance 30");
-        bt->select(true);
-        vectorOfButtons.push_back(bt);
+        bt = new Menus::Botao(sf::Vector2f(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2), "Render distance 30");
+        bt->selecionar(true);
+        vectorBotao.push_back(bt);
 
-        bt = new GraphicalElements::Button(Math::CoordF(GM->getWindowSize().x / 2.0f, GM->getWindowSize().y / 2 + 100), "Render distance 50");
-        vectorOfButtons.push_back(bt);
+        bt = new Menus::Botao(sf::Vector2f(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 100), "Render distance 50");
+        vectorBotao.push_back(bt);
 
-        bt = new GraphicalElements::Button(Math::CoordF(GM->getWindowSize().x / 2.0f, GM->getWindowSize().y / 2 + 300), "return");
-        vectorOfButtons.push_back(bt);
+        bt = new Menus::Botao(sf::Vector2f(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 300), "return");
+        vectorBotao.push_back(bt);
 
         max = 2;
 
-        renderDistance = 30;
+        renderizarDistancia = 30;
     }
 
-    SettingsMenu::~SettingsMenu() {}
+    ConfiguracaoMenu::~ConfiguracaoMenu() {}
 
-    void SettingsMenu::update(float dt) {
-        active = true;
+    void ConfiguracaoMenu::atualizar(float dt) {
+        ativado = true;
     }
 
     /* Menu operation to render all it's objects. */
-    void SettingsMenu::render() {
-        updateView();
-        back.render();
-        for (it = vectorOfButtons.begin(); it != vectorOfButtons.end(); ++it)
-            (*it)->render();
+    void ConfiguracaoMenu::renderizar() {
+        atualizarView();
+        for (it = vectorBotao.begin(); it != vectorBotao.end(); ++it)
+            (*it)->renderizar();
     }
 
-    void SettingsMenu::exec() {
-        if (active) {
-            active = false;
-            switch (selected) {
+    void ConfiguracaoMenu::exec() {
+        if (ativado) {
+            ativado = false;
+            switch (selecionar) {
             case 0:
-                renderDistance = 30;
+                renderizarDistancia = 30;
                 break;
             case 1:
-                renderDistance = 50;
-                break;
-            case 2:
-                changeState(pSM->getLastStateID());
+                renderizarDistancia = 50;
                 break;
             default:
                 break;
             }
-            saveSettings();
-            resetState();
+            resetaEstado();
         }
     }
 
-    void SettingsMenu::resetState() {
-        vectorOfButtons[selected]->select(false);
-        selected = 2;
-        vectorOfButtons[selected]->select(true);
+    void ConfiguracaoMenu::resetaEstado() {
+        vectorBotao[selecionar]->selecionar(false);
+        selecionar = 2;
+        vectorBotao[selecionar]->selecionar(true);
     }
 
-    void SettingsMenu::saveSettings() {
-        std::ofstream writeFile;
-
-        writeFile.open(SETTINGS_FILE, std::ios::out | std::ios::trunc);
-
-        if (!writeFile) {
-            std::cout << "ERROR writing to file on GameOverMenu" << std::endl;
-            exit(1);
-        }
-
-        writeFile << renderDistance;
-
-        writeFile.close();
-    }
 
 }

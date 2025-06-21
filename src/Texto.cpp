@@ -6,7 +6,7 @@ namespace Menus
 {
 	Gerenciadores::Gerenciador_Grafico* Texto::pGG(Gerenciadores::Gerenciador_Grafico::get_instance());
 
-    Texto::Texto(Math::CoordF posicao, std::string info, const char* path) :
+    Texto::Texto(sf::Vector2f posicao, std::string info, const char* path) :
         info(info) {
         texto.setString(info);
 
@@ -28,7 +28,7 @@ namespace Menus
         texto.setString(this->info);
     }
 
-    void Texto::setPosicao(Math::CoordF posicao) {
+    void Texto::setPosicao(sf::Vector2f posicao) {
         texto.setPosition(sf::Vector2f(posicao.x, posicao.y));
     }
 
@@ -57,9 +57,9 @@ namespace Menus
         }
     }
 
-    Math::CoordF Texto::getTamanho() const {
+    sf::Vector2f Texto::getTamanho() const {
         sf::FloatRect textRect = texto.getLocalBounds();
-        return Math::CoordF(textRect.width, textRect.height);
+        return sf::Vector2f(textRect.width, textRect.height);
     }
 
     void Texto::renderizar() {
@@ -70,7 +70,7 @@ namespace Menus
         return info;
     }
 
-    Math::CoordF Texto::getPosicao() const {
-        return Math::CoordF(texto.getPosition().x, texto.getPosition().y);
+    sf::Vector2f Texto::getPosicao() const {
+        return sf::Vector2f(texto.getPosition().x, texto.getPosition().y);
     }
 }

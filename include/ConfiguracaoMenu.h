@@ -11,7 +11,7 @@ namespace Menus {
 
     class ConfiguracaoMenu : public Menu, public Estados::Estado {
     private:
-        Fases::Fase* pGame;
+        Fases::Fase* pFase;
         unsigned int renderizarDistancia;
 
     public:

@@ -16,7 +16,7 @@ namespace ElementosGraficos {
     class Hud : public Ente {
     private:
         Entidades::Personagens::Jogador* pJogador;
-        Math::CoordU windowSize;
+        
         Gerenciadores::Gerenciador_Grafico* pGG;
         Vida* allVida;
 

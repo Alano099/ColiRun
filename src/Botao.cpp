@@ -11,7 +11,7 @@
 
 namespace Menus {
 
-    Botao::Botao(Math::CoordF posicao, std::string info) :
+    Botao::Botao(sf::Vector2f posicao, std::string info) :
         textoInfo(posicao, info),
         defaultTextura(nullptr),
         selecionarTextura(nullptr) {
@@ -33,7 +33,7 @@ namespace Menus {
 
         textoInfo.setTextoCor(BUTTON_TEXT_COLOR);
 
-        textoInfo.setPosicao(Math::CoordF(posicao.x, posicao.y));
+        textoInfo.setPosicao(sf::Vector2f(posicao.x, posicao.y));
     }
 
     Botao::~Botao() {}

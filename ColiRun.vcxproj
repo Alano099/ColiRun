@@ -151,6 +151,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\ConfiguracaoMenu.h" />
     <ClInclude Include="include\Fundo.h" />
     <ClInclude Include="include\Coliseu.h" />
     <ClInclude Include="include\Espinho.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="include\Gerenciador_Estado.h" />
     <ClInclude Include="include\Gerenciador_Eventos.h" />
     <ClInclude Include="include\Gerenciador_Grafico.h" />
+    <ClInclude Include="include\hub.h" />
     <ClInclude Include="include\Inimigo.h" />
     <ClInclude Include="include\Jogador.h" />
     <ClInclude Include="include\Lista.h" />
@@ -186,9 +188,13 @@
     <ClInclude Include="include\Minotauro.h" />
     <ClInclude Include="include\Lama.h" />
     <ClInclude Include="include\Masmorra.h" />
+    <ClInclude Include="include\Vida.h" />
+    <ClInclude Include="include\TextInput.h" />
     <ClInclude Include="stdafx\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\botao\Selected.png" />
+    <Image Include="assets\botao\Selected_light.png" />
     <Image Include="assets\fundo1.png" />
     <Image Include="assets\fundos\coliseu.png" />
     <Image Include="assets\fundos\fundo1.png" />
@@ -232,9 +238,14 @@
     <Image Include="assets\obstaculos\red.png" />
     <Image Include="assets\pedra.png" />
     <Image Include="assets\red.png" />
+    <Image Include="assets\vida\HeartEMPTY.png" />
+    <Image Include="assets\vida\HeartFULL.png" />
+    <Image Include="assets\vida\HeartHALF.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ConfiguracaoMenu.cpp" />
     <ClCompile Include="src\Fundo.cpp" />
+    <ClCompile Include="src\hub.cpp" />
     <ClCompile Include="src\Masmorra.cpp" />
     <ClCompile Include="src\Coliseu.cpp" />
     <ClCompile Include="src\Lama.cpp" />
@@ -267,7 +278,9 @@
     <ClCompile Include="src\Personagem.cpp" />
     <ClCompile Include="src\Plataforma.cpp" />
     <ClCompile Include="src\Subject.cpp" />
+    <ClCompile Include="src\TextInput.cpp" />
     <ClCompile Include="src\Texto.cpp" />
+    <ClCompile Include="src\Vida.cpp" />
     <ClCompile Include="stdafx\stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>

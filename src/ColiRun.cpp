@@ -4,26 +4,30 @@
 #include <iostream>
 #include <stdlib.h>
 
+
 using namespace std;
 using namespace Fases;
 
 ColiRun::ColiRun()
     : pGG(Gerenciadores::Gerenciador_Grafico::get_instance()),
-    pGE(Gerenciadores::Gerenciador_Eventos::get_instance()),
-    fase(new Coliseu()) // inicializa fase com todos objetos
+    pGE(Gerenciadores::Gerenciador_Eventos::get_instance())
+    
 {
-    executar();
+    
+    exec();
 }
 
 ColiRun::~ColiRun() {
-    delete fase;
-    fase = nullptr;
+    
 }
 
-void ColiRun::executar() {
+void ColiRun::exec() {
+   
     float dt;
-
     while (pGG->abreJanela()) {
+
+        pGE->executar();
+
         dt = pGG->atualizarTempo();
         pGG->limpar();
 
@@ -32,10 +36,6 @@ void ColiRun::executar() {
        
 
         pGG->mostrar();
-        sf::Vector2f centroFundo = sf::Vector2f(
-            static_cast<float>(pGG->getJanela()->getSize().x) / 2.f,
-            static_cast<float>(pGG->getJanela()->getSize().y) / 2.f
-        );
-        pGG->centralizarView(sf::Vector2f(fase->getJogador()->getPosicao().x,fase->getJogador()->getPosicao().y));
+        
     }
 }

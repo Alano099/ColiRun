@@ -120,6 +120,21 @@
     <ClInclude Include="include\Masmorra.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fundo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\hub.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Vida.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TextInput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ConfiguracaoMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\jogador_andar.png">
@@ -251,6 +266,21 @@
     <Image Include="assets\fundos\Masmorra.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="assets\botao\Selected.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\botao\Selected_light.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\vida\HeartEMPTY.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\vida\HeartFULL.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="assets\vida\HeartHALF.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx\stdafx.cpp">
@@ -355,5 +385,23 @@
     <ClCompile Include="src\Masmorra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Fundo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vida.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfiguracaoMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="assets\mapas\mapaColiseu.txt" />
   </ItemGroup>
 </Project>

@@ -135,8 +135,8 @@ namespace Gerenciadores {
 
 	}
 
-	Math::CoordF Gerenciador_Grafico::getTopLeftPosition() const {
-		return Math::CoordF(janela->getView().getCenter().x - janela->getSize().x / 2, janela->getView().getCenter().y - janela->getSize().y / 2);
+	sf::Vector2f Gerenciador_Grafico::getTopLeftPosition() const {
+		return sf::Vector2f(janela->getView().getCenter().x - janela->getSize().x / 2, janela->getView().getCenter().y - janela->getSize().y / 2);
 	}
 	
 	sf::Font* Gerenciador_Grafico::carregaFonte(const char* path) {

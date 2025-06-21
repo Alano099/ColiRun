@@ -9,7 +9,7 @@
 #define ALTURA 720
 #define FRAME_RATE 100
 #include <map>
-#include "Math.h"
+
 
 namespace Gerenciadores {
 
@@ -54,7 +54,7 @@ namespace Gerenciadores {
 		//void setWindowSize(Math::CoordU size);
 		//Math::CoordU getWindowSize() const;
 
-		Math::CoordF getTopLeftPosition() const;
+		sf::Vector2f getTopLeftPosition() const;
 
 		//void centerView(Math::CoordF pos);
 

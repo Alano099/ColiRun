@@ -26,13 +26,13 @@ namespace Menus
 		static Gerenciadores::Gerenciador_Grafico* pGG;
 
     public:
-        Texto(Math::CoordF posicao = Math::CoordF(0, 0), std::string info = "", const char* path = FONT_PATH);
+        Texto(sf::Vector2f posicao = sf::Vector2f(0, 0), std::string info = "", const char* path = FONT_PATH);
 
         ~Texto();
 
         void setTextoInfo(std::string info);
 
-        void setPosicao(Math::CoordF posicao);
+        void setPosicao(sf::Vector2f posicao);
 
         void setTextoCor(const unsigned int R, const unsigned int G, const unsigned int B);
 
@@ -40,13 +40,13 @@ namespace Menus
 
         void setTextoAlinhamento(TextoAlinhamento opcao);
 
-        Math::CoordF getTamanho() const;
+        sf::Vector2f getTamanho() const;
 
         void renderizar();
 
         std::string getInfo() const;
 
-        Math::CoordF getPosicao() const;
+        sf::Vector2f getPosicao() const;
     };
 
 

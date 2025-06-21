@@ -10,12 +10,12 @@ class Ente
 protected:
 	const IDs::IDs ID;
 	static Gerenciadores::Gerenciador_Grafico* pGG;
-	Math::CoordF posicao;
-	Math::CoordF tamanho;
+	sf::Vector2f posicao;
+	sf::Vector2f tamanho;
 
 public:
 	// Construtor explicit para evitar conversões implícitas
-	Ente(Math::CoordF posicao = Math::CoordF(0.f, 0.f), Math::CoordF tamanho = Math::CoordF(0.f, 0.f), const IDs::IDs ID);
+	Ente(sf::Vector2f posicao = sf::Vector2f(0.f, 0.f), sf::Vector2f tamanho = sf::Vector2f(0.f, 0.f), const IDs::IDs ID);
 	virtual ~Ente();
 	const IDs::IDs getID() const { return ID; }
 	virtual void desenhar() = 0;
