@@ -2,7 +2,7 @@
 
 #include "Obstaculo.h"
 
-#define LAMA_TAMANHO_X 32.f
+#define LAMA_TAMANHO_X 70.f
 #define LAMA_TAMANHO_Y 32.f
 
 namespace Entidades {

@@ -6,7 +6,7 @@ namespace Entidades {
 	namespace Obstaculos {
 
 
-		Obstaculo::Obstaculo(sf::Vector2f posicao, sf::Vector2f tamanho,IDs::IDs id):Entidade(posicao,tamanho,id),sprite(){
+		Obstaculo::Obstaculo(sf::Vector2f posicao, sf::Vector2f tamanho,IDs::IDs id):Entidade(posicao,tamanho,id),sprite(), velocidadeY(0.f) {
 
 			danoso = false;
 

@@ -73,35 +73,34 @@ namespace Gerenciadores {
 			}
 		}
 	}
-	void Gerenciador_Colisoes::colidirPersonagensComObstaculos() {
-		Entidades::Entidade* obst;
-		Entidades::Entidade* personagem;
-		sf::Vector2f distancia, intersecao;
-
+	void Gerenciadores::Gerenciador_Colisoes::colidirPersonagensComObstaculos()
+	{
 		for (int i = 0; i < listaObstaculos->getTamanho(); i++) {
-			obst = (*listaObstaculos)[i];
+
+			// Pega o obstáculo como Obstaculo* (garante que vai chamar colidir certo!)
+			auto* obst = dynamic_cast<Entidades::Obstaculos::Obstaculo*>((*listaObstaculos)[i]);
+
+			if (!obst)
+				continue; // Se não for um Obstaculo válido, pula
 
 			for (int j = 0; j < listaJogadores->getTamanho(); j++) {
-				personagem = (*listaJogadores)[j];
 
-				distancia = personagem->getPosicao() - obst->getPosicao();
-				intersecao.x = abs(distancia.x) - (personagem->getTamanho().x / 2 + obst->getTamanho().x / 2);
-				intersecao.y = abs(distancia.y) - (personagem->getTamanho().y / 2 + obst->getTamanho().y / 2);
+				Entidades::Personagens::Jogador* personagem = dynamic_cast<Entidades::Personagens::Jogador*>((*listaJogadores)[j]);
 
+				if (!personagem)
+					continue; // Se não for um jogador válido, pula
+
+				// Calcula a interseção
+				sf::Vector2f distancia = personagem->getPosicao() - obst->getPosicao();
+				sf::Vector2f intersecao;
+
+				intersecao.x = fabs(distancia.x) - (personagem->getTamanho().x / 2.f + obst->getTamanho().x / 2.f);
+				intersecao.y = fabs(distancia.y) - (personagem->getTamanho().y / 2.f + obst->getTamanho().y / 2.f);
+
+				// Se estiver colidindo
 				if (intersecao.x < 0.f && intersecao.y < 0.f) {
-					personagem->colidir(obst, intersecao);
-				}
-			}
-
-			for (int j = 0; j < listaInimigos->getTamanho(); j++) {
-				personagem = (*listaInimigos)[j];
-
-				distancia = personagem->getPosicao() - obst->getPosicao();
-				intersecao.x = abs(distancia.x) - (personagem->getTamanho().x / 2 + obst->getTamanho().x / 2);
-				intersecao.y = abs(distancia.y) - (personagem->getTamanho().y / 2 + obst->getTamanho().y / 2);
-
-				if (intersecao.x < 0.f && intersecao.y < 0.f) {
-					personagem->colidir(obst, intersecao);
+					// CHAMA O COLIDIR DO OBSTÁCULO!
+					obst->colidir(personagem, intersecao);
 				}
 			}
 		}

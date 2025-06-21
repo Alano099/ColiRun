@@ -40,7 +40,8 @@ namespace Fases {
     void Fase::desenhar() {
 
         fundo.desenhar(pGG->getJanela());
-        
+        pGG->getJanela()->draw(chao);
+
         listaObstaculo.desenharEntidades();
         listaJogadores.desenharEntidades();
         listaInimigos.desenharEntidades();
@@ -99,9 +100,16 @@ namespace Fases {
   
     void Fase::criarPlataformas(sf::Vector2f pos, sf::Vector2f tam)
     {
-        Entidades::Entidade* tmp = nullptr;
+        bool ehTrampolim = false;
 
-        tmp = new Entidades::Obstaculos::Plataforma(pos, tam, IDs::IDs::plataforma);
+        // 30% de chance
+        int chance = rand() % 100;
+
+        if (chance < 30)
+            ehTrampolim = true;
+
+        Entidades::Entidade* tmp = new Entidades::Obstaculos::Plataforma(pos, tam, IDs::IDs::plataforma, ehTrampolim);
+
         listaObstaculo.inserirEnt(tmp);
     }
 

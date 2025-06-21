@@ -25,6 +25,7 @@ namespace Entidades {
 		float tempoAtaque;
 		bool estaAtacando;
 		float ataqueCooldown;
+		bool noChao;
 
 		ElementosGraficos::AnimacaoMovimento sprite;
 
@@ -59,6 +60,10 @@ namespace Entidades {
 		sf::FloatRect getHitbox() const;
 
 		const sf::Vector2f getVelocidade() { return velocidade; }
+
+		void setVelocidade(sf::Vector2f v) { velocidade = v; }
+
+		void setNochao(bool c) { noChao = c; cout << "em cima"; }
 
 	};
 

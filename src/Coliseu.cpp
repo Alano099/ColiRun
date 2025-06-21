@@ -46,11 +46,30 @@ namespace Fases {
 
 	void Coliseu::inicializar() {
 
+		// Carrega mapa
 		carregarMapa("assets/mapas/mapaColiseu.txt");
 
+		// Inicializa fundo com o tamanho do mapa
 		fundo.inicializar("assets/fundos/coliseu.png", sf::Vector2f(mapaLargura, mapaAltura));
+
+		// Insere jogadores na lista
 		listaJogadores.inserirEnt(p1);
 		listaJogadores.inserirEnt(p2);
+
+		// Cria chão com textura repetida
+		sf::Texture* texturaChao = pGG->carregarTextura("assets/obstaculos/chao.jpeg");
+		texturaChao->setRepeated(true);
+
+		sf::Vector2f tamanhoChao(mapaLargura, 5000.f);
+
+		chao.setSize(tamanhoChao);
+		chao.setOrigin(0.f, 0.f); // Origem no canto superior esquerdo
+		chao.setPosition(0.f, CHAO + 32.f); // Posiciona na base do mapa
+
+		chao.setTexture(texturaChao);
+		chao.setTextureRect(sf::IntRect(0, 0, static_cast<int>(tamanhoChao.x), static_cast<int>(tamanhoChao.y)));
+
+		std::cout << "Coliseu inicializado com largura = " << mapaLargura << " e altura = " << mapaAltura << std::endl;
 	}
 
 	void Coliseu::carregarMapa(const std::string& caminho) {
@@ -66,7 +85,11 @@ namespace Fases {
 		int numLinhas = 0;
 		int numColunas = 0;
 
-	
+		std::vector<sf::Vector2f> posicoesPossiveisPlataformas;
+		std::vector<sf::Vector2f> posicoesPossiveisSoldados;
+		std::vector<sf::Vector2f> posicoesPossiveisLamas;
+		std::vector<sf::Vector2f> posicoesPossiveisMinotauros;
+
 
 		for (int i = 0; std::getline(arquivo, linha); i++) {
 			numLinhas++;
@@ -83,19 +106,24 @@ namespace Fases {
 					break;
 
 				case 'P':
-					criarPlataformas({ x, y }, { TAMANHO_PLATAFORMA_X, TAMANHO_PLATAFORMA_Y });
+
+					posicoesPossiveisPlataformas.push_back({ x, y });
+					//criarPlataformas({ x, y }, { 65.f, 65.f });
 					break;
 
 				case 'I':
-					criarSoldados({ x, y });
+					posicoesPossiveisSoldados.push_back({ x, y });
+					//criarSoldados({ x, y });
 					break;
 
 				case 'M':
-					criarMinotauros({ x, y });
+					posicoesPossiveisMinotauros.push_back({ x, y });
+					//criarMinotauros({ x, y });
 					break;
 
 				case 'L':
-					criarLamas({ x, y });
+					posicoesPossiveisLamas.push_back({ x, y });
+					//criarLamas({ x, y });
 					break;
 
 				default:
@@ -113,6 +141,48 @@ namespace Fases {
 
 		mapaLargura = numColunas * TAMANHO_TILE;
 		mapaAltura = numLinhas * TAMANHO_TILE;
+
+		// SORTEIO PLATAFORMAS
+
+		int numPlataformas = 3 + rand() % 4; // 3 a 6
+
+		std::random_shuffle(posicoesPossiveisPlataformas.begin(), posicoesPossiveisPlataformas.end());
+
+		for (int i = 0; i < numPlataformas && i < posicoesPossiveisPlataformas.size(); i++) {
+			criarPlataformas(posicoesPossiveisPlataformas[i], { 300.f, TAMANHO_PLATAFORMA_Y });
+		}
+
+		// SORTEIO MINOTAUROS
+
+		int numMinotauros = 3 + rand() % 4; // 3 a 6
+
+		std::random_shuffle(posicoesPossiveisMinotauros.begin(), posicoesPossiveisMinotauros.end());
+
+		for (int i = 0; i < numMinotauros && i < posicoesPossiveisMinotauros.size(); i++) {
+			criarMinotauros(posicoesPossiveisMinotauros[i]);
+		}
+
+		// SORTEIO SOLDADOS
+
+		int numSoldados = 3 + rand() % 4; // 3 a 6
+
+		std::random_shuffle(posicoesPossiveisSoldados.begin(), posicoesPossiveisSoldados.end());
+
+		for (int i = 0; i < numSoldados && i < posicoesPossiveisSoldados.size(); i++) {
+			criarSoldados(posicoesPossiveisSoldados[i]);
+		}
+
+
+		//SORTEIO LAMAS
+
+		int numLamas = 3 + rand() % 4; // 3 a 6
+		std::random_shuffle(posicoesPossiveisLamas.begin(), posicoesPossiveisLamas.end());
+
+
+		for (int i = 0; i < numLamas && i < posicoesPossiveisLamas.size(); i++) {
+			criarLamas(posicoesPossiveisLamas[i]);
+		}
+
 
 		arquivo.close();
 	}

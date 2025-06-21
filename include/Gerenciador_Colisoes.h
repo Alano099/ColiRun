@@ -18,9 +18,9 @@ namespace Gerenciadores {
 		Gerenciador_Colisoes(Lista::ListaEntidade* listaJogadores, Lista::ListaEntidade* listaInimigos, Lista::ListaEntidade* listaObstaculos);
 		~Gerenciador_Colisoes();
 
-		//void setListaJogadores(Lista::ListaEntidade* lista) { if (lista) { listaJogadores = lista; } };
-		//void setListaObstaculos(Lista::ListaEntidade* lista) { if (lista) { listaObstaculos = lista; } };
-		//void setListaInimigos(Lista::ListaEntidade* lista);
+		void setListaJogadores(Lista::ListaEntidade* lista) { if (lista) { listaJogadores = lista; } };
+		void setListaObstaculos(Lista::ListaEntidade* lista) { if (lista) { listaObstaculos = lista; } };
+		void setListaInimigos(Lista::ListaEntidade* lista);
 
 		void verificarColisaoAtaque();
 

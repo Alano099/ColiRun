@@ -8,8 +8,8 @@ namespace Entidades {
 
 		
 
-		Jogador::Jogador(sf::Vector2f pos, bool ehJogador1):Personagem(pos, sf::Vector2f(JOGADOR_TAMANHO_X, JOGADOR_TAMANHO_Y), IDs::IDs::jogador,100),
-			ehJogador1(ehJogador1)
+		Jogador::Jogador(sf::Vector2f pos, bool ehJogador1) :Personagem(pos, sf::Vector2f(JOGADOR_TAMANHO_X, JOGADOR_TAMANHO_Y), IDs::IDs::jogador, 100),
+			ehJogador1(ehJogador1), pulando(false), andando(false)
 		{
 			inicializar();
 			tempo = 0;
@@ -30,10 +30,9 @@ namespace Entidades {
 			{
 				tempo += dt;
 
-				float tempoPulo = 1.f;
+				andando = false;
 
-				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 10;
-				float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
+				float velPulo = getVelPulo();
 
 
 				velocidade.y += GRAVIDADE * dt;
@@ -44,13 +43,16 @@ namespace Entidades {
 				// Movimento horizontal com teclado
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 					velocidade.x = +200.f;
+					andando = true;
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 					velocidade.x = -200.f;
+					andando = true;
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && noChao) {
 					velocidade.y = -velPulo;
 					noChao = false;
+					pulando = true;
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::J)) {
 					if (!estaAtacando && podeAtacar && ataqueCooldown <= 0.f) {
@@ -69,6 +71,14 @@ namespace Entidades {
 
 				pos.y += velocidade.y * dt;
 
+				if (pos.y >= CHAO) {
+					pos.y = CHAO;
+					velocidade.y = 0.f;
+					noChao = true;
+					pulando = false;
+				}
+				
+
 				if (!podeAtacar) {
 
 
@@ -99,7 +109,7 @@ namespace Entidades {
 						olhandoEsquerda = false;
 						sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
 					}
-					else if (!noChao) {
+					else if (pulando) {
 						sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
 					}
 					else {
@@ -114,7 +124,7 @@ namespace Entidades {
 
 				float tempoPulo = 1.f;
 
-				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 10;
+				float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 5;
 				float velPulo = sqrt(2 * GRAVIDADE * alturaPulo);
 
 
@@ -133,6 +143,7 @@ namespace Entidades {
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && noChao) {
 					velocidade.y = -velPulo;
 					noChao = false;
+					pulando = true;
 				}
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
 					if (!estaAtacando && podeAtacar && ataqueCooldown <= 0.f) {
@@ -150,6 +161,16 @@ namespace Entidades {
 				pos.x += velocidade.x * dt;
 
 				pos.y += velocidade.y * dt;
+
+
+
+				if (pos.y >= CHAO) {
+					pos.y = CHAO;
+					velocidade.y = 0.f;
+					noChao = true;
+					pulando = false;
+				}
+				
 
 				if (!podeAtacar) {
 
@@ -181,7 +202,7 @@ namespace Entidades {
 						olhandoEsquerda = false;
 						sprite.atualizar(ElementosGraficos::ID_Animacao::andar, estaOlhandoEsquerda(), pos, dt);
 					}
-					else if (!noChao) {
+					else if (pulando) {
 						sprite.atualizar(ElementosGraficos::ID_Animacao::pulo, estaOlhandoEsquerda(), pos, dt);
 					}
 					else {
@@ -218,16 +239,7 @@ namespace Entidades {
 
 		void Jogador::colidir(Entidade* outraEntidade, sf::Vector2f intercepta)
 		{
-			switch (outraEntidade->getID()) {
-			case IDs::IDs::plataforma:
-				moverNaColisao(intercepta, outraEntidade->getPosicao());
-				noChao = true;
-				break;
-
-			default:
-
-				break;
-			}
+			
 		}
 
 		void Jogador::atacar(float dt)
@@ -248,6 +260,13 @@ namespace Entidades {
 				ataque.setOutlineThickness(1.f);
 				Gerenciadores::Gerenciador_Grafico::get_instance()->getJanela()->draw(ataque);
 			}
+		}
+
+		float Jogador::getVelPulo() const
+		{
+			float tempoPulo = 1.f;
+			float alturaPulo = ((tempoPulo * tempoPulo) * GRAVIDADE) / 10;
+			return sqrt(2 * GRAVIDADE * alturaPulo);
 		}
 
 	

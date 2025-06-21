@@ -16,9 +16,9 @@ namespace Entidades {
 		private:
 			const bool ehJogador1;
 			float tempo;
-			bool noChao;
-
-		
+			bool pulando;
+			bool andando;
+			
 		public:
 
 			Jogador(sf::Vector2f pos = { 0.f,0.f }, bool ehJogador1 = true);
@@ -29,6 +29,10 @@ namespace Entidades {
 			void colidir(Entidade* outraEntidade, sf::Vector2f intercepta);
 			void atacar(float dt);
 			void desenharAtaque();
+			void setPulando(bool p) { pulando = p; }
+			bool getPulando() const { return pulando; }
+			bool getAndando() const { return andando; }
+			float getVelPulo() const;
 
 			sf::FloatRect getHitBoxAtaque()const
 			{ return (!podeAtacar ? ataque.getGlobalBounds() : sf::FloatRect()); }

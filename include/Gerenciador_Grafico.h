@@ -45,6 +45,7 @@ namespace Gerenciadores {
 		float atualizarTempo();
 		sf::Texture* carregarTextura(const char* caminho);
 		sf::Vector2u getTamjanela();
+		static float getDt() { return dt; }
 		void lidarTamJanela();
 		void centralizarView(sf::Vector2f pos);
 		void atualizarCamera(sf::Vector2f centro, sf::FloatRect limites);

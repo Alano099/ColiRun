@@ -3,6 +3,7 @@
 #include "Animacao.h"
 
 constexpr float GRAVIDADE = 900.f;
+#define CHAO 600.f
 
 namespace Entidades {
 

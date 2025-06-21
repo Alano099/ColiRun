@@ -2,6 +2,7 @@
 #include "Entidade.h"
 #include "AnimacaoEstatica.h"
 #include "../IDs/IDs.h"
+#include "Jogador.h"
 
 namespace Entidades {
 
@@ -12,6 +13,7 @@ namespace Entidades {
 		protected:
 			ElementosGraficos::AnimacaoEstatica sprite;
 			bool danoso;
+			float velocidadeY;
 
 		public:
 			Obstaculo(sf::Vector2f posicao, sf::Vector2f tamanho,IDs::IDs id);

@@ -44,6 +44,16 @@ namespace Entidades {
 				velocidade.y += GRAVIDADE * dt;
 				pos.y += velocidade.y * dt;
 
+
+				if (pos.y >= CHAO) {
+					pos.y = CHAO;
+					velocidade.y = 0.f;
+					noChao = true;
+				}
+				else {
+					noChao = false;
+				}
+
 				if (!perseguindo && (pos.x > pontoDireita.x || pos.x < pontoEsquerda.x)) {
 					sentido *= -1;
 

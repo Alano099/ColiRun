@@ -29,7 +29,8 @@
 #define MAX_INIMIGOS 6
 #define TAMANHO_TILE 86.f
 #define TAMANHO_PLATAFORMA_X 100.f
-#define TAMANHO_PLATAFORMA_Y 30.f
+#define TAMANHO_PLATAFORMA_Y 80.f
+
 
 
 namespace Fases
@@ -52,6 +53,8 @@ namespace Fases
 
 		float mapaLargura;
 		float mapaAltura;
+
+		sf::RectangleShape chao;
 
 		//int nao_nasceu;
 		//bool carregado;
