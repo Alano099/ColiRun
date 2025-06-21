@@ -12,36 +12,35 @@ namespace Fases {
 	{
 	}
 
-	void Coliseu::criarInimigos()
-	{
+	void Coliseu::executar(float dt) {
 
-		sf::Vector2f distancia = {0.f,0.f};
+		atualizar(dt);
+		desenhar();
 
-		for (int i = 0; i < 2; i++) {
-
-			criarMinotauros({ 250.f + distancia.x,250.f + distancia.y });
-			distancia += {40.f, 40.f};
-
+		if (p1->getPosicao().x >= mapaLargura) {
+			faseTerminada = true;
 		}
-
-		distancia += {500.f, 0.f};
-
-		for (int i = 0; i < 3; i++) {
-
-			criarSoldados({ 250.f + distancia.x,250.f + distancia.y });
-			distancia += {30.f, 30.f};
-
-		}
-
 
 	}
 
-	void Coliseu::criarObstaculos()
-	{
-		criarPlataformas(sf::Vector2f(399.f, 600.f), {PLATAFORMA_LARGURA,PLATAFORMA_ALTURA });
-		criarPlataformas(sf::Vector2f(500.f, 500.f), sf::Vector2f(50.f, 200.f));
-		criarLamas(sf::Vector2f(399.f, 550.f));
-		criarLamas(sf::Vector2f(799.f, 550.f));
+	void Coliseu::atualizar(float dt) {
+		listaJogadores.executar(dt);
+		listaInimigos.executar(dt);
+		listaObstaculo.executar(dt);
+		gerenciar_colisoes();
+
+		fundo.atualizar(dt, p1->getVelocidade().x / 10);
+
+	}
+
+	void Coliseu::desenhar() {
+
+		fundo.desenhar(pGG->getJanela());
+		pGG->getJanela()->draw(chao);
+
+		listaObstaculo.desenharEntidades();
+		listaJogadores.desenharEntidades();
+		listaInimigos.desenharEntidades();
 	}
 
 	void Coliseu::inicializar() {

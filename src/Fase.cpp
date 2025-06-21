@@ -13,38 +13,11 @@ namespace Fases {
 
     Fase::~Fase() {}
 
-    void Fase::executar(float dt) {
-        
-        atualizar(dt);
-        desenhar();
-    }
+    
 
     Entidades::Personagens::Jogador* Fase::getJogador() const
     {
         return p1;
-    }
-
-    
-    void Fase::atualizar(float dt) {
-        listaJogadores.executar(dt);
-        listaInimigos.executar(dt);
-        listaObstaculo.executar(dt);
-        gerenciar_colisoes();
-
-        fundo.atualizar(dt, p1->getVelocidade().x/10);
-
-    }
-
-
-
-    void Fase::desenhar() {
-
-        fundo.desenhar(pGG->getJanela());
-        pGG->getJanela()->draw(chao);
-
-        listaObstaculo.desenharEntidades();
-        listaJogadores.desenharEntidades();
-        listaInimigos.desenharEntidades();
     }
 
     /*

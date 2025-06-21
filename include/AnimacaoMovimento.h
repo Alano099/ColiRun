@@ -8,7 +8,8 @@ namespace ElementosGraficos {
 			andar = 0,
 			parado = 1,
 			ataque = 2,
-			pulo = 3
+			pulo = 3,
+			dano = 4
 
 		};
 

@@ -120,6 +120,9 @@
     <ClInclude Include="include\Masmorra.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Fundo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\jogador_andar.png">
@@ -355,5 +358,12 @@
     <ClCompile Include="src\Masmorra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Fundo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="assets\mapas\mapaColiseu.txt" />
+    <Text Include="assets\mapas\mapaMasmorra.txt" />
   </ItemGroup>
 </Project>

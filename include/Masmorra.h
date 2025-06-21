@@ -14,10 +14,11 @@ namespace Fases {
         Masmorra();
 		~Masmorra();
 
+		void executar(float dt);
+		void desenhar();
+		void atualizar(float dt);
 
-		void criarInimigos();
-		void criarObstaculos();
-
+        void carregarMapa(const std::string& caminho);
 
         void criarEspinhos(sf::Vector2f pos);
 
@@ -25,10 +26,10 @@ namespace Fases {
 
         void inicializar();
 
-        void carregarMapa(const std::string& caminho);
-
 		int getInimigosVivos() const { return inimigosVivos; }
 		void setInimigosVivos(int inimigos) { inimigosVivos = inimigos; }
+        bool getFaseTerminada() const { return faseTerminada; }
+
 
     };
 

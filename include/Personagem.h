@@ -27,6 +27,9 @@ namespace Entidades {
 		float ataqueCooldown;
 		bool noChao;
 
+		bool emKnockback;
+		float tempoKnockback;
+
 		ElementosGraficos::AnimacaoMovimento sprite;
 
 	public:
@@ -65,6 +68,10 @@ namespace Entidades {
 
 		void setNochao(bool c) { noChao = c; cout << "em cima"; }
 
+		void setEmKnockback(bool k) { emKnockback = k; }
+		bool getEmKnockback() { return emKnockback; }
+
+		void setTempoKnockback(float t) { tempoKnockback = t; }
 	};
 
 

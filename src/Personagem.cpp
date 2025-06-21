@@ -10,7 +10,7 @@ namespace Entidades {
 
 		Personagem::Personagem(sf::Vector2f pos, sf::Vector2f tam, IDs::IDs id, int vida, bool ativo, bool olhandoEsquerda)
 			: Entidade(pos, tam, id), vida(vida), ativo(ativo), olhandoEsquerda(olhandoEsquerda),colidiu(false),ataqueCooldown(0.f),
-				estaAtacando(false),podeAtacar(true),tempoAtaque(0.f),noChao(false){
+				estaAtacando(false),podeAtacar(true),tempoAtaque(0.f),noChao(false), emKnockback(false), tempoKnockback(0.f){
 		}
 
 		const int Personagem::getVida() const

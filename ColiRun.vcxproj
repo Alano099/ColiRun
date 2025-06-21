@@ -272,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="assets\mapas\mapaColiseu.txt" />
+    <Text Include="assets\mapas\mapaMasmorra.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

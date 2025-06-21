@@ -56,6 +56,8 @@ namespace Fases
 
 		sf::RectangleShape chao;
 
+		bool faseTerminada;
+
 		//int nao_nasceu;
 		//bool carregado;
 
@@ -64,9 +66,9 @@ namespace Fases
 		Fase(IDs::IDs id = IDs::IDs::nulo);
 		~Fase();
 
-		void executar(float dt);
-		void desenhar();
-		void atualizar(float dt);
+		virtual void executar(float dt) =0;
+		virtual void desenhar() = 0;
+		virtual void atualizar(float dt) = 0;
 		virtual void inicializar() = 0;
 		virtual void carregarMapa(const std::string& caminho) = 0;
 
@@ -77,14 +79,14 @@ namespace Fases
 		void criarPlataformas(sf::Vector2f pos, sf::Vector2f tam);
 		void criarSoldados(sf::Vector2f pos);
 
-		virtual void criarInimigos() = 0;
-		virtual void criarObstaculos() = 0;
-
 
 		float getMapaLargura() const { return mapaLargura; }
 		float getMapaAltura() const { return mapaAltura; }
 
 		void gerenciar_colisoes();
+
+		virtual bool getFaseTerminada() const = 0;
+		
 
 		//void add_Obstaculo(Entidades::Entidade* obstaculo);
 		//void add_Inimigo(Entidades::Entidade* inimigo);

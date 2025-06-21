@@ -11,6 +11,7 @@ namespace Fases {
 
     private:
         int finalFase;
+       
     public:
         Coliseu();
         ~Coliseu();
@@ -18,13 +19,19 @@ namespace Fases {
         void criarLamas(sf::Vector2f pos);
         void criarMinotauros(sf::Vector2f pos);
 
-        void criarInimigos();
-        void criarObstaculos();
         void inicializar();
 
         void carregarMapa(const std::string& caminho);
 
 		void setFinalFase(int final) { finalFase = 1000; }
+
+        void executar(float dt);
+        void desenhar();
+        void atualizar(float dt);
+
+        bool getFaseTerminada() const { return faseTerminada; }
+        
+
     };
 
 }
