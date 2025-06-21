@@ -1,47 +1,76 @@
 #include "../include/Texto.h"
 
+#define TEXT_SIZE 24
+
 namespace Menus
 {
 	Gerenciadores::Gerenciador_Grafico* Texto::pGG(Gerenciadores::Gerenciador_Grafico::get_instance());
 
-	Texto::Texto(std::string n)
-	{
-		text.setString(n);
-		text.setFont(*pGG->getFonte());
-		text.setCharacterSize(30);
-		text.setOrigin(15.f, 15.f);
-		text.setPosition(sf::Vector2f(100.f, 25.f));
-		text.setFillColor(sf::Color::White);
-		text.setOutlineThickness(2.f);
-		text.setOutlineColor(sf::Color::Black);
-	}
-	Texto::~Texto()
-	{
-	}
+    Texto::Texto(Math::CoordF posicao, std::string info, const char* path) :
+        info(info) {
+        texto.setString(info);
 
-	void Texto::setPosicao(sf::Vector2f posicao)
-	{
-		text.setPosition(posicao);
-	}
+        texto.setFont(*pGG->carregaFonte(path));
 
-	void Texto::setTamanho(int tamanho)
-	{
-		text.setCharacterSize(tamanho);
-	}
+        texto.setCharacterSize(TEXT_SIZE);
 
-	void Texto::setNome(std::string n)
-	{
-		text.setString(n);
-	}
+        setTextoAlinhamento(TextoAlinhamento::esquerda);
 
-	void Texto::desenhar()
-	{
-		pGG->desenhar(&text);
-	}
+        texto.setPosition(sf::Vector2f(posicao.x, posicao.y));
 
-	void Texto::setCor(int c)
-	{
-		if(c == 0)
-			text.setFillColor(sf::Color(255,165,0));
-	}
+        texto.setFillColor(sf::Color::White);
+    }
+
+    Texto::~Texto() {}
+
+    void Texto::setTextoInfo(std::string info) {
+        this->info = info;
+        texto.setString(this->info);
+    }
+
+    void Texto::setPosicao(Math::CoordF posicao) {
+        texto.setPosition(sf::Vector2f(posicao.x, posicao.y));
+    }
+
+    void Texto::setTextoCor(const unsigned int R, const unsigned int G, const unsigned int B) {
+        texto.setFillColor(sf::Color(R, G, B));
+    }
+
+    void Texto::setFonteTamanho(const unsigned int tamanho) {
+        texto.setCharacterSize(tamanho);
+    }
+
+    void Texto::setTextoAlinhamento(TextoAlinhamento opcao) {
+        switch (opcao) {
+        case TextoAlinhamento::esquerda:
+            texto.setOrigin(0, 0);
+            break;
+        case TextoAlinhamento::centro:
+            texto.setOrigin(getTamanho().x / 2, getTamanho().y);
+            break;
+        case TextoAlinhamento::direita:
+            texto.setOrigin(getTamanho().x, 0);
+            break;
+        default:
+            texto.setOrigin(getTamanho().x / 2, getTamanho().y);
+            break;
+        }
+    }
+
+    Math::CoordF Texto::getTamanho() const {
+        sf::FloatRect textRect = texto.getLocalBounds();
+        return Math::CoordF(textRect.width, textRect.height);
+    }
+
+    void Texto::renderizar() {
+        pGG->renderizar(&texto);
+    }
+
+    std::string Texto::getInfo() const {
+        return info;
+    }
+
+    Math::CoordF Texto::getPosicao() const {
+        return Math::CoordF(texto.getPosition().x, texto.getPosition().y);
+    }
 }

@@ -1,64 +1,53 @@
 #include "../include/Menu.h"
+#include "../include/Gerenciador_Grafico.h"
 
 namespace Menus
 {
-	Menu::Menu(int n_botoes, int id, std::string t) :
-		Ente(static_cast<IDs::IDs>(id)),
-		Estado(id),
-		Max_Botoes(n_botoes),
-		Botoes(),
-		selecionar_indice(0),
-		titulo(t)
+	Menu::Menu() :
+		Ente(),
+        min(0),
+        max(2),
+        selecionar(0),
+        menuOb(this),
+        ativado(false)	
 	{
-		for (int i = 0; i < Max_Botoes; i++)
-		{
-			Botoes.push_back(new Botao(sf::Vector2f(ALTURA / 2, (i + 2) * (20 + LARGURA))));
-		}
-		Botoes[0]->escolherCor();
+        Gerenciadores::Gerenciador_Grafico* pGG = Gerenciadores::Gerenciador_Grafico::get_instance();
 
-		corpo.setSize(sf::Vector2f(800.f, 600.f));
-		//texture = pGM->load_textures("../assets/menu1.png");
-		//body.setTexture(texture);
 	}
 	Menu::~Menu()
 	{
-		for (int i = 0; i < Max_Botoes; i++)
-		{
-			delete Botoes[i];
-		}
-	}
+        Menus::Botao* bt = NULL;
+        while (vectorBotao.size() != 0) {
+            bt = vectorBotao.back();
+            delete (bt);
+            vectorBotao.pop_back();
+        }
+        vectorBotao.clear();
+    }
+    void Menu::atualizarView() {
+        Gerenciadores::Gerenciador_Grafico::get_instance()->centralizarView(sf::Vector2f(Gerenciadores::Gerenciador_Grafico::get_instance()->getTamjanela().x / 2, Gerenciadores::Gerenciador_Grafico::get_instance()->getTamjanela().y / 2));
+    }
 
-    void Menu::desenhar()
-    {
-        for (int i = 0; i < Max_Botoes; i++)
-        {
-            Botoes[i]->desenhar();
+    /* Make the menu selection go Down */
+    void Menu::selecionarBaixo() {
+        if (ativado) {
+            vectorBotao[selecionar]->selecionar(false);
+            selecionar++;
+            if (selecionar > max)
+                selecionar = min;
+            vectorBotao[selecionar]->selecionar(true);
         }
     }
-    void Menu::mCima()
-    {
-        if (selecionar_indice > 0)
-        {
-            Botoes[selecionar_indice]->escolherCor();
-            selecionar_indice;
-            Botoes[selecionar_indice]->escolherCor();
+
+    /* Make the menu selection go Up */
+    void Menu::selecionarCima() {
+        if (ativado) {
+            vectorBotao[selecionar]->selecionar(false);
+            selecionar--;
+            if (selecionar < min)
+                selecionar = max;
+            vectorBotao[selecionar]->selecionar(true);
         }
     }
-    void Menu::mBaixo()
-    {
-        if (selecionar_indice < Max_Botoes - 1)
-        {
-            Botoes[selecionar_indice]->escolherCor();
-            selecionar_indice++;
-            Botoes[selecionar_indice]->escolherCor();
-        }
-    }
-    void Menu::executar()
-    {
-        desenhar();
-    }
-    void Menu::mudarNome(std::string nome)
-    {
-        titulo.setNome(nome);
-    }
+
 }

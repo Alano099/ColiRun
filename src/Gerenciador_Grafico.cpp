@@ -21,12 +21,6 @@ namespace Gerenciadores {
 		mapaTexturas(),
 		relogio() 
 	{
-			fonte = new sf::Font();
-			if(!fonte->loadFromFile(FONT_PATH))
-			{
-				std::cout << "FONTE NAO ENCONTRADA NO CAMINHO: " << std::endl;
-				exit(1);
-			}
 			relogio.restart();
 
 	}
@@ -36,7 +30,6 @@ namespace Gerenciadores {
 		for (it = mapaTexturas.begin(); it != mapaTexturas.end(); it++)
 			delete (it->second);
 		delete(janela);
-		delete(fonte);
 
 	}
 
@@ -52,8 +45,8 @@ namespace Gerenciadores {
 			janela->draw(*corpo);
 	}
 	
-	void Gerenciador_Grafico::desenhar(sf::Text* texto) {	
-			janela->draw(*texto);
+	void Gerenciador_Grafico::renderizar(sf::Text* texto) {
+		janela->draw(*texto);
 	}
 
 	void Gerenciador_Grafico::mostrar() {
@@ -141,7 +134,32 @@ namespace Gerenciadores {
 		janela->setView(view);
 
 	}
-	sf::Font* Gerenciador_Grafico::getFonte() const{
-		return fonte;
+
+	Math::CoordF Gerenciador_Grafico::getTopLeftPosition() const {
+		return Math::CoordF(janela->getView().getCenter().x - janela->getSize().x / 2, janela->getView().getCenter().y - janela->getSize().y / 2);
 	}
+	
+	sf::Font* Gerenciador_Grafico::carregaFonte(const char* path) {
+		/* Tries to find an existing font linked by the path to it */
+		std::map<const char*, sf::Font*>::iterator it = fontsMap.begin();
+		while (it != fontsMap.end()) {
+			if (!strcmp(it->first, path))
+				return it->second;
+			it++;
+		}
+
+		/* If not found, must load it. */
+		sf::Font* font = new sf::Font();
+
+		if (!font->loadFromFile(path)) {
+			std::cout << "ERROR loading file " << path << std::endl;
+			exit(1);
+		}
+
+		fontsMap.insert(std::pair<const char*, sf::Font*>(path, font));
+
+		return font;
+	}
+
+
 }

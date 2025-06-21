@@ -3,59 +3,45 @@
 
 namespace Gerenciadores
 {
-	Gerenciador_Estado* Gerenciador_Estado::instance = nullptr;
-
-	Gerenciador_Estado* Gerenciador_Estado::get_instance()
+	
+	Gerenciador_Estado::Gerenciador_Estado() 
 	{
-		if (instance == nullptr)
-		{
-			instance = new Gerenciador_Estado();
-		}
-		return instance;
-	}
-
-	Gerenciador_Estado::Gerenciador_Estado() : 
-	AtualEstado(0)
-	{
-		vector_estados.resize(8);
 	}
 
 	Gerenciador_Estado::~Gerenciador_Estado()
 	{
-		for (int i = 0; i < vector_estados.size(); i++)
+		std::map<Estados::estadoID, Estados::Estado*>::iterator it;
+		for (it = mapEstado.begin(); it != mapEstado.end(); ++it)
 		{
-			delete vector_estados[i];
-		}
-	}
-	void Gerenciador_Estado::set_AtualEstado(int i)
-	{
-		AtualEstado = i;
-	}
-
-	int Gerenciador_Estado::get_AtualEstadoID()
-	{
-		return AtualEstado;
-	}
-
-	void Gerenciador_Estado::add_estado(Estados::Estado* pEstado)
-	{
-		try
-		{
-			vector_estados.at(pEstado->getId()) = pEstado;
-		}
-		catch (const std::out_of_range& oor)
-		{
-			std::cerr << "Erro: ID do estado fora do intervalo permitido." << std::endl;
+			delete (it->second); // Libera a memória alocada para o estado
 		}
 	}
 
-	void Gerenciador_Estado::reseta_AtualEstado()
+	void Gerenciador_Estado::mudarAtualEstado(Estados::estadoID id)
 	{
-		vector_estados[AtualEstado]->reiniciar();
+		AtualEstadoID = id;
+		mapEstado[AtualEstadoID]->resetarEstado();
 	}
 
-	void Gerenciador_Estado::executar()
+	void Gerenciador_Estado::executarAtualEstado(const float dt)
 	{
-		vector_estados[AtualEstado]->executar();
+		mapEstado[AtualEstadoID]->atualizar(dt);
+		mapEstado[AtualEstadoID]->renderizar();
 	}
+
+	Estados::estadoID Gerenciador_Estado::getAtualEstadoID() const
+	{
+		return AtualEstadoID;
+	}
+
+	void Gerenciador_Estado::inserirEstado(Estados::Estado* pE)
+	{
+		if (pE == nullptr)
+		{
+			std::cout << "Erro: Estado nulo não pode ser inserido." << std::endl;
+			exit(1);
+		}
+		mapEstado.insert(std::pair<Estados::estadoID, Estados::Estado*>(pE->getID(), pE));
+	}
+	
 }

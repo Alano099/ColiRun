@@ -3,24 +3,25 @@
 #include <SFML/Graphics.hpp>
 
 #include "Gerenciador_Grafico.h"
-
-#define BOTAO_X 600.f
-#define BOTAO_Y 80.f
+#include "Animacao.h"
+#include "Texto.h"
 
 namespace Menus{
-	class Botao
+	class Botao : public ElementosGraficos::Animacao
 	{
 	private:
-		sf::RectangleShape corpo;
-		sf::Text text;
-		static Gerenciadores::Gerenciador_Grafico* pGG;
-	public:
-		Botao(sf::Vector2f posicao = sf::Vector2f(0.f, 0.f));
-		~Botao();
-		void desenhar();
-		void escolherCor();
-		void setNome(std::string nome);
-		void setPosicao(sf::Vector2f posicao);
+        Texto textoInfo;
+        sf::Texture* defaultTextura;
+        sf::Texture* selecionarTextura;
+
+    public:
+        Botao(Math::CoordF posicao = Math::CoordF(0, 0), std::string info = "");
+
+        ~Botao();
+
+        void selecionar(const bool ehSelecionado);
+
+        void renderizar();
 	};
 	
 

@@ -11,13 +11,17 @@ namespace Gerenciadores {
 		return instance;
 	}
 
-	Gerenciador_Eventos::Gerenciador_Eventos() : Subject()
+	Gerenciador_Eventos::Gerenciador_Eventos():
+		pGG(Gerenciadores::Gerenciador_Grafico::get_instance()),
+		pSubject(Gerenciadores::Subject::get_instance())
 	{
-		pGG = Gerenciador_Grafico::get_instance();
+		
 	}
 
-	Gerenciador_Eventos::~Gerenciador_Eventos() {
-	
+	Gerenciador_Eventos::~Gerenciador_Eventos() 
+	{
+		pGG = nullptr;
+		pSubject = nullptr;
 	}
 	
 	void Gerenciador_Eventos::executar()
@@ -25,14 +29,15 @@ namespace Gerenciadores {
 		sf::Event event;
 
 		while(pGG->getJanela()->pollEvent(event)) {
-			if (event.type == sf::Event::KeyPressed)
-			{
-				notify((event.key.code));
-			}
-			else if (event.type == sf::Event::Closed)
+			if (event.type == sf::Event::Closed)
 			{
 				pGG->fechajanela();
 			}
+			if (event.type == sf::Event::KeyPressed)
+			{
+				pSubject->notify((event.key.code));
+			}
+			
 			
 		}
 	}

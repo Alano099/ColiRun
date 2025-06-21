@@ -1,139 +1,79 @@
-#include "../include/MainMenu.h"
+#include "../include/MainMenu.h"  
+#include "../include/Fase.h" // Adicionado para garantir que Fases::Fase seja um tipo de classe completo
 
-namespace Menus
-{
-	MainMenu::MainMenu() :
-		Menu(4, 0, "Colirun"),
-		AtualFase(1),
-		AtualJogador(0),
-		Fase1("Fase 1"),
-		Fase2("Fase 2"),
-		Jogador1("1 Jogador"),
-		Jogador2("2 Jogadores")
-	{
-		titulo.setTamanho(50);
-		titulo.setPosicao(sf::Vector2f(50.f, 25.f));
-		titulo.setCor(0);
-		Fase1.setPosicao(sf::Vector2f(100.f, 80.f));
-		Fase2.setPosicao(sf::Vector2f(100.f, 80.f));
+namespace Menus  
+{  
+    MainMenu::MainMenu(Fases::Fase* pF) :  
+        Menu(),  
+        Estado(dynamic_cast<Gerenciadores::Gerenciador_Estado*>(pF), Estados::estadoID::mainMenu),
+        pFase(pF),  
+        titulo() {  
+        Gerenciadores::Gerenciador_Grafico* pGG = Gerenciadores::Gerenciador_Grafico::get_instance();  
+        Menus::Botao* bt = NULL;  
 
-		Jogador1.setPosicao(sf::Vector2f(100.f, 125.f));
-		Jogador2.setPosicao(sf::Vector2f(100.f, 125.f));
+        bt = new Menus::Botao(Math::CoordF(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2), "PLAY GAME");  
+        bt->selecionar(true);  
+        vectorBotao.push_back(bt);  
 
-		Botoes[0]->setNome("Continue");
-		Botoes[1]->setNome("Novo Jogo");
-		Botoes[2]->setNome("Ranking");
-		Botoes[3]->setNome("Sair");
+        bt = new Menus::Botao(Math::CoordF(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 100), "LEADERBOARD");  
+        vectorBotao.push_back(bt);  
 
-		pMenuObserver = new Observers::MenuObserver;
-		pMenuObserver->setMenu(this);
+        bt = new Menus::Botao(Math::CoordF(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 200), "SETTINGS");  
+        vectorBotao.push_back(bt);  
 
-	}
+        bt = new Menus::Botao(Math::CoordF(pGG->getTamjanela().x / 2.0f, pGG->getTamjanela().y / 2 + 300), "EXIT GAME");  
+        vectorBotao.push_back(bt);  
 
-	MainMenu::~MainMenu()
-	{
-		if(pMenuObserver)
-			delete pMenuObserver;
+        titulo->setTextoInfo("Colirun");  
+        titulo->setFonteTamanho(140);  
+        titulo->setTextoCor(77.6, 68.2, 44.3);
+        titulo->setTextoAlinhamento(Menus::TextoAlinhamento::centro);
 
-		pMenuObserver = nullptr;
-	}
+        titulo->setPosicao(Math::CoordF(pGG->getTamjanela().x / 2.0f, 0.0f - titulo->getTamanho().y / 2));  
 
-	void MainMenu::selecionar()
-	{
-		switch (selecionar_indice)
-		{
-        case 0:
-            if (AtualFase == 1)
-            {
-                if (AtualJogador == 0)
-                    pEG->set_AtualEstado(1);
-                else
-                    pEG->set_AtualEstado(6);
+        max = 3;  
+    }  
 
-            }
-            else
-            {
-                if (AtualJogador == 0)
-                    pEG->set_AtualEstado(2);
-                else
-                    pEG->set_AtualEstado(5);
-            }
-            break;
-        case 1:
-            if (AtualFase == 1)
-            {
-                if (AtualJogador == 0)
-                    pEG->set_AtualEstado(1);
-                else
-                    pEG->set_AtualEstado(6);
-            }
-            else
-            {
-                if (AtualJogador == 0)
-                    pEG->set_AtualEstado(2);
-                else
-                    pEG->set_AtualEstado(5);
-            }
-            pEG->reseta_AtualEstado();
-            break;
-        case 2:
-        {
+    MainMenu::~MainMenu() {  
+    }  
 
-            Estados::Estado::pEG->set_AtualEstado(4);
-        }
-        break;
-        case 3:
-            pGG->fechajanela();
-            break;
-        }
-	}
+    void MainMenu::Atualizar(float dt) {  
+        ativado= true;  
+        if (titulo->getPosicao().y < 200)  
+            titulo->setPosicao(Math::CoordF(titulo->getPosicao().x, titulo->getPosicao().y + 1));
+    }  
 
-    void MainMenu::moverHorizontal(int i)
-    {
-        if (i == 1)
-        {
-            if (AtualFase == 1)
-            {
-                AtualFase = 2;
-                //texture = pGM->load_textures("../assets/menu2.png");
-                //corpo.setTexture(texture);
-            }
-            else
-            {
-                AtualFase = 1;
-                //texture = pGM->load_textures("../assets/menu1.png");
-                //corpo.setTexture(texture);
-            }
-        }
-        else if (i == 2) {
-            AtualJogador = !(AtualJogador);
-        }
-    }
+    void MainMenu::renderizar() {  
+        atualizarView();   
+        for (it = vectorBotao.begin(); it != vectorBotao.end(); ++it)  
+            (*it)->renderizar();  
+        titulo->renderizar();  
+    }  
 
-    void MainMenu::desenhar()
-    {
-        pGG->desenhar(&(this->corpo));
-        titulo.desenhar();
-        if (!AtualJogador)
-        {
-            Jogador1.desenhar();
-        }
-        else
-        {
-			Jogador2.desenhar();
-        }
+    void MainMenu::exec() {  
+        if (ativado) {  
+            ativado = false;
+            switch (selecionar) {  
+            case 0:  
+                mudarEstado(Estados::estadoID::jogador);  
+                break;  
+            case 1:  
+                mudarEstado(Estados::estadoID::configuracoes);
+                break;  
+            case 2:  
+                pFase->endGame();
+                break;   
+            default:  
+                break;  
+            }  
+        }  
+    }  
 
-        if (AtualFase == 1)
-        {
-            Fase1.desenhar();
-        }
-        else
-        {
-            Fase2.desenhar();
-		}
-        for (int i = 0; i < Max_Botoes; i++)
-        {
-			Botoes[i]->desenhar();
-        }
-	}
+    void MainMenu::resetaEstado() {  
+        vectorBotao[selecionar]->selecionar(false);
+        selecionar = 0;
+        vectorBotao[selecionar]->selecionar(true);
+        titulo->setPosicao(Math::CoordF(titulo->getPosicao().x, 0.0f - titulo->getTamanho().y / 2));
+        
+    }  
 }

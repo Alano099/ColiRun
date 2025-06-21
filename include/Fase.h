@@ -1,11 +1,11 @@
 #pragma once
-#include "Inimigo.h"
+
 #include <SFML/Graphics.hpp>
 
 
 #include "Entidade.h"
 #include "Jogador.h"
-//#include "Inimigo.h"
+#include "Inimigo.h"
 #include "Plataforma.h"
 #include "ListaEntidades.h"
 #include "Gerenciador_Colisoes.h"
@@ -34,7 +34,7 @@
 
 namespace Fases
 {
-	class Fase : public Ente
+	class Fase : public Ente, public Gerenciadores::Gerenciador_Estado
 	{
 	protected:
 
@@ -44,9 +44,10 @@ namespace Fases
 
 		Gerenciadores::Gerenciador_Colisoes gerenciadorColisoes;
 		Gerenciadores::Gerenciador_Eventos* gerenciador_Eventos;
+		Gerenciadores::Gerenciador_Grafico* gerenciador_Grafico;
 
-		Entidades::Personagens::Jogador* p1;
-		Entidades::Personagens::Jogador* p2;
+		//Entidades::Personagens::Jogador* p1;
+		//Entidades::Personagens::Jogador* p2;
 
 		ElementosGraficos::Fundo fundo;
 
@@ -77,17 +78,9 @@ namespace Fases
 
 		void gerenciar_colisoes();
 
-		//void add_Obstaculo(Entidades::Entidade* obstaculo);
-		//void add_Inimigo(Entidades::Entidade* inimigo);
-		//void add_Jogador(Entidades::Entidade* Jogador);
+		void exec();
 
-		//virtual void save() = 0;
-		//virtual void load() = 0;
-		//virtual void reset() = 0;
-
-		//Entidades::Entidade* criar_inimigo(std::ifstream& file);
-		//void cria_cenario(std::string arquivo);
-		//void carrega_cenario(std::string cenario);
+		void endGame();
 
 	};
 }

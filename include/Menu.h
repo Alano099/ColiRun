@@ -8,27 +8,28 @@
 #include "Gerenciador_Eventos.h"
 #include "MenuObserver.h"
 #include "Botao.h"
-#include "Texto.h"
-#include "Estado.h"
+
 
 namespace Menus
 {
-	class Menu : public Ente, public Estados::Estado
+	class Menu : public Ente
 	{
 	protected:
-		const int Max_Botoes;
-		std::vector<Botao*> Botoes;
-		int selecionar_indice;
-		sf::RectangleShape corpo;
-		Texto titulo;
+		std::vector<Botao*> vectorBotao;
+		std::vector<Botao*>::iterator it;
+		int selecionar;
+		int min;
+		int max;
+
+		Observers::MenuObserver menuOb;
+		bool ativado;
+		
 	public:
-		Menu(int n_botoes = 0, int id = -1, std::string t = "0");
-		~Menu();
-		virtual void desenhar();
-		void mCima();
-		void mBaixo();
-		virtual void selecionar() = 0;
-		void executar();
-		void mudarNome(std::string nome);
+		Menu();
+		virtual ~Menu();
+		virtual void exec() = 0;
+		void atualizarView();
+		void selecionarBaixo();
+		void selecionarCima();
 	};
 }

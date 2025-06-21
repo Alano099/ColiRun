@@ -4,24 +4,29 @@
 #include <iostream>
 
 #include "Menu.h"
+#include "Estado.h"
+
+namespace Fases
+{
+	class Fase;
+}
 
 namespace Menus
 {
-	class MainMenu : public Menu
+	class MainMenu : public Menu, public Estados::Estado
 	{
 	private:
-		Observers::MenuObserver* pMenuObserver;
-		int AtualFase;
-		int AtualJogador;
-		Texto Fase1;
-		Texto Fase2;
-		Texto Jogador1;
-		Texto Jogador2;
+		Fases::Fase* pFase;
+		Menus::Texto* titulo;
 	public:
-		MainMenu();
+		MainMenu(Fases::Fase* pF = nullptr);
 		~MainMenu();
-		void selecionar();
-		void moverHorizontal(int i);
-		void desenhar();
+		void Atualizar(const float dt);
+
+		void renderizar();
+
+		void resetaEstado();
+
+		void exec();
 	};
 }

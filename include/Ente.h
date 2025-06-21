@@ -3,16 +3,19 @@
 #include "../stdafx/stdafx.h"
 #include "../IDs/IDs.h"
 #include "Gerenciador_Grafico.h"
+#include "Math.h"
 
 class Ente
 {
 protected:
 	const IDs::IDs ID;
 	static Gerenciadores::Gerenciador_Grafico* pGG;
+	Math::CoordF posicao;
+	Math::CoordF tamanho;
 
 public:
 	// Construtor explicit para evitar conversões implícitas
-	Ente(const IDs::IDs ID);
+	Ente(Math::CoordF posicao = Math::CoordF(0.f, 0.f), Math::CoordF tamanho = Math::CoordF(0.f, 0.f), const IDs::IDs ID);
 	virtual ~Ente();
 	const IDs::IDs getID() const { return ID; }
 	virtual void desenhar() = 0;

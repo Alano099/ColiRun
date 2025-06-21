@@ -9,7 +9,7 @@ class ColiRun {
 private:
     Gerenciadores::Gerenciador_Grafico* pGG;
     Gerenciadores::Gerenciador_Eventos* pGE;
-    Fases::Fase* fase;
+    //Fases::Fase* fase;
 
 public:
     ColiRun();

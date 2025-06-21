@@ -3,20 +3,22 @@
 #include "Observer.h"
 
 namespace Menus {
-	class MainMenu;
+	class Menu;
 }
 
 namespace Observers {
 	class MenuObserver: public Observer
 	{
 	private:
-		Menus::MainMenu* pMenu;
+		Menus::Menu* pMenu;
 	public:
-		MenuObserver();
+		MenuObserver(Menus::Menu* pM = NULL);
 		~MenuObserver();
 
-		void executar(sf::Keyboard::Key key_code);
-		void setMenu(Menus::MainMenu* pM) { pMenu = pM; }
+		void notifyPressed(std::string key);
+
+		void notifyReleased(std::string key);
+		void setMenu(Menus::Menu* pM);
 
 	};
 }

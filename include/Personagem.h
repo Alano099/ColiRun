@@ -29,11 +29,10 @@ namespace Entidades {
 		ElementosGraficos::AnimacaoMovimento sprite;
 
 	public:
+		Personagem(sf::Vector2f pos, sf::Vector2f tam, IDs::IDs id, int vida = 1, bool ativo = true, bool olhandoEsquerda = true);
 
 		~Personagem();
-
-		Personagem(sf::Vector2f pos, sf::Vector2f tam, IDs::IDs id, int vida = 1,bool ativo = true, bool olhandoEsquerda = true);
-
+		
 		const int getVida() const;
 
 		virtual void desenhar();

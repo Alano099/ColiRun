@@ -1,5 +1,6 @@
 #pragma once
 #include <list>
+#include <map>
 #include "Gerenciador_Grafico.h"
 
 namespace Observers {
@@ -8,14 +9,25 @@ namespace Observers {
 
 namespace Gerenciadores {
 	class Subject {
-	protected:
+	private:
 		std::list<Observers::Observer*> lista_observers;
 		std::list<Observers::Observer*>::iterator it;
-	public:
+
+		std::map<sf::Keyboard::Key, std::string> keyMap;
+
+		static Subject* instance;
 		Subject();
+	public:
+		
 		virtual ~Subject();
+		static Subject* get_instance();
+
 		virtual void detach(Observers::Observer* pObserver);
 		virtual void attach(Observers::Observer* pObserver);
-		virtual void notify(sf::Keyboard::Key key_code);
+		void handleKeyPressed(sf::Keyboard::Key key);
+
+		void handleKeyReleased(sf::Keyboard::Key key);
+
+		std::string getKeyasString(sf::Keyboard::Key key);
 	};
 }

@@ -7,23 +7,34 @@ namespace Gerenciadores
 
 namespace Estados
 {
+	enum estadoID
+	{
+		nulo = -1,
+		mainMenu = 0, 
+		novoJogo,
+		jogador,
+		configuracoes,
+		fimJogo
+	};
 	class Estado
 	{
 	protected:
-		static Gerenciadores::Gerenciador_Estado* pEG;
-		const int id_estado;
+		Gerenciadores::Gerenciador_Estado* pEG;
+		estadoID id;
 	public:
-		Estado(int id = -1);
+		Estado(Gerenciadores::Gerenciador_Estado* pEG = nullptr, Estados::estadoID id = nulo);
 
 		virtual ~Estado();
 
 		void setGerenciadorEstado(Gerenciadores::Gerenciador_Estado* pEG);
-
-		int getId() const;
-
-		const bool get_ativo();
 		
-		virtual void executar() = 0;
-		virtual void reiniciar() {};
+		void mudarEstado(Estados::estadoID id);
+		
+		Estados::estadoID getID() const;
+		
+		virtual void atualizar(float dt) = 0;
+		virtual void renderizar() = 0;
+		virtual void resetarEstado() = 0;
+		
 	};
 }

@@ -8,8 +8,8 @@
 #define LARGURA 1200
 #define ALTURA 720
 #define FRAME_RATE 100
-
-#define FONT_PATH "assets/PressStart2P-Regular.ttf"
+#include <map>
+#include "Math.h"
 
 namespace Gerenciadores {
 
@@ -23,7 +23,7 @@ namespace Gerenciadores {
 		sf::Clock relogio;
 		sf::View view;
 		std::map<const char*, sf::Texture*> mapaTexturas;
-		sf::Font* fonte;
+		std::map<const char*, sf::Font*> fontsMap;
 
 		static Gerenciador_Grafico* instance;
 		Gerenciador_Grafico();
@@ -34,7 +34,7 @@ namespace Gerenciadores {
 		sf::RenderWindow* getJanela();
 		void desenhar(sf::RectangleShape* corpo);
 		void desenhar(sf::CircleShape* corpo);
-		void desenhar(sf::Text* texto);
+		void renderizar(sf::Text* text);
 		void mostrar();
 		void limpar();
 		void fechajanela();
@@ -47,7 +47,21 @@ namespace Gerenciadores {
 		sf::Vector2u getTamjanela();
 		void lidarTamJanela();
 		void centralizarView(sf::Vector2f pos);
-		sf::Font* getFonte() const;
+		
+
+		//menu
+		// 
+		//void setWindowSize(Math::CoordU size);
+		//Math::CoordU getWindowSize() const;
+
+		Math::CoordF getTopLeftPosition() const;
+
+		//void centerView(Math::CoordF pos);
+
+		//sf::Texture* loadTexture(const char* path);
+
+		sf::Font* carregaFonte(const char* path);
+
 	};
 
 

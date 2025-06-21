@@ -3,13 +3,12 @@
 namespace Observers {
     Observer::Observer()
     {
-        this->pGE = Gerenciadores::Gerenciador_Eventos::get_instance();
-        this->pEG = Gerenciadores::Gerenciador_Estado::get_instance();
-        this->pGG = Gerenciadores::Gerenciador_Grafico::get_instance();
+		this->pSubject = Gerenciadores::Subject::get_instance();
+		pSubject->attach(this);
     }
 
     Observer::~Observer()
     {
-        pGE->detach(this);
+        pSubject->detach(this);
     }
 }

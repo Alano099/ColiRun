@@ -4,6 +4,7 @@
 
 #include "Gerenciador_Grafico.h"
 #include "../stdafx/stdafx.h"
+#include "Math.h"
 #include "../IDs/IDs.h"
 
 #include <map>
