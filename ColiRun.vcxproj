@@ -186,6 +186,7 @@
     <ClInclude Include="include\Minotauro.h" />
     <ClInclude Include="include\Lama.h" />
     <ClInclude Include="include\Masmorra.h" />
+    <ClInclude Include="include\Projetil.h" />
     <ClInclude Include="stdafx\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +235,7 @@
     <Image Include="assets\red.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Projetil.cpp" />
     <ClCompile Include="src\Fundo.cpp" />
     <ClCompile Include="src\Masmorra.cpp" />
     <ClCompile Include="src\Coliseu.cpp" />

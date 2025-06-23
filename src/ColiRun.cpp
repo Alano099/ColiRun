@@ -12,7 +12,7 @@ ColiRun::ColiRun()
     pGE(Gerenciadores::Gerenciador_Eventos::get_instance()),
     coliseu() // inicializa fase com todos objetos
 {
-    faseAtual = &coliseu;
+    faseAtual = &masmorra;
     executar();
 }
 
@@ -35,7 +35,7 @@ void ColiRun::executar() {
        
         if (faseAtual->getFaseTerminada()) {
             if (faseAtual == &coliseu) {
-                std::cout << "Trocando para MASMORRA!" << std::endl;
+                //std::cout << "Trocando para MASMORRA!" << std::endl;
                 faseAtual = &masmorra;
             }
             else {

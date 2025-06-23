@@ -23,10 +23,12 @@ namespace Entidades {
                 sf::Vector2f pontoEsquerda;
                 sf::Vector2f pontoDireita;
                 float tempoDano;
-               
+                float tempoInvulneravel;
+                float alcanceVisao;
+                float rangeAtaque;
 
             public:
-                Inimigo(sf::Vector2f pos,sf::Vector2f tamanho,IDs::IDs id);
+                Inimigo(sf::Vector2f pos,sf::Vector2f tamanho,IDs::IDs id,int vida);
 
                 ~Inimigo();
 
@@ -42,7 +44,19 @@ namespace Entidades {
 
                 virtual void definirLimitesDePatrulha(float alcance) = 0;
 
+                void setSentido(int s) { sentido = s; }
 
+				int getSentido() const { return sentido; }
+
+				bool getPerseguindo() const { return perseguindo; }
+
+				void setPerseguindo(bool p) { perseguindo = p; }
+
+                float getTempoDano() { return tempoDano; }
+                void setTempoDano(float t) { tempoDano = t; }
+
+                float getTempoInvulneravel() const { return tempoInvulneravel; }
+                void setTempoInvulneravel(float t) { tempoInvulneravel = t; }
 
 
             };

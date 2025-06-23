@@ -21,6 +21,11 @@ namespace Fases {
 			faseTerminada = true;
 		}
 
+		if ((p1 && p1->getVida() <= 0) || (p2 && p2->getVida() <= 0)) {
+			std::cout << "Um jogador morreu! Fechando o jogo...\n";
+			pGG->getJanela()->close();
+		}
+
 	}
 
 	void Coliseu::atualizar(float dt) {
@@ -45,6 +50,10 @@ namespace Fases {
 
 	void Coliseu::inicializar() {
 
+		gerenciadorColisoes.setListaJogadores(&listaJogadores);
+		gerenciadorColisoes.setListaInimigos(&listaInimigos);
+		gerenciadorColisoes.setListaObstaculos(&listaObstaculo);
+
 		// Carrega mapa
 		carregarMapa("assets/mapas/mapaColiseu.txt");
 
@@ -68,7 +77,8 @@ namespace Fases {
 		chao.setTexture(texturaChao);
 		chao.setTextureRect(sf::IntRect(0, 0, static_cast<int>(tamanhoChao.x), static_cast<int>(tamanhoChao.y)));
 
-		std::cout << "Coliseu inicializado com largura = " << mapaLargura << " e altura = " << mapaAltura << std::endl;
+
+		//std::cout << "Coliseu inicializado com largura = " << mapaLargura << " e altura = " << mapaAltura << std::endl;
 	}
 
 	void Coliseu::carregarMapa(const std::string& caminho) {
@@ -148,7 +158,7 @@ namespace Fases {
 		std::random_shuffle(posicoesPossiveisPlataformas.begin(), posicoesPossiveisPlataformas.end());
 
 		for (int i = 0; i < numPlataformas && i < posicoesPossiveisPlataformas.size(); i++) {
-			criarPlataformas(posicoesPossiveisPlataformas[i], { 300.f, TAMANHO_PLATAFORMA_Y });
+			criarPlataformas(posicoesPossiveisPlataformas[i], { 100.f, TAMANHO_PLATAFORMA_Y });
 		}
 
 		// SORTEIO MINOTAUROS
@@ -197,7 +207,7 @@ namespace Fases {
 	void Coliseu::criarMinotauros(sf::Vector2f pos)
 	{
 		Entidades::Personagens::Inimigos::Minotauro* inimigo =
-			new Entidades::Personagens::Inimigos::Minotauro(pos, { MINOTAURO_TAMANHO_X,MINOTAURO_TAMANHO_Y }, IDs::IDs::minotauro);
+			new Entidades::Personagens::Inimigos::Minotauro(pos, { MINOTAURO_TAMANHO_X,MINOTAURO_TAMANHO_Y }, IDs::IDs::minotauro,100);
 		inimigo->definirLimitesDePatrulha(MINOTAURO_LIMITE_PATRULHA);
 		inimigo->setJogador(p1);
 		listaInimigos.inserirEnt(inimigo);

@@ -38,15 +38,15 @@ namespace Entidades {
                         else
                             vel.x = +impulsoX;
 
-                        std::cout << "Hit lateral do espinho! vel.x = " << vel.x << std::endl;
+                        //std::cout << "Hit lateral do espinho! vel.x = " << vel.x << std::endl;
                     }
                     else {
                         // COLISÃO VERTICAL
                         vel.y = impulsoY;
 
-                        std::cout << "Hit vertical do espinho! vel.y = " << vel.y << std::endl;
+                       //std::cout << "Hit vertical do espinho! vel.y = " << vel.y << std::endl;
                     }
-
+                    jogador->tomarDano(20);
                     jogador->setVelocidade(vel);
                     jogador->setEmKnockback(true);
                     jogador->setTempoKnockback(0.5f);

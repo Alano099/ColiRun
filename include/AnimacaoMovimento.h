@@ -9,7 +9,9 @@ namespace ElementosGraficos {
 			parado = 1,
 			ataque = 2,
 			pulo = 3,
-			dano = 4
+			dano = 4,
+			andar2 = 5,
+			dano2 = 6,
 
 		};
 

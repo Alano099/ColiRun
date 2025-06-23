@@ -35,7 +35,7 @@ namespace Entidades {
 
 						jogador->setVelocidade(vel);
 
-						std::cout << "Slow da lama! vel.x = " << vel.x << std::endl;
+						//std::cout << "Slow da lama! vel.x = " << vel.x << std::endl;
 					}
                 }
             }

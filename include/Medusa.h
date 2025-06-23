@@ -1,5 +1,6 @@
 #pragma once
 #include "Inimigo.h"
+#include "Projetil.h"
 
 #define MEDUSA_TAMANHO_X 64.f
 #define MEDUSA_TAMANHO_Y 64.f
@@ -7,24 +8,31 @@
 #define MEDUSA_LIMITE_PATRULHA 50.f
 
 namespace Entidades {
+    namespace Personagens {
+        namespace Inimigos {
 
-	namespace Personagens {
+            class Medusa : public Inimigo
+            {
+            private:
+                Projetil* projetil;
+                sf::Vector2f pontoEsquerda, pontoDireita;
+                sf::Vector2f ultimoAlvo;
 
-		namespace Inimigos {
+                float tempoCooldownTiro;
 
-			class Medusa : public Inimigo
-			{
-			private:
-				float alcance;
-			public:
-				Medusa(sf::Vector2f pos, sf::Vector2f tamanho, IDs::IDs id);
-				~Medusa();
-				void executar(float dt);
-				void inicializar();
-				void colidir(Entidade* outraEntidade, sf::Vector2f intercepta);
-				void atacar(float dt);
-				void definirLimitesDePatrulha(float alcance);
-			};
-		}
-	}
+            public:
+                Medusa(sf::Vector2f pos, sf::Vector2f tamanho, IDs::IDs id,int vida);
+                ~Medusa();
+
+                void executar(float dt) override;
+                void inicializar() override;
+                void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) override;
+                void atacar(float dt) override;
+
+                void definirLimitesDePatrulha(float alcance);
+                void setProjetil(Projetil* p) { projetil = p; }
+            };
+
+        }
+    }
 }

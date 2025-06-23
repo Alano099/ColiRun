@@ -1,4 +1,4 @@
-#include "../include/Soldado.h"
+﻿#include "../include/Soldado.h"
 
 namespace Entidades {
 
@@ -6,91 +6,181 @@ namespace Entidades {
 
 		namespace Inimigos {
 
-			Soldado::Soldado(sf::Vector2f pos, sf::Vector2f tamanho,IDs::IDs id): Inimigo(pos,tamanho,id)
+			Soldado::Soldado(sf::Vector2f pos, sf::Vector2f tamanho,IDs::IDs id,int vida): Inimigo(pos,tamanho,id,vida)
 			{
 
+                forca = 1.0f + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (2.0f - 1.0f)));
+         
 				inicializar();
-				forca = 0.f;
+				
 			}
 
 			Soldado::~Soldado() {}
 
-			void Soldado::executar(float dt) {
-				if (tempoDano > 0.f)
-					tempoDano -= dt;
+            void Soldado::executar(float dt) {
+                if (tempoDano > 0.f)
+                    tempoDano -= dt;
 
-				sf::Vector2f posJog = pJog->getPosicao();
-				float distancia = std::hypot(posJog.x - pos.x, posJog.y - pos.y);
+                // KNOCKBACK
+                if (emKnockback) {
+                    tempoKnockback -= dt;
+                    if (tempoKnockback <= 0.f) {
+                        emKnockback = false;
+                        velocidade.x = 0.f;
+                    }
+                }
+                else {
+                    sf::Vector2f posJog = pJog->getPosicao();
+                    float distancia = std::hypot(posJog.x - pos.x, posJog.y - pos.y);
 
-				if (distancia < 200.f) {
-					perseguindo = true;
+                    float RANGE_VISAO = 300.f;
+                    float RANGE_ATAQUE = 50.f;
 
-					sf::Vector2f dir = posJog - pos;
-					float mag = std::sqrt(dir.x * dir.x + dir.y * dir.y);
-					if (mag != 0.f) dir /= mag;
+                    if (distancia < RANGE_VISAO) {
+                        perseguindo = true;
 
-					velocidade.x = dir.x * 100.f;
-					olhandoEsquerda = dir.x < 0;
-				}
-				else {
-					perseguindo = false;
+                        if (distancia < RANGE_ATAQUE) {
+                            // ATACANDO
+                            velocidade.x = 0.f;
 
-					velocidade.x = sentido * 60.f;
-				}
+                            if (!estaAtacando && podeAtacar) {
+                                atacar(dt);
+                                estaAtacando = true;
+                                tempoAtaque = 0.6f;
+                            }
+                        }
+                        else {
+                            // PERSEGUIR
+                            sf::Vector2f dir = posJog - pos;
+                            float mag = std::sqrt(dir.x * dir.x + dir.y * dir.y);
+                            if (mag != 0.f) dir /= mag;
 
-				pos.x += velocidade.x * dt;
-				velocidade.y += GRAVIDADE * dt;
-				pos.y += velocidade.y * dt;
+                            velocidade.x = dir.x * 100.f;
+                            olhandoEsquerda = dir.x < 0;
+                        }
+                    }
+                    else {
+
+                        if (perseguindo) {
+                            // AJUSTE: Atualiza o ponto de patrulha atual
+                            pontoEsquerda = sf::Vector2f(pos.x - 150.f, pos.y);
+                            pontoDireita = sf::Vector2f(pos.x + 150.f, pos.y);
+                            perseguindo = false;
+                        }
+                        velocidade.x = sentido * 60.f;
+                    }
+                }
+
+                // Movimento vertical
+                velocidade.y += GRAVIDADE * dt;
+
+                // Atualizar posição
+                pos.x += velocidade.x * dt;
+                pos.y += velocidade.y * dt;
+
+                // Colisão com chão
+                if (pos.y >= CHAO) {
+                    pos.y = CHAO;
+                    velocidade.y = 0.f;
+                    noChao = true;
+                }
+                else {
+                    noChao = false;
+                }
+
+                // Limites de patrulha
+                if (!perseguindo && (pos.x > pontoDireita.x || pos.x < pontoEsquerda.x)) {
+                    sentido *= -1;
+
+                    if (pos.x > pontoDireita.x)
+                        pos.x = pontoDireita.x;
+                    else if (pos.x < pontoEsquerda.x)
+                        pos.x = pontoEsquerda.x;
+                }
+
+                if (estaAtacando) {
 
 
-				if (pos.y >= CHAO) {
-					pos.y = CHAO;
-					velocidade.y = 0.f;
-					noChao = true;
-				}
-				else {
-					noChao = false;
-				}
+                    if (!olhandoEsquerda) {
+                        ataque.setPosition(pos.x + 30.f, pos.y - 20.f);
+                    }
+                    else {
+                        ataque.setPosition(pos.x - 30.f, pos.y - 20.f);
+                    }
+                }
 
-				if (!perseguindo && (pos.x > pontoDireita.x || pos.x < pontoEsquerda.x)) {
-					sentido *= -1;
+                else {
+                    ataque.setSize(sf::Vector2f(0.f, 0.f)); // IMPORTANTE: zera a hitbox quando não ataca
+                }
 
-					if (pos.x > pontoDireita.x)
-						pos.x = pontoDireita.x;
-					else if (pos.x < pontoEsquerda.x)
-						pos.x = pontoEsquerda.x;
-				}
+                // Atualizar cooldown de ataque
+                if (estaAtacando) {
+                    tempoAtaque -= dt;
+                    if (tempoAtaque <= 0.f) {
+                        estaAtacando = false;
+                        podeAtacar = true;
+                    }
+                }
 
-				sprite.atualizar(ElementosGraficos::ID_Animacao::andar, !(velocidade.x < 0.f), pos, dt);
-			}
+                if (tempoInvulneravel > 0.f)
+                    tempoInvulneravel -= dt;
+
+                if (estaAtacando) {
+
+                    sprite.atualizar(ElementosGraficos::ID_Animacao::dano, !estaOlhandoEsquerda(), pos, dt);
+
+                }
+                else
+                    sprite.atualizar(ElementosGraficos::ID_Animacao::andar, !(velocidade.x < 0.f), pos, dt);
+            }
 
 			void Soldado::inicializar() {
 
 				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::andar, "assets/inimigos/soldado/soldado_andar.png", 6);
 				sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::parado, "assets/inimigos/soldado/soldado_parado.png", 3);
+                sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::dano, "assets/inimigos/soldado/soldado_ataque.png", 6);
 			}
 
 	
-			void Soldado::colidir(Entidade* outraEntidade, sf::Vector2f intercepta) {
-				switch (outraEntidade->getID()) {
-				case IDs::IDs::plataforma:
-					moverNaColisao(intercepta, outraEntidade->getPosicao());
-					break;
+            void Soldado::colidir(Entidade* outraEntidade, sf::Vector2f intercepta) {
+                switch (outraEntidade->getID()) {
 
-				case IDs::IDs::jogador: {
-					Jogador* jogador = dynamic_cast<Jogador*>(outraEntidade);
-					if (jogador && jogador->getAtacando() && tempoDano <= 0.f) {
-						std::cout << "ATAQUE COLIDIU!\n";
-						moverNaColisao(intercepta, jogador->getPosicao());
-						tempoDano = 0.5f;
-					}
-					break;
-				}
 
-				default:
-					break;
-				}
-			}
+                case IDs::IDs::jogador: {
+                    Jogador* jogador = dynamic_cast<Jogador*>(outraEntidade);
+
+                    if (estaAtacando && tempoDano <= 0.f) {
+                        std::cout << "Soldado ATACOU Jogador!\n";
+
+                        float baseX = 300.f;
+                        float baseY = 100.f;
+
+                        float deltaX = jogador->getPosicao().x - this->getPosicao().x;
+
+                        sf::Vector2f empurrao;
+                        if (deltaX >= 0.f) {
+                            // Jogador está à direita → empurra pra direita
+                            empurrao = sf::Vector2f(baseX * forca, -baseY * forca);
+                        }
+                        else {
+                            // Jogador está à esquerda → empurra pra esquerda
+                            empurrao = sf::Vector2f(-baseX * forca, -baseY * forca);
+                        }
+
+                        jogador->setVelocidade(empurrao);
+                        jogador->setEmKnockback(true);
+                        jogador->setTempoKnockback(0.4f);
+                        jogador->tomarDano(10.f);
+
+                        tempoDano = 0.5f;
+                    }
+
+                    break;
+                }
+                default:
+                    break;
+                }
+            }
 			void Soldado::definirLimitesDePatrulha(float alcance)
 			{
 				pontoEsquerda = sf::Vector2f(pos.x - alcance, pos.y);
@@ -98,7 +188,14 @@ namespace Entidades {
 			}
 
 
-			void Soldado::atacar(float dt) {}
+			void Soldado::atacar(float dt) {
+            
+                podeAtacar = false;
+                tempoAtaque = 0.7f;
+               
+                ataque.setSize(sf::Vector2f(15.f, 15.f));
+            
+            }
 
 		}
 

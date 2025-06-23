@@ -2,6 +2,7 @@
 
 #include "Personagem.h"
 
+
 #define JOGADOR_TAMANHO_Y 58.0f
 #define JOGADOR_TAMANHO_X 32.0f
 #define JOGADOR_VIDA 100
@@ -18,6 +19,7 @@ namespace Entidades {
 			float tempo;
 			bool pulando;
 			bool andando;
+
 			
 		public:
 

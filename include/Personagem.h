@@ -14,7 +14,7 @@ namespace Entidades {
 	class Personagem :public Entidade
 	{
 	protected:
-		sf::Vector2f velocidade;
+		
 		sf::Vector2f velocidadeMaxima;
 		int vida;
 		bool olhandoEsquerda;
@@ -25,8 +25,7 @@ namespace Entidades {
 		float tempoAtaque;
 		bool estaAtacando;
 		float ataqueCooldown;
-		bool noChao;
-
+		int vidaMax;
 		bool emKnockback;
 		float tempoKnockback;
 
@@ -36,7 +35,7 @@ namespace Entidades {
 
 		~Personagem();
 
-		Personagem(sf::Vector2f pos, sf::Vector2f tam, IDs::IDs id, int vida = 1,bool ativo = true, bool olhandoEsquerda = true);
+		Personagem(sf::Vector2f pos, sf::Vector2f tam, IDs::IDs id, int vida ,bool ativo = true, bool olhandoEsquerda = true);
 
 		const int getVida() const;
 
@@ -62,11 +61,9 @@ namespace Entidades {
 
 		sf::FloatRect getHitbox() const;
 
-		const sf::Vector2f getVelocidade() { return velocidade; }
+		sf::FloatRect getAtaqueHitbox() const;
 
-		void setVelocidade(sf::Vector2f v) { velocidade = v; }
-
-		void setNochao(bool c) { noChao = c; cout << "em cima"; }
+		void desenharBarraVida();
 
 		void setEmKnockback(bool k) { emKnockback = k; }
 		bool getEmKnockback() { return emKnockback; }

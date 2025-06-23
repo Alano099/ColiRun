@@ -1,4 +1,4 @@
-#include "../include/plataforma.h"
+Ôªø#include "../include/plataforma.h"
 
 namespace Entidades {
 
@@ -45,14 +45,17 @@ namespace Entidades {
 
         void Plataforma::colidir(Entidade* outraEntidade, sf::Vector2f intersecao)
         {
-            if (outraEntidade->getID() == IDs::IDs::jogador) {
+
+            IDs::IDs id = outraEntidade->getID();
+
+            if (id == IDs::IDs::jogador) {
                 auto* jogador = dynamic_cast<Entidades::Personagens::Jogador*>(outraEntidade);
                 if (jogador) {
 
                     sf::Vector2f jogadorPos = jogador->getPosicao();
 
                     if (intersecao.x > intersecao.y) {
-                        // Colis„o lateral
+                        // Colis√£o lateral
                         if (jogadorPos.x < pos.x)
                             jogadorPos.x += intersecao.x;
                         else
@@ -61,28 +64,28 @@ namespace Entidades {
                         jogador->setVelocidade(sf::Vector2f(0.f, jogador->getVelocidade().y));
                     }
                     else {
-                        // Colis„o vertical
+                        // Colis√£o vertical
                         if (jogadorPos.y < pos.y) {
-                            // Colis„o de cima
+                            // Colis√£o de cima
                             jogador->setNochao(true);
                             jogador->setPulando(false);
                             jogador->setVelocidade(sf::Vector2f(jogador->getVelocidade().x, 0.f));
 
-                            std::cout << "Colidiu por cima!" << std::endl;
+                            //std::cout << "Colidiu por cima!" << std::endl;
 
                             // Se for trampolim, aplica pulo suave
                             if (trampolim) {
-                                std::cout << "TRAMPOLIM ativado!" << std::endl;
+                                //std::cout << "TRAMPOLIM ativado!" << std::endl;
 
                                 float velPulo = jogador->getVelPulo();
 
                                 jogador->setVelocidade(sf::Vector2f(jogador->getVelocidade().x, -velPulo));
                                 jogador->setPulando(true);
-                                // N√O altera a posiÁ„o ó deixa a fÌsica agir
+                                // N√ÉO altera a posi√ß√£o ‚Äî deixa a f√≠sica agir
                             }
                         }
                         else {
-                            // Colis„o de baixo (opcional)
+                            // Colis√£o de baixo (opcional)
                             jogadorPos.y -= intersecao.y;
                             jogador->setVelocidade(sf::Vector2f(jogador->getVelocidade().x, 0.f));
                         }
@@ -91,6 +94,42 @@ namespace Entidades {
                     jogador->setPosition(jogadorPos);
                 }
             }
+
+            if (id == IDs::IDs::soldado || id == IDs::IDs::minotauro || id == IDs::IDs::medusa) {
+                auto* inimigo = dynamic_cast<Entidades::Personagens::Inimigos::Inimigo*>(outraEntidade);
+
+               
+                if (inimigo) {
+                    sf::Vector2f inimigoPos = inimigo->getPosicao();
+
+                    if (intersecao.x > intersecao.y) {
+                       
+                        if (inimigoPos.x < pos.x)
+                            inimigoPos.x += intersecao.x;
+                        else
+                            inimigoPos.x -= intersecao.x;
+
+                        inimigo->setSentido(-inimigo->getSentido());
+                        //std::cout << "Inimigo trocou de sentido!" << std::endl;
+
+
+                        // Opcional: pode zerar velocidade.x se quiser
+                        inimigo->setVelocidade(sf::Vector2f(0.f, inimigo->getVelocidade().y));
+                      
+                        inimigo->setPosition(inimigoPos);
+
+                        inimigo->setPerseguindo(false);
+                    }
+                    else {
+                        // Colis√£o VERTICAL ‚Üí inimigo cai/anda normal
+                        inimigo->setVelocidade(sf::Vector2f(0.f, inimigo->getVelocidade().x));
+                    }
+
+                  
+                }
+            }
+
+
         }
 
 

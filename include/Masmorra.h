@@ -10,6 +10,7 @@ namespace Fases {
 
     private:
         int inimigosVivos;
+        Lista::ListaEntidade listaProjetil;
     public:
         Masmorra();
 		~Masmorra();
@@ -29,6 +30,8 @@ namespace Fases {
 		int getInimigosVivos() const { return inimigosVivos; }
 		void setInimigosVivos(int inimigos) { inimigosVivos = inimigos; }
         bool getFaseTerminada() const { return faseTerminada; }
+
+        Entidades::Projetil* criarProjetil(sf::Vector2f pos);
 
 
     };

@@ -20,7 +20,7 @@ namespace Entidades {
                 float forca;
 
             public:
-                Soldado(sf::Vector2f pos, sf::Vector2f tamanho,IDs::IDs id);
+                Soldado(sf::Vector2f pos, sf::Vector2f tamanho,IDs::IDs id,int vida);
                 ~Soldado();
 
                 void executar(float dt);

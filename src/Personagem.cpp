@@ -10,7 +10,11 @@ namespace Entidades {
 
 		Personagem::Personagem(sf::Vector2f pos, sf::Vector2f tam, IDs::IDs id, int vida, bool ativo, bool olhandoEsquerda)
 			: Entidade(pos, tam, id), vida(vida), ativo(ativo), olhandoEsquerda(olhandoEsquerda),colidiu(false),ataqueCooldown(0.f),
-				estaAtacando(false),podeAtacar(true),tempoAtaque(0.f),noChao(false), emKnockback(false), tempoKnockback(0.f){
+				estaAtacando(false),podeAtacar(true),tempoAtaque(0.f), emKnockback(false), tempoKnockback(0.f),vidaMax(vida){
+
+			
+			
+
 		}
 
 		const int Personagem::getVida() const
@@ -20,9 +24,9 @@ namespace Entidades {
 
 		void Personagem::desenhar()
 		{
+			desenharBarraVida();
 			sprite.desenhar();
 			sf::RectangleShape debug;
-			
 			
 			
 			
@@ -47,8 +51,12 @@ namespace Entidades {
 		void Personagem::tomarDano(const int dano)
 		{
 			vida -= dano;
-			if (vida <= 0)
-				ativo = false;
+			if (vida < 0)
+				vida = 0;
+
+			if (vida == 0) {
+				ativo = false;  // <<< aqui você marca que o personagem "morreu"
+			}
 		}
 
 		void Personagem::moverNaColisao(sf::Vector2f intercepta, sf::Vector2f outraPos)
@@ -86,6 +94,30 @@ namespace Entidades {
 		sf::FloatRect Personagem::getHitbox() const
 		{
 			return sprite.getGlobalBounds();
+		}
+
+		sf::FloatRect Personagem::getAtaqueHitbox() const
+		{
+			return ataque.getGlobalBounds();
+		}
+
+		void Personagem::desenharBarraVida()
+		{
+			sf::RectangleShape barraFundo;
+			barraFundo.setSize(sf::Vector2f(40.f, 5.f));
+			barraFundo.setFillColor(sf::Color::Red);
+			barraFundo.setPosition(pos.x - 20.f, pos.y - tam.y / 2.f - 10.f);
+
+			float proporcao = static_cast<float>(vida) / static_cast<float>(vidaMax);
+			if (proporcao < 0.f) proporcao = 0.f; // Não deixar barra negativa
+
+			sf::RectangleShape barraAtual;
+			barraAtual.setSize(sf::Vector2f(40.f * proporcao, 5.f));
+			barraAtual.setFillColor(sf::Color::Green);
+			barraAtual.setPosition(pos.x - 20.f, pos.y - tam.y / 2.f - 10.f);
+
+			pGG->getJanela()->draw(barraFundo);
+			pGG->getJanela()->draw(barraAtual);
 		}
 
 		

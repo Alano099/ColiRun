@@ -11,11 +11,11 @@ namespace Entidades {
 		namespace Inimigos {
 
 
-			Inimigo::Inimigo(sf::Vector2f pos,sf::Vector2f tamanho, IDs::IDs id)
-				: Personagem(pos,tamanho,id),
-				pJog(nullptr), perseguindo(0.f), sentido(1), tempoDano(0.f)
+			Inimigo::Inimigo(sf::Vector2f pos,sf::Vector2f tamanho, IDs::IDs id, int vida)
+				: Personagem(pos,tamanho,id,vida),
+				pJog(nullptr), perseguindo(0.f), sentido(1), tempoDano(0.f), alcanceVisao(300.f), rangeAtaque(50.f)
 			{
-				
+				tempoInvulneravel = 0.f;
 			}
 
 

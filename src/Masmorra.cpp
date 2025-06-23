@@ -14,12 +14,19 @@ namespace Fases {
 
 		atualizar(dt);
 		desenhar();
+
+		if ((p1 && p1->getVida() <= 0) || (p2 && p2->getVida() <= 0)) {
+			std::cout << "Um jogador morreu! Fechando o jogo...\n";
+			pGG->getJanela()->close();
+		}
+
 	}
 
 	void Masmorra::atualizar(float dt) {
 		listaJogadores.executar(dt);
 		listaInimigos.executar(dt);
 		listaObstaculo.executar(dt);
+		listaProjetil.executar(dt);
 		gerenciar_colisoes();
 		fundo.atualizar(dt, p1->getVelocidade().x / 10);
 	}
@@ -30,9 +37,18 @@ namespace Fases {
 		listaObstaculo.desenharEntidades();
 		listaJogadores.desenharEntidades();
 		listaInimigos.desenharEntidades();
+		listaProjetil.desenharEntidades();
+
+
+
 	}
 
 	void Masmorra::inicializar() {
+
+		gerenciadorColisoes.setListaJogadores(&listaJogadores);
+		gerenciadorColisoes.setListaInimigos(&listaInimigos);
+		gerenciadorColisoes.setListaObstaculos(&listaObstaculo);
+		gerenciadorColisoes.setListaProjeteis(&listaProjetil);
 
 		// Carrega mapa
 		carregarMapa("assets/mapas/mapaMasmorra.txt");
@@ -57,17 +73,33 @@ namespace Fases {
 		chao.setTexture(texturaChao);
 		chao.setTextureRect(sf::IntRect(0, 0, static_cast<int>(tamanhoChao.x), static_cast<int>(tamanhoChao.y)));
 
-		std::cout << "Coliseu inicializado com largura = " << mapaLargura << " e altura = " << mapaAltura << std::endl;
+		//std::cout << "Coliseu inicializado com largura = " << mapaLargura << " e altura = " << mapaAltura << std::endl;
 
 	}
 
+	Entidades::Projetil* Masmorra::criarProjetil(sf::Vector2f pos)
+	{
+		Entidades::Projetil* projetil = new Entidades::Projetil(pos, { PROJETIL_TAMANHO_X, PROJETIL_TAMANHO_Y }, IDs::IDs::projetil, false);
+		projetil->inicializar();
+		listaProjetil.inserirEnt(projetil);
+		return projetil;
+	}
+
+	
 	void Masmorra::criarMedusas(sf::Vector2f pos)
 	{
 		Entidades::Personagens::Inimigos::Medusa* inimigo =
-			new Entidades::Personagens::Inimigos::Medusa(pos, { MEDUSA_TAMANHO_X,MEDUSA_TAMANHO_Y }, IDs::IDs::medusa);
+			new Entidades::Personagens::Inimigos::Medusa(pos, { MEDUSA_TAMANHO_X,MEDUSA_TAMANHO_Y }, IDs::IDs::medusa,70);
 		inimigo->definirLimitesDePatrulha(MEDUSA_LIMITE_PATRULHA);
 		inimigo->setJogador(p1);
+
+		Entidades::Projetil* projetil = criarProjetil(pos);
+
+		inimigo->setProjetil(projetil);
+
 		listaInimigos.inserirEnt(inimigo);
+
+
 	}
 
 	void Masmorra::criarEspinhos(sf::Vector2f pos)

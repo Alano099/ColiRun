@@ -13,6 +13,9 @@ namespace Entidades {
         
         sf::Vector2f pos;
         sf::Vector2f tam;
+        sf::Vector2f velocidade;
+        bool noChao;
+
 
         static float gravidade;
         bool remover;
@@ -38,6 +41,13 @@ namespace Entidades {
         virtual void executar(float dt) = 0;
         virtual void inicializar() = 0;
         virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
+
+        void setNochao(bool c) { noChao = c; /*cout << "em cima"; */ }
+
+        const sf::Vector2f getVelocidade() { return velocidade; }
+
+        void setVelocidade(sf::Vector2f v) { velocidade = v; }
+
     };
 
 

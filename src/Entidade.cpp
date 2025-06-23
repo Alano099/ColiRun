@@ -2,7 +2,7 @@
 
 namespace Entidades {
 
-	Entidade::Entidade(sf::Vector2f position, sf::Vector2f tam, IDs::IDs id):Ente(id),pos(position),tam(tam),remover(false)
+	Entidade::Entidade(sf::Vector2f position, sf::Vector2f tam, IDs::IDs id):Ente(id),pos(position),tam(tam),remover(false), noChao(false)
 	{
 		
 	}

@@ -20,7 +20,7 @@ namespace Entidades
             private:
                 bool enfurecido;
             public:
-				Minotauro(sf::Vector2f pos,sf::Vector2f tamanho, IDs::IDs id);
+				Minotauro(sf::Vector2f pos,sf::Vector2f tamanho, IDs::IDs id,int vida);
 				~Minotauro();
 				void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) override;
 				void executar(float dt);

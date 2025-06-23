@@ -16,7 +16,8 @@ namespace IDs {
 		minotauro,
 		lama,
 		coliseu,
-		masmorra
+		masmorra,
+		projetil
 	};
 
 }

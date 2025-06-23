@@ -3,6 +3,7 @@
 #include "AnimacaoEstatica.h"
 #include "../IDs/IDs.h"
 #include "Jogador.h"
+#include "Inimigo.h"
 
 namespace Entidades {
 
