@@ -13,7 +13,7 @@ namespace Fases {
         int finalFase;
        
     public:
-        Coliseu();
+        Coliseu(Entidades::Personagens::Jogador* jogador1, Entidades::Personagens::Jogador* jogador2);
         ~Coliseu();
 
         void criarLamas(sf::Vector2f pos);

@@ -2,7 +2,8 @@
 
 namespace Fases {
 
-	Masmorra::Masmorra() : Fase(IDs::IDs::masmorra), inimigosVivos(MAX_INIMIGOS) {
+	Masmorra::Masmorra(Entidades::Personagens::Jogador* jogador1, Entidades::Personagens::Jogador* jogador2)
+		: Fase(IDs::IDs::masmorra, jogador1, jogador2),inimigosVivos(MAX_INIMIGOS) {
 		inicializar();
 	}
 
@@ -29,6 +30,32 @@ namespace Fases {
 		listaProjetil.executar(dt);
 		gerenciar_colisoes();
 		fundo.atualizar(dt, p1->getVelocidade().x / 10);
+		if (listaInimigos.getTamanho() == 0 && !faseTerminada) {
+			faseTerminada = true;
+		}
+		if (faseTerminada) {
+			sf::Text textoVitoria;
+			sf::Font fonte;
+			if (!fonte.loadFromFile("assets/PressStart2P-Regular.ttf")) {
+				std::cerr << "Erro carregando fonte!\n";
+			}
+
+			textoVitoria.setFont(fonte);
+			textoVitoria.setString("VOCE VENCEU!");
+			textoVitoria.setCharacterSize(60);
+			textoVitoria.setFillColor(sf::Color::Yellow);
+			textoVitoria.setPosition(300.f, 300.f);
+
+			pGG->getJanela()->draw(textoVitoria);
+			pGG->mostrar();
+
+			// Espera ENTER para sair
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+				pGG->getJanela()->close();
+			}
+
+			return; // não segue pro resto do loop se já venceu
+		}
 	}
 
 	void Masmorra::desenhar() {
@@ -57,8 +84,7 @@ namespace Fases {
 		fundo.inicializar("assets/fundos/masmorra.jpg", sf::Vector2f(mapaLargura, mapaAltura));
 
 		// Insere jogadores na lista
-		listaJogadores.inserirEnt(p1);
-		listaJogadores.inserirEnt(p2);
+		
 
 		// Cria chão com textura repetida
 		sf::Texture* texturaChao = pGG->carregarTextura("assets/obstaculos/chao.jpeg");
@@ -91,7 +117,10 @@ namespace Fases {
 		Entidades::Personagens::Inimigos::Medusa* inimigo =
 			new Entidades::Personagens::Inimigos::Medusa(pos, { MEDUSA_TAMANHO_X,MEDUSA_TAMANHO_Y }, IDs::IDs::medusa,70);
 		inimigo->definirLimitesDePatrulha(MEDUSA_LIMITE_PATRULHA);
-		inimigo->setJogador(p1);
+		if (p1 && p2)
+			inimigo->setJogador(p1, p2);
+		else if (p1)
+			inimigo->setJogador(p1, nullptr);
 
 		Entidades::Projetil* projetil = criarProjetil(pos);
 

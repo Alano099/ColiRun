@@ -21,7 +21,7 @@ namespace Entidades {
 			
 		}
 
-        void Espinho::colidir(Entidade* outraEntidade, sf::Vector2f intersecao)
+        void Espinho::obstacular(Entidade* outraEntidade, sf::Vector2f intersecao)
         {
             if (outraEntidade->getID() == IDs::IDs::jogador) {
                 auto* jogador = dynamic_cast<Entidades::Personagens::Jogador*>(outraEntidade);
@@ -46,10 +46,10 @@ namespace Entidades {
 
                        //std::cout << "Hit vertical do espinho! vel.y = " << vel.y << std::endl;
                     }
-                    jogador->tomarDano(20);
+                    jogador->tomarDano(10);
                     jogador->setVelocidade(vel);
                     jogador->setEmKnockback(true);
-                    jogador->setTempoKnockback(0.5f);
+                    jogador->setTempoKnockback(0.3f);
                 }
             }
         }

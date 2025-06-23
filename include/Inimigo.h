@@ -17,6 +17,7 @@ namespace Entidades {
 
             protected:
                 Jogador* pJog;
+                Jogador* pJog2;
                 float perseguindo;
 
                 int sentido;
@@ -32,13 +33,13 @@ namespace Entidades {
 
                 ~Inimigo();
 
-                void setJogador(Jogador* jog) { pJog = jog; }
+                void setJogador(Jogador* jog1, Jogador* jog2) { pJog = jog1; if (jog2) { pJog2 = jog2; } }
 
                 virtual void executar(float dt) = 0;
                 
                 virtual void inicializar() = 0;
 
-                virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
+                virtual void colidirAtaque(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
 
                 virtual void atacar(float dt) = 0;
 

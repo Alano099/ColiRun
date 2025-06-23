@@ -1,47 +1,49 @@
+
+/*
 #include "../include/MainMenu.h"
 
 namespace Menus
 {
-	MainMenu::MainMenu() :
-		Menu(4, 0, "Colirun"),
-		AtualFase(1),
-		AtualJogador(0),
-		Fase1("Fase 1"),
-		Fase2("Fase 2"),
-		Jogador1("1 Jogador"),
-		Jogador2("2 Jogadores")
-	{
-		titulo.setTamanho(50);
-		titulo.setPosicao(sf::Vector2f(50.f, 25.f));
-		titulo.setCor(0);
-		Fase1.setPosicao(sf::Vector2f(100.f, 80.f));
-		Fase2.setPosicao(sf::Vector2f(100.f, 80.f));
+    MainMenu::MainMenu() :
+        Menu(4, 0, "Colirun"),
+        AtualFase(1),
+        AtualJogador(0),
+        Fase1("Fase 1"),
+        Fase2("Fase 2"),
+        Jogador1("1 Jogador"),
+        Jogador2("2 Jogadores")
+    {
+        titulo.setTamanho(50);
+        titulo.setPosicao(sf::Vector2f(50.f, 25.f));
+        titulo.setCor(0);
+        Fase1.setPosicao(sf::Vector2f(100.f, 80.f));
+        Fase2.setPosicao(sf::Vector2f(100.f, 80.f));
 
-		Jogador1.setPosicao(sf::Vector2f(100.f, 125.f));
-		Jogador2.setPosicao(sf::Vector2f(100.f, 125.f));
+        Jogador1.setPosicao(sf::Vector2f(100.f, 125.f));
+        Jogador2.setPosicao(sf::Vector2f(100.f, 125.f));
 
-		Botoes[0]->setNome("Continue");
-		Botoes[1]->setNome("Novo Jogo");
-		Botoes[2]->setNome("Ranking");
-		Botoes[3]->setNome("Sair");
+        Botoes[0]->setNome("Continue");
+        Botoes[1]->setNome("Novo Jogo");
+        Botoes[2]->setNome("Ranking");
+        Botoes[3]->setNome("Sair");
 
-		pMenuObserver = new Observers::MenuObserver;
-		pMenuObserver->setMenu(this);
+        pMenuObserver = new Observers::MenuObserver;
+        pMenuObserver->setMenu(this);
 
-	}
+    }
 
-	MainMenu::~MainMenu()
-	{
-		if(pMenuObserver)
-			delete pMenuObserver;
+    MainMenu::~MainMenu()
+    {
+        if(pMenuObserver)
+            delete pMenuObserver;
 
-		pMenuObserver = nullptr;
-	}
+        pMenuObserver = nullptr;
+    }
 
-	void MainMenu::selecionar()
-	{
-		switch (selecionar_indice)
-		{
+    void MainMenu::selecionar()
+    {
+        switch (selecionar_indice)
+        {
         case 0:
             if (AtualFase == 1)
             {
@@ -86,7 +88,7 @@ namespace Menus
             pGG->fechajanela();
             break;
         }
-	}
+    }
 
     void MainMenu::moverHorizontal(int i)
     {
@@ -120,7 +122,7 @@ namespace Menus
         }
         else
         {
-			Jogador2.desenhar();
+            Jogador2.desenhar();
         }
 
         if (AtualFase == 1)
@@ -130,10 +132,12 @@ namespace Menus
         else
         {
             Fase2.desenhar();
-		}
+        }
         for (int i = 0; i < Max_Botoes; i++)
         {
-			Botoes[i]->desenhar();
+            Botoes[i]->desenhar();
         }
-	}
+    }
 }
+*/
+

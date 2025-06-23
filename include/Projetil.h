@@ -1,3 +1,5 @@
+//adapatdado em sua maioria de https://github.com/Nixxye/Project_simas
+
 #pragma once
 
 #include "Entidade.h"

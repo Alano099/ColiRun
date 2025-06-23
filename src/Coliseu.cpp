@@ -2,7 +2,8 @@
 
 namespace Fases {
 
-	Coliseu::Coliseu() :Fase(IDs::IDs::coliseu) {
+	Coliseu::Coliseu(Entidades::Personagens::Jogador* jogador1, Entidades::Personagens::Jogador* jogador2)
+		: Fase(IDs::IDs::coliseu, jogador1, jogador2) {
 
 		inicializar();
 
@@ -19,6 +20,7 @@ namespace Fases {
 
 		if (p1->getPosicao().x >= mapaLargura) {
 			faseTerminada = true;
+			
 		}
 
 		if ((p1 && p1->getVida() <= 0) || (p2 && p2->getVida() <= 0)) {
@@ -34,7 +36,13 @@ namespace Fases {
 		listaObstaculo.executar(dt);
 		gerenciar_colisoes();
 
-		fundo.atualizar(dt, p1->getVelocidade().x / 10);
+		float mediaVel = 0.f;
+		if (p1 && p2)
+			mediaVel = (p1->getVelocidade().x + p2->getVelocidade().x) / 2.f;
+		else if (p1)
+			mediaVel = p1->getVelocidade().x;
+
+		fundo.atualizar(dt, mediaVel / 10.f);
 
 	}
 
@@ -61,9 +69,7 @@ namespace Fases {
 		fundo.inicializar("assets/fundos/coliseu.png", sf::Vector2f(mapaLargura, mapaAltura));
 
 		// Insere jogadores na lista
-		listaJogadores.inserirEnt(p1);
-		listaJogadores.inserirEnt(p2);
-
+		
 		// Cria chão com textura repetida
 		sf::Texture* texturaChao = pGG->carregarTextura("assets/obstaculos/chao.jpeg");
 		texturaChao->setRepeated(true);
@@ -153,7 +159,7 @@ namespace Fases {
 
 		// SORTEIO PLATAFORMAS
 
-		int numPlataformas = 3 + rand() % 4; // 3 a 6
+		int numPlataformas = 3 + rand() % 3; // 3 a 5
 
 		std::random_shuffle(posicoesPossiveisPlataformas.begin(), posicoesPossiveisPlataformas.end());
 
@@ -200,7 +206,7 @@ namespace Fases {
 	{
 		Entidades::Entidade* tmp = nullptr;
 
-		tmp = new Entidades::Obstaculos::Lama(pos, { LAMA_TAMANHO_X, LAMA_TAMANHO_Y }, IDs::IDs::lama);
+		tmp = new Entidades::Obstaculos::Lama({pos.x,pos.y + 10.f}, { LAMA_TAMANHO_X, LAMA_TAMANHO_Y }, IDs::IDs::lama);
 		listaObstaculo.inserirEnt(tmp);
 	}
 
@@ -209,7 +215,10 @@ namespace Fases {
 		Entidades::Personagens::Inimigos::Minotauro* inimigo =
 			new Entidades::Personagens::Inimigos::Minotauro(pos, { MINOTAURO_TAMANHO_X,MINOTAURO_TAMANHO_Y }, IDs::IDs::minotauro,100);
 		inimigo->definirLimitesDePatrulha(MINOTAURO_LIMITE_PATRULHA);
-		inimigo->setJogador(p1);
+		if(p1&&p2)
+			inimigo->setJogador(p1, p2);
+		else if (p1)
+			inimigo->setJogador(p1, nullptr);
 		listaInimigos.inserirEnt(inimigo);
 	}
 

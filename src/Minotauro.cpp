@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "../include/Minotauro.h"
 
@@ -34,8 +34,18 @@ namespace Entidades {
                     }
                 }
                 else {
-                    sf::Vector2f posJog = pJog->getPosicao();
-                    float distancia = std::hypot(posJog.x - pos.x, posJog.y - pos.y);
+                    sf::Vector2f posJogMaisPerto = pJog->getPosicao();
+                    float distancia = std::hypot(posJogMaisPerto.x - pos.x, posJogMaisPerto.y - pos.y);
+
+                    if (pJog2) {
+                        sf::Vector2f posJog2 = pJog2->getPosicao();
+                        float dist2 = std::hypot(posJog2.x - pos.x, posJog2.y - pos.y);
+
+                        if (dist2 < distancia) {
+                            distancia = dist2;
+                            posJogMaisPerto = posJog2;
+                        }
+                    }
 
                     float RANGE_VISAO = 300.f;
                     float RANGE_ATAQUE = 50.f;
@@ -55,7 +65,7 @@ namespace Entidades {
                         }
                         else {
                             // PERSEGUIR
-                            sf::Vector2f dir = posJog - pos;
+                            sf::Vector2f dir = posJogMaisPerto - pos;
                             float mag = std::sqrt(dir.x * dir.x + dir.y * dir.y);
                             if (mag != 0.f) dir /= mag;
 
@@ -78,11 +88,11 @@ namespace Entidades {
                 // Movimento vertical
                 velocidade.y += GRAVIDADE * dt;
 
-                // Atualizar posi��o
+                // Atualizar posição
                 pos.x += velocidade.x * dt;
                 pos.y += velocidade.y * dt;
 
-                // Colis�o com ch�o
+                // Colisão com chão
                 if (pos.y >= CHAO) {
                     pos.y = CHAO;
                     velocidade.y = 0.f;
@@ -90,6 +100,17 @@ namespace Entidades {
                 }
                 else {
                     noChao = false;
+                }
+
+
+                if (pos.x <= LIMITE_ESQUERDA) {
+                    pos.x = LIMITE_ESQUERDA;
+                    velocidade.x = 0.f;
+                }
+
+                if (pos.x >= 3268.f) {
+                    pos.x = 3268.f;
+                    velocidade.x = 0.f;
                 }
 
                 // Limites de patrulha
@@ -114,7 +135,7 @@ namespace Entidades {
                 }
 
                 else {
-                    ataque.setSize(sf::Vector2f(0.f, 0.f)); // IMPORTANTE: zera a hitbox quando n�o ataca
+                    ataque.setSize(sf::Vector2f(0.f, 0.f)); // IMPORTANTE: zera a hitbox quando não ataca
                 }
 
                 // Atualizar cooldown de ataque
@@ -156,37 +177,58 @@ namespace Entidades {
 
 			}
 
-			void Minotauro::colidir(Entidade* outraEntidade, sf::Vector2f intercepta)
+			void Minotauro::colidirAtaque(Entidade* outraEntidade, sf::Vector2f intercepta)
 			{
-				switch (outraEntidade->getID()) {
-				case IDs::IDs::plataforma:
-					moverNaColisao(intercepta, outraEntidade->getPosicao());
-					break;
+                switch (outraEntidade->getID()) {
 
-				case IDs::IDs::jogador: {
-					Jogador* jogador = dynamic_cast<Jogador*>(outraEntidade);
-					if (jogador && jogador->getAtacando() && tempoDano <= 0.f) {
-						std::cout << "ATAQUE COLIDIU!\n";
-						moverNaColisao(intercepta, jogador->getPosicao());
-						tempoDano = 0.5f;
-					}
 
-                    if (jogador && jogador->getAtacando() && tempoDano <= 0.f) {
-                        moverNaColisao(intercepta, jogador->getPosicao());
-                        this->tomarDano(10);  // <- Faltou isso !!
-                        tempoDano = 0.5f;
+                case IDs::IDs::jogador: {
+                    Jogador* jogador = dynamic_cast<Jogador*>(outraEntidade);
+
+                    if (estaAtacando && tempoDano <= 0.f) {
+                        std::cout << "Soldado ATACOU Jogador!\n";
+
+                        float baseX = 150.f;
+                        float baseY = 50.f;
+
+                        float deltaX = jogador->getPosicao().x - this->getPosicao().x;
+
+                        sf::Vector2f empurrao;
+                        if (deltaX >= 0.f) {
+                            // Jogador está à direita → empurra pra direita
+                            empurrao = sf::Vector2f(baseX, -baseY);
+                        }
+                        else {
+                            // Jogador está à esquerda → empurra pra esquerda
+                            empurrao = sf::Vector2f(-baseX, -baseY);
+                        }
+
+                        jogador->setVelocidade(empurrao);
+                        jogador->setEmKnockback(true);
+                        jogador->setTempoKnockback(0.4f);
+
+                        if(enfurecido)
+                            jogador->tomarDano(12.f);
+
+                        else
+                            jogador->tomarDano(6.f);
+
+                        tempoDano = 3.5f;
                     }
 
-					break;
-				}
-
-				default:
-					break;
-				}
+                    break;
+                }
+                default:
+                    break;
+                }
 			}
 
 			void Minotauro::atacar(float dt)
 			{
+                podeAtacar = false;
+                tempoAtaque = 3.5f;
+
+                ataque.setSize(sf::Vector2f(15.f, 15.f));
 			}
 
 			void Minotauro::definirLimitesDePatrulha(float alcance)

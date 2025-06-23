@@ -12,7 +12,7 @@ namespace Fases {
         int inimigosVivos;
         Lista::ListaEntidade listaProjetil;
     public:
-        Masmorra();
+        Masmorra(Entidades::Personagens::Jogador* jogador1, Entidades::Personagens::Jogador* jogador2);
 		~Masmorra();
 
 		void executar(float dt);

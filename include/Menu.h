@@ -1,34 +1,30 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
-#include <iostream>
-#include <vector>
-
+#include "Gerenciador_Grafico.h"
 #include "Ente.h"
-#include "Gerenciador_Eventos.h"
-#include "MenuObserver.h"
-#include "Botao.h"
-#include "Texto.h"
-#include "Estado.h"
 
-namespace Menus
-{
-	class Menu : public Ente, public Estados::Estado
-	{
-	protected:
-		const int Max_Botoes;
-		std::vector<Botao*> Botoes;
-		int selecionar_indice;
-		sf::RectangleShape corpo;
-		Texto titulo;
-	public:
-		Menu(int n_botoes = 0, int id = -1, std::string t = "0");
-		~Menu();
-		virtual void desenhar();
-		void mCima();
-		void mBaixo();
-		virtual void selecionar() = 0;
-		void executar();
-		void mudarNome(std::string nome);
-	};
-}
+
+class Menu:public Ente {
+private:
+    
+    sf::Font fonte;
+    sf::Text titulo;
+    sf::Text opcao1;
+    sf::Text opcao2;
+    sf::Text textoNumJogadores;
+    sf::Text instrucoes;
+
+    int faseSelecionada; // 1 = masmorra, 2 = coliseu
+    int numJogadores;    // 1 ou 2
+
+public:
+    Menu();
+    ~Menu();
+
+    void executar(float dt);
+    virtual void desenhar();
+    virtual void inicializar();
+
+    int getFaseSelecionada() const { return faseSelecionada; }
+    int getNumJogadores() const { return numJogadores; }
+};

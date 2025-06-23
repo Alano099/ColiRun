@@ -45,7 +45,7 @@ namespace Entidades {
 
 		virtual void inicializar() = 0;
 
-		virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
+		virtual void colidirAtaque(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
 
 		virtual void atacar(float dt) = 0;
 

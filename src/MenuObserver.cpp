@@ -1,3 +1,7 @@
+
+
+/*
+
 #include "../include/MenuObserver.h"
 #include "../include/MainMenu.h"
 
@@ -31,14 +35,15 @@ namespace Observers {
 			return;
 		}
 		if (key_code == sf::Keyboard::Up) { pMenu->mCima(); }
-		
+
 		if (key_code == sf::Keyboard::Down) { pMenu->mBaixo(); }
-			
+
 		if (key_code == sf::Keyboard::Enter) { pMenu->selecionar(); }
-			
+
 		if (key_code == sf::Keyboard::Right || key_code == sf::Keyboard::Left) { pMenu->moverHorizontal(1); }
-			
+
 		if (key_code == sf::Keyboard::LControl || key_code == sf::Keyboard::RControl) {}pMenu->moverHorizontal(2);
 	}
 
 }
+*/

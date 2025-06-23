@@ -1,21 +1,32 @@
-#pragma once
-#include "Gerenciador_Grafico.h"
-#include "Gerenciador_Eventos.h"
-#include "Fase.h"
-#include "Coliseu.h"
-#include "Masmorra.h"
+#pragma once  
 
-class ColiRun {
-private:
-    Gerenciadores::Gerenciador_Grafico* pGG;
-    Gerenciadores::Gerenciador_Eventos* pGE;
-    Fases::Coliseu coliseu;
-    Fases::Masmorra masmorra;
-    Fases::Fase* faseAtual;
+#include "Gerenciador_Grafico.h"  
+#include "Gerenciador_Eventos.h"  
+#include "Coliseu.h"  
+#include "Masmorra.h"  
+#include "Jogador.h"  
+#include "Menu.h"
 
-public:
-    ColiRun();
-    ~ColiRun();
+class ColiRun  
+{  
+private:  
+   Gerenciadores::Gerenciador_Grafico* pGG;  
+   
 
-    void executar();
+   // Jogadores como atributos  
+   Entidades::Personagens::Jogador p1;  
+   Entidades::Personagens::Jogador p2;  
+
+   Fases::Coliseu coliseu;  
+   Fases::Masmorra masmorra;  
+
+   Menu menu;  
+
+   Fases::Fase* faseAtual;  
+
+public:  
+   ColiRun();  
+   ~ColiRun();  
+
+   void executar();  
 };

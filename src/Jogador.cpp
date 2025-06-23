@@ -10,7 +10,7 @@ namespace Entidades {
 
 		
 
-		Jogador::Jogador(sf::Vector2f pos, bool ehJogador1) :Personagem(pos, sf::Vector2f(JOGADOR_TAMANHO_X, JOGADOR_TAMANHO_Y), IDs::IDs::jogador, 100),
+		Jogador::Jogador(sf::Vector2f pos, bool ehJogador1) :Personagem(pos, sf::Vector2f(JOGADOR_TAMANHO_X, JOGADOR_TAMANHO_Y), IDs::IDs::jogador, 250),
 			ehJogador1(ehJogador1), pulando(false), andando(false)
 		{
 			inicializar();
@@ -89,10 +89,8 @@ namespace Entidades {
                         pulando = true;
                     }
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
-                        if (!estaAtacando && podeAtacar && ataqueCooldown <= 0.f) {
-                            atacar(dt);
-                            estaAtacando = true;
-                            ataqueCooldown = 1.f;
+                        if (podeAtacar && ataqueCooldown <= 0.f) {
+                            atacar(dt);  // cria hitbox no frame
                         }
                     }
                     
@@ -113,6 +111,16 @@ namespace Entidades {
                 velocidade.y = 0.f;
                 noChao = true;
                 pulando = false;
+            }
+
+            if (pos.x <= LIMITE_ESQUERDA) {
+                pos.x = LIMITE_ESQUERDA;
+                velocidade.x = 0.f;
+            }
+
+            if (pos.x >= 5000.f) {
+                pos.x =5000.f;
+                velocidade.x = 0.f;
             }
 
             // ========================
@@ -182,12 +190,8 @@ namespace Entidades {
            
 		}
 
-		void Jogador::colidir(Entidade* outraEntidade, sf::Vector2f intercepta)
-		{
-
-
-
-			
+		void Jogador::colidirAtaque(Entidade* outraEntidade, sf::Vector2f intercepta)
+		{	
 			
 		}
 

@@ -25,7 +25,7 @@ namespace Entidades {
 
                 void executar(float dt);
                 void inicializar();
-                void colidir(Entidade* outraEntidade, sf::Vector2f intercepta);
+                void colidirAtaque(Entidade* outraEntidade, sf::Vector2f intercepta);
                 void atacar(float dt);
                 void definirLimitesDePatrulha(float alcance);
             };

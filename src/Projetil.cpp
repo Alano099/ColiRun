@@ -31,7 +31,7 @@ namespace Entidades {
 			pos += velocidade * dt;
 			corpo.setPosition(pos);
 
-			if (pos.x < 0.f || pos.x > 2000.f || pos.y > 600.f) {
+			if (pos.x < 0.f || pos.x > 5000.f || pos.y > 600.f) {
 				ativo = false;
 			}
 		}

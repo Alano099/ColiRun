@@ -24,7 +24,7 @@ namespace Entidades {
 
 			virtual void executar(float dt) = 0;
 			virtual void inicializar() = 0;
-			virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
+			virtual void obstacular(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
 
 			sf::Vector2f getPosicao()const;
 

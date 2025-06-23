@@ -43,7 +43,7 @@ namespace Entidades {
 
 		}
 
-        void Plataforma::colidir(Entidade* outraEntidade, sf::Vector2f intersecao)
+        void Plataforma::obstacular(Entidade* outraEntidade, sf::Vector2f intersecao)
         {
 
             IDs::IDs id = outraEntidade->getID();

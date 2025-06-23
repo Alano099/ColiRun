@@ -5,8 +5,9 @@
 constexpr float GRAVIDADE = 900.f;
 #define CHAO 600.f
 
-namespace Entidades {
 
+namespace Entidades {
+    #define LIMITE_ESQUERDA 50.f
     class Entidade :public Ente
     {
     protected:
@@ -40,7 +41,7 @@ namespace Entidades {
         virtual void desenhar() = 0;
         virtual void executar(float dt) = 0;
         virtual void inicializar() = 0;
-        virtual void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) = 0;
+        
 
         void setNochao(bool c) { noChao = c; /*cout << "em cima"; */ }
 

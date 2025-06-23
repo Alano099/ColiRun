@@ -21,7 +21,7 @@ namespace Entidades {
 			~Lama();
 			void executar(float dt);
 			void inicializar();
-			void colidir(Entidade* outraEntidade, sf::Vector2f intercepta);
+			void obstacular(Entidade* outraEntidade, sf::Vector2f intercepta);
 
 		};
 

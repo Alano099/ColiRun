@@ -23,23 +23,30 @@ namespace Entidades {
 		
 		}
 
-        void Lama::colidir(Entidade* outraEntidade, sf::Vector2f intercepta)
-        {
-            if (outraEntidade->getID() == IDs::IDs::jogador) {
-                auto* jogador = dynamic_cast<Entidades::Personagens::Jogador*>(outraEntidade);
-                if (jogador) {
+		void Lama::obstacular(Entidade* outraEntidade, sf::Vector2f intercepta)
+		{
+			if (outraEntidade->getID() == IDs::IDs::jogador) {
+				auto* jogador = dynamic_cast<Entidades::Personagens::Jogador*>(outraEntidade);
+				if (jogador) {
 					if (jogador->getAndando()) {
 						sf::Vector2f vel = jogador->getVelocidade();
 
-						vel.x *= cfDesacelerar;
+						
+						const float MAX_VEL_LAMA = 50.f; 
+
+						if (vel.x > MAX_VEL_LAMA)
+							vel.x = MAX_VEL_LAMA;
+						else if (vel.x < -MAX_VEL_LAMA)
+							vel.x = -MAX_VEL_LAMA;
 
 						jogador->setVelocidade(vel);
 
-						//std::cout << "Slow da lama! vel.x = " << vel.x << std::endl;
+						
 					}
-                }
-            }
-        }
+				}
+			}
+		}
+
 
 
 	}

@@ -22,7 +22,7 @@ namespace Entidades
             public:
 				Minotauro(sf::Vector2f pos,sf::Vector2f tamanho, IDs::IDs id,int vida);
 				~Minotauro();
-				void colidir(Entidade* outraEntidade, sf::Vector2f intercepta) override;
+				void colidirAtaque(Entidade* outraEntidade, sf::Vector2f intercepta) override;
 				void executar(float dt);
 				void inicializar();
 				void atacar(float dt) override;

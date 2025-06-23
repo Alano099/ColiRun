@@ -63,7 +63,7 @@ namespace Fases
 
 		//sf::RectangleShape corpo;
 	public:
-		Fase(IDs::IDs id = IDs::IDs::nulo);
+		Fase(IDs::IDs id, Entidades::Personagens::Jogador* jogador1, Entidades::Personagens::Jogador* jogador2);
 		~Fase();
 
 		virtual void executar(float dt) =0;
@@ -79,6 +79,7 @@ namespace Fases
 		void criarPlataformas(sf::Vector2f pos, sf::Vector2f tam);
 		void criarSoldados(sf::Vector2f pos);
 
+		void setJogadores(Entidades::Personagens::Jogador* p1, Entidades::Personagens::Jogador* p2);
 
 		float getMapaLargura() const { return mapaLargura; }
 		float getMapaAltura() const { return mapaAltura; }

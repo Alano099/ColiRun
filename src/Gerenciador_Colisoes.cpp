@@ -1,4 +1,6 @@
-﻿#include "../include/Gerenciador_Colisoes.h"
+﻿//adaptado em sua maioria de github.com/MatheusBurda/Desert
+
+#include "../include/Gerenciador_Colisoes.h"
 
 
 
@@ -79,7 +81,7 @@ namespace Gerenciadores {
 					sf::Vector2f delta = inimigo->getPosicao() - jogador->getPosicao();
 
 					// chama colidir passando delta como "direção"
-					inimigo->colidir(jogador, delta);
+					inimigo->colidirAtaque(jogador, delta);
 				}
 			}
 		}
@@ -118,7 +120,7 @@ namespace Gerenciadores {
 				intersecao.y = fabs(distancia.y) - (personagem->getTamanho().y / 2.f + obst->getTamanho().y / 2.f);
 
 				if (intersecao.x < 0.f && intersecao.y < 0.f) {
-					obst->colidir(personagem, intersecao);
+					obst->obstacular(personagem, intersecao);
 				}
 			}
 
@@ -136,7 +138,7 @@ namespace Gerenciadores {
 				intersecao.y = fabs(distancia.y) - (personagem->getTamanho().y / 2.f + obst->getTamanho().y / 2.f);
 
 				if (intersecao.x < 0.f && intersecao.y < 0.f) {
-					obst->colidir(personagem, intersecao);
+					obst->obstacular(personagem, intersecao);
 				}
 			}
 		}
@@ -167,13 +169,13 @@ namespace Gerenciadores {
 					std::cout << "PROJETIL acertou jogador!\n";
 					// Aplica knockback no jogador
 					sf::Vector2f empurrao = (jogador->getPosicao().x > projetil->getPosicao().x)
-						? sf::Vector2f(150.f, 0.f)
-						: sf::Vector2f(-150.f, 0.f);
+						? sf::Vector2f(50.f, 0.f)
+						: sf::Vector2f(-50.f, 0.f);
 
 					jogador->setVelocidade(empurrao);
 					jogador->setEmKnockback(true);
 					jogador->setTempoKnockback(0.4f);
-
+					jogador->tomarDano(3.f); // Aplica dano
 					// Desativa projetil
 					projetil->setAtivo(false);
 				}

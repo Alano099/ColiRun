@@ -10,8 +10,11 @@ namespace Entidades {
                 inicializar();
             }
 
-            Medusa::~Medusa()
-            {
+            Medusa::~Medusa() {
+                if (projetil) {
+                    projetil->setAtivo(false); // Apenas "desliga"
+                    projetil = nullptr;        // Não deletar
+                }
             }
 
             void Medusa::executar(float dt)
@@ -29,15 +32,25 @@ namespace Entidades {
                 }
                 else {
                     // ====== MOVIMENTO NORMAL ======
-                    sf::Vector2f posJog = pJog->getPosicao();
-                    float distancia = std::hypot(posJog.x - pos.x, posJog.y - pos.y);
+                    sf::Vector2f posJogMaisPerto = pJog->getPosicao();
+                    float distancia = std::hypot(posJogMaisPerto.x - pos.x, posJogMaisPerto.y - pos.y);
+
+                    if (pJog2) {
+                        sf::Vector2f posJog2 = pJog2->getPosicao();
+                        float dist2 = std::hypot(posJog2.x - pos.x, posJog2.y - pos.y);
+
+                        if (dist2 < distancia) {
+                            distancia = dist2;
+                            posJogMaisPerto = posJog2;
+                        }
+                    }
 
                     if (distancia < 500.f) {
                         velocidade.x = 0.f;
-                        olhandoEsquerda = (posJog.x < pos.x);
+                        olhandoEsquerda = (posJogMaisPerto.x < pos.x);
 
                         if (tempoCooldownTiro <= 0.f) {
-                            ultimoAlvo = posJog;
+                            ultimoAlvo = posJogMaisPerto;
                             atacar(dt);
                             tempoCooldownTiro = 2.f;
                         }
@@ -66,6 +79,14 @@ namespace Entidades {
                 else {
                     noChao = false;
                 }
+
+
+                if (pos.x <= LIMITE_ESQUERDA) {
+                    pos.x = LIMITE_ESQUERDA;
+                    velocidade.x = 0.f;
+                }
+
+                
 
                 if (!perseguindo && (pos.x > pontoDireita.x || pos.x < pontoEsquerda.x)) {
                     sentido *= -1;
@@ -106,25 +127,9 @@ namespace Entidades {
                 sprite.adicionarNovaAnimacao(ElementosGraficos::ID_Animacao::ataque, "assets/inimigos/medusa/medusa_especial.png", 5);
             }
 
-            void Medusa::colidir(Entidade* outraEntidade, sf::Vector2f intercepta)
+            void Medusa::colidirAtaque(Entidade* outraEntidade, sf::Vector2f intercepta)
             {
-                switch (outraEntidade->getID()) {
-                case IDs::IDs::plataforma:
-                    moverNaColisao(intercepta, outraEntidade->getPosicao());
-                    break;
-
-                case IDs::IDs::jogador: {
-                    Jogador* jogador = dynamic_cast<Jogador*>(outraEntidade);
-                    if (jogador && jogador->getAtacando() && tempoDano <= 0.f) {
-                        moverNaColisao(intercepta, jogador->getPosicao());
-                        tempoDano = 0.5f;
-                    }
-                    break;
-                }
-
-                default:
-                    break;
-                }
+                
             }
 
             void Medusa::atacar(float dt)
@@ -133,7 +138,20 @@ namespace Entidades {
                     projetil->setAtivo(true);
                     projetil->setPosition({ pos.x, pos.y - 35.f }); // origem do tiro
 
-                    sf::Vector2f alvo = pJog->getPosicao();
+                    sf::Vector2f posJogMaisPerto = pJog->getPosicao();
+                    float distancia = std::hypot(posJogMaisPerto.x - pos.x, posJogMaisPerto.y - pos.y);
+
+                    if (pJog2) {
+                        sf::Vector2f posJog2 = pJog2->getPosicao();
+                        float dist2 = std::hypot(posJog2.x - pos.x, posJog2.y - pos.y);
+
+                        if (dist2 < distancia) {
+                            distancia = dist2;
+                            posJogMaisPerto = posJog2;
+                        }
+                    }
+
+                    sf::Vector2f alvo = posJogMaisPerto;
                     sf::Vector2f delta = alvo - pos;
 
                     float t = 1.0f;  // tempo para chegar no alvo
